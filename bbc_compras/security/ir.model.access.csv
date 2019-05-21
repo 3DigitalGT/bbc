@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_po_tipo_servicio_user,po_tipo_servicio.user,model_po_tipo_servicio,base.group_user,1,1,1,1
+access_po_motivo_cancelar_user,po_motivo_cancelar.user,model_po_motivo_cancelar,base.group_user,1,1,1,1
+
+

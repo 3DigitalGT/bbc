@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_order_form2">
+            <field name="name">purchase.order.form.inherit2</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_ref" position="after">
+                    <field name="po_tipo_servicios"/>
+                    <field name="po_ref_pedido"/>
+                    <field name="po_responsable"/>
+                </field>
+                <field name="date_order" position="after">
+                    <field name="po_plazo_pago"/>
+                    <field name="po_inicio_servicio"/>
+                    <field name="po_fin_servicio"/>
+                    <field name="po_motivos_cancelar" string="Motivo de cancelación"/>
+                    <field name="po_observaciones"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- VISTA servicio-->
+        <record model="ir.ui.view" id="view_po_tipo_servicio_form4">
+            <field name="name">po_mtipo_servicio.form1</field>
+            <field name="model">po_tipo_servicio</field>
+            <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                </group>
+            </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA servicio -->
+        <record model="ir.actions.act_window" id="action_po_tipo_servicio">
+            <field name="name">Tipo de servicio</field>
+            <field name="res_model">po_tipo_servicio</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- VISTA motivos cancelacion-->
+        <record model="ir.ui.view" id="view_po_motivo_cancelar_form3">
+            <field name="name">po_motivo_cancelar.form1</field>
+            <field name="model">po_motivo_cancelar</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA motivos cancelacion -->
+        <record model="ir.actions.act_window" id="action_po_motivo_cancelar">
+            <field name="name">Motivo de cancelacion</field>
+            <field name="res_model">po_motivo_cancelar</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- ***************************************MENU PRINCIPAL PARA CAMPOS BBC****************************************** -->
+        <menuitem name="Campos po" parent="purchase.menu_purchase_config" id="campos_po"/>
+        
+        <!-- ************** MENUS DE LOS CAMPOS BBC CLIENTE ****************** -->
+        <menuitem id="tiposervicio" name="Tipo servicio" parent="campos_po"  sequence="1" action="action_po_tipo_servicio"/>
+        <menuitem id="motivocancelar" name="Motivo cancelacion" parent="campos_po"  sequence="1" action="action_po_motivo_cancelar"/>
+
+    </data>
+</odoo>
+
