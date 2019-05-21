@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record model="ir.ui.view" id="view_partner_form_bbcc">
+            <field name="name">res.partner.form.inherit2</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                 <field name="name" position="before">
+                    <field name="c_nombre" string="" required="1"/>
+                 </field>
+                 <!-- <field name="is_company" position="replace">
+                 </field> -->
+                 <!-- <field name="user_id" position="after">
+                    <field name="is_company" invisible="1"/>
+                    <field name="empresa2" invisible="1"/>
+                    <field name="empresados" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_supervisor" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_seguimiento" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="estado_cliente" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Estatus del cliente"/>
+                    
+                    <field name="tipos_cliente" string="Tipo de cliente"/>
+                    <field name="activ_economica" attrs="{'invisible': [('is_company','!=', True)]}" string="Actividad económica"/> 
+                    <field name="pais_servicios" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="País de origen de servicios"/>
+                    <field name="trafic_manejar" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Tipo de tráfico a manejar"/>
+                    <field name="comercio_clientes" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="servicio_clientes" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="otro_servicio" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Otro tipo de servicio del cliente"/> 
+                    <field name="c_encargado_pagos" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_encargado_operaciones" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                    Proveedor
+                    <field name="encargado_cobros" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                    <field name="p_tipo_base" string="Tipo de base" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                    Proveedor
+                    <field name="c_gerente" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                    <field name="c_internacional" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_local" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_ultimo_seguimiento" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                    
+                    <button type="action" string="Proximo seguimiento" name="328" context="{'search_default_partner_ids': active_id, 'default_partner_ids' : [active_id]}" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                </field> -->
+                
+                <field name="vat" position="after">
+                    <field name="is_company" invisible="1"/>
+                    <field name="empresa2" invisible="1"/>
+                    <field name="empresados" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_supervisor" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_seguimiento" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="estado_cliente" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Estatus del cliente"/>
+                    
+                    <field name="tipos_cliente" string="Tipo de cliente"/>
+                    <field name="activ_economica" attrs="{'invisible': [('is_company','!=', True)]}" string="Actividad económica"/> 
+                    <field name="pais_servicios" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="País de origen de servicios"/>
+                    <field name="trafic_manejar" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Tipo de tráfico a manejar"/>
+                    <field name="comercio_clientes" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="servicio_clientes" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="otro_servicio" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Otro tipo de servicio del cliente"/> 
+                    <field name="c_encargado_pagos" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_encargado_operaciones" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                    <field name="encargado_cobros" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                    <field name="p_tipo_base" string="Tipo de base" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                    <field name="c_gerente" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                    <field name="c_internacional" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_local" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_ultimo_seguimiento" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                    
+                    <button type="action" string="Proximo seguimiento" name="328" context="{'search_default_partner_ids': active_id, 'default_partner_ids' : [active_id]}" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                    <field name="regimen" attrs="{'invisible': [('is_company','!=', True)]}" string="Tipo de régimen"/>
+                    <field name="proveedores_para"  string="Proveedor para"/>
+                    <field name="pais_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                    <field name="origen_servicio" string="País de origen del servicio" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                    <field name="estatus_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Estatus de proveedor"/>
+                    <field name="actividad_proveedores" invisible="1" string="Actividad de proveedor"/>
+                    <field name="oper_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Tipo Proveedor de operaciones"/>
+                    <field name="admon_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Tipo Proveedor de administración"/>
+                    <field name="comercio_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" invisible="1"/>
+                    <field name="servicio_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" invisible="1"/>
+                    <field name="ycomercios" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Tipo de comercio del proveedor"/>
+                    <field name="yservicios" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Tipo de servicio del proveedor"/>
+                    <field name="c_seguimiento_prov" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                </field>
+                
+                <field name="title" position="after">
+                    <field name="c_facebook" placheholder="https://www.facebook.com/pages/BBC-Freight/486388461506119?ref=hl"/>
+                    <field name="c_twitter" placeholder="@BBCFreight "/>
+                    <field name="c_linkedin" placeholder="http://gt.linkedin.com/pub/bbc-freight/a2/73/a92"/>
+                    <field name="c_direc_bodega" string="Dirección de bodega" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                    <field name="c_direc_fiscal" string="Dirección fiscal" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                    <field name="c_direc_oficina" string="Dirección de oficina" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                    <field name="f_factura" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="¿Cuando se manda a facturar?"/>
+                    <field name="f_internacion" attrs="{'invisible': [('is_company','!=', True)]}" string="Tipo de factura servicio internacional"/>
+                    <field name="f_lokal" attrs="{'invisible': [('is_company','!=', True)]}" string="Tipo de factura servicio local"/>
+                    <field name="i_pago" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                    <field name="f_otros" attrs="{'invisible': [('is_company','=', False)]}" string="Otros tipos de facturación"/>
+                    <field name="plazo_proveedores" string="Plazo de pago del proveedor" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                    <field name="entrega_facturas" invisible="1" string="Dirección de entrega de factura"/>
+                    <field name="r_facturas" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Día de recepción de factura"/>
+                    <field name="horario_recepcion" invisible="1"/>
+                    <field name="i_cobro" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="dia_pagos" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="h_pago" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="plazo_clientes" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_horario_recepcion" string="Horario de recepción de factura" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_horario_entrega" string="Dirección de entrega de factura" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_busca" string="¿Qué busca el cliente?" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_base" string="Tipo de base" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
+                    <field name="c_inactivo" string="Inactivo" attrs="{'invisible': [('is_company','!=', True)]}"/>
+                    <field name="c_observaciones"/>
+                </field>
+                <!-- <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="proveedores_para"  string="Proveedor para"/>
+                    <field name="pais_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                    <field name="origen_servicio" string="País de origen del servicio" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                    <field name="estatus_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Estatus de proveedor"/>
+                    <field name="actividad_proveedores" invisible="1" string="Actividad de proveedor"/>
+                    <field name="oper_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Tipo Proveedor de operaciones"/>
+                    <field name="admon_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Tipo Proveedor de administración"/>
+                    <field name="comercio_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" invisible="1"/>
+                    <field name="servicio_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" invisible="1"/>
+                    <field name="ycomercios" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Tipo de comercio del proveedor"/>
+                    <field name="yservicios" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Tipo de servicio del proveedor"/>
+                    <field name="c_seguimiento_prov" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                </xpath> -->
+            </field>
+        </record>
+        
+        <!-- *********************************************************************************************** -->
+        <!-- **********************************PESTAÑA CONOCIENDO A MI CLIENTE ******************************-->
+        <!-- *********************************************************************************************** -->
+        <record model="ir.ui.view" id="view_partner_form_contacto">
+           <field name="name">res.partner.form.inherit3</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Conociendo a mi contacto" attrs="{'invisible': [('is_company','!=', False)]}" >
+                        <group>
+                            <field name="c_nacimiento"/>
+                            <field name="c_deporte_favorito"/>
+                            <field name="c_equipo_fut"/>
+                            <field name="c_comida"/>
+                            <field name="c_hobbies"/>
+                            <field name="c_name_hijo" string="Nombre hijo(a)"/>
+                            <field name="c_cumple_hijo" string="Cumpleaños hijo(a)"/>
+                            <field name="c_name_hijo2" string="Nombre hijo(a)"/>
+                            <field name="c_cumple_hijo2" string="Cumpleaños hijo(a)"/>
+                            <field name="c_restaurante"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+        
+        <!-- ********************************************************* -->
+        <!-- VISTA operador internacional -->
+        <record model="ir.ui.view" id="view_tipo_base2_form1">
+            <field name="name">tipo_base2.form1</field>
+            <field name="model">tipo_base2</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA internacional-->
+        <record model="ir.actions.act_window" id="action_tipo_base2">
+        <field name="name">Tipo de base</field>
+        <field name="res_model">tipo_base2</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN  **************** -->
+        
+        <!-- VISTA operador internacional -->
+        <record model="ir.ui.view" id="view_ycomercio_form1">
+            <field name="name">ycomercio.form1</field>
+            <field name="model">ycomercio</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA internacional-->
+        <record model="ir.actions.act_window" id="action_ycomercio">
+        <field name="name">Proveedor</field>
+        <field name="res_model">ycomercio</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN  **************** -->
+        
+        <!-- VISTA operador internacional -->
+        <record model="ir.ui.view" id="view_yservicio_form1">
+            <field name="name">yservicio.form1</field>
+            <field name="model">yservicio</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA internacional-->
+        <record model="ir.actions.act_window" id="action_yservicio">
+        <field name="name">Proveedor</field>
+        <field name="res_model">yservicio</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN  **************** -->
+        
+        <!-- VISTA operador internacional -->
+        <record model="ir.ui.view" id="view_o_internacional_form1">
+            <field name="name">o_internacional.form1</field>
+            <field name="model">o_internacional</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA internacional-->
+        <record model="ir.actions.act_window" id="action_o_internacional">
+        <field name="name">Operador internacional</field>
+        <field name="res_model">o_internacional</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN  **************** -->
+        
+        <!-- VISTA operador internacional -->
+        <record model="ir.ui.view" id="view_o_local_form1">
+            <field name="name">o_local.form1</field>
+            <field name="model">o_local</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA internacional-->
+        <record model="ir.actions.act_window" id="action_o_local">
+        <field name="name">Operador local</field>
+        <field name="res_model">o_local</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN  **************** -->
+        
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_inactivo_form1">
+            <field name="name">inactivo.form1</field>
+            <field name="model">inactivo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_inactivo">
+        <field name="name">Inactivo</field>
+        <field name="res_model">inactivo</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN  **************** -->
+        
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_tipo_base_form1">
+            <field name="name">tipo_base.form1</field>
+            <field name="model">tipo_base</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_tipo_base">
+        <field name="name">Tipo de base</field>
+        <field name="res_model">tipo_base</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN  **************** -->
+        
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_busca_cliente_form1">
+            <field name="name">busca_cliente.form1</field>
+            <field name="model">busca_cliente</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_busca_cliente">
+        <field name="name">Que busca el cliente</field>
+        <field name="res_model">busca_cliente</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN  **************** -->
+        
+        
+        <!-- ESTADOS DEL CLIENTE -->
+        <!-- ********************************************************* -->
+        <!-- VISTA DE ESTADOS DEL CLIENTE -->
+        <record model="ir.ui.view" id="view_estados_cliente_form1">
+            <field name="name">estados_cliente.form1</field>
+            <field name="model">estados_cliente</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA ESTADOS DEL CLIENTE -->
+        <record model="ir.actions.act_window" id="action_estados_cliente">
+        <field name="name">Estatus del Cliente</field>
+        <field name="res_model">estados_cliente</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN ESTADOS DEL CLIENTE **************** -->
+        
+        
+        <!-- ********************************************************* -->
+        <!-- TIPO DE CLIENTE -->
+        <!-- ********************************************************* -->
+        <!-- VISTA DE TIPO DEL CLIENTE -->
+        <record model="ir.ui.view" id="view_tipo_cliente_form1">
+            <field name="name">tipo_cliente.form1</field>
+            <field name="model">tipo_cliente</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA TIPO CLIENTE -->
+        <record model="ir.actions.act_window" id="action_tipo_cliente">
+        <field name="name">Tipo de Cliente</field>
+        <field name="res_model">tipo_cliente</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN TIPO CLIENTE **************** -->
+        
+        <!-- ACTIVIDAD ECONOMICA -->
+        <!-- ********************************************************* -->
+        <!-- VISTA DE ESTADOS DEL CLIENTE -->
+        <record model="ir.ui.view" id="view_act_economica_form1">
+            <field name="name">act_economica.form1</field>
+            <field name="model">act_economica</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA ACTIVIDAD ECONOMICA -->
+        <record model="ir.actions.act_window" id="action_act_economica">
+        <field name="name">Actividad economica</field>
+        <field name="res_model">act_economica</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN ACTIVIDAD ECONOMICA **************** -->
+        
+        
+        <!-- TRAFICO A MANEJAR -->
+        <!-- ********************************************************* -->
+        <!-- VISTA DE TRAFICO A MANENAR -->
+        <record model="ir.ui.view" id="view_trafico_manejar_form1">
+            <field name="name">trafico_manejar.form1</field>
+            <field name="model">trafico_manejar</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA TRAFICO A MANEJAR -->
+        <record model="ir.actions.act_window" id="action_trafico_manejar">
+        <field name="name">Tipo de trafico a manejar</field>
+        <field name="res_model">trafico_manejar</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN TRAFICO A MANEJAR **************** -->
+        
+        <!-- ********************************************************* -->
+        <!-- TIPO DE COMERCIO DEL CLIENTE -->
+        <!-- ********************************************************* -->
+        <!-- VISTA DE TIPO DE COMERCIO DEL CLIENTE -->
+        <record model="ir.ui.view" id="view_comercio_cliente_form1">
+            <field name="name">comercio_cliente.form1</field>
+            <field name="model">comercio_cliente</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA TIPO DE COMERCIO DEL CLIENTE -->
+        <record model="ir.actions.act_window" id="action_comercio_cliente">
+        <field name="name">Tipo de comercio del cliente</field>
+        <field name="res_model">comercio_cliente</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN TIPO DE COMERCIO DEL CLIENTE **************** -->
+        
+        <!-- TIPO DE SERVICIOS DEL CLIENTE -->
+        <!-- ********************************************************* -->
+        <!-- VISTA DE TIPO DE SERVICIOS DEL CLIENTE -->
+        <record model="ir.ui.view" id="view_servicio_cliente_form1">
+            <field name="name">servicio_cliente.form1</field>
+            <field name="model">servicio_cliente</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA TIPO DE SERVICIOS DEL CLIENTE -->
+        <record model="ir.actions.act_window" id="action_servicio_cliente">
+        <field name="name">Servicios Cliente</field>
+        <field name="res_model">servicio_cliente</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN TIPO DE SERVICIOS DEL CLIENTE **************** -->
+        
+        <!-- TIPO CUANDO SE MANDA A FACTURAR -->
+        <!-- ********************************************************* -->
+        <!-- VISTA -->
+        <record model="ir.ui.view" id="view_f_facturar_form1">
+            <field name="name">f_facturar.form1</field>
+            <field name="model">f_facturar</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA  -->
+        <record model="ir.actions.act_window" id="action_f_facturar">
+        <field name="name">Cuando se manda a facturar</field>
+        <field name="res_model">f_facturar</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN TIPO DE SERVICIOS DEL CLIENTE **************** -->
+        
+        <!-- TIPO FACTURA SERVICIO INTERNACIONAL -->
+        <!-- ********************************************************* -->
+        <!-- VISTA -->
+        <record model="ir.ui.view" id="view_f_internacional_form1">
+            <field name="name">f_internacional.form1</field>
+            <field name="model">f_internacional</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA  -->
+        <record model="ir.actions.act_window" id="action_f_internacional">
+        <field name="name">Tipo de factura servicio internacional</field>
+        <field name="res_model">f_internacional</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN FACTURA SERVICIO INTERNACIONAL **************** -->
+        
+        <!-- TIPO FACTURA SERVICIO LOCAL -->
+        <!-- ********************************************************* -->
+        <!-- VISTA -->
+        <record model="ir.ui.view" id="view_f_local_form1">
+            <field name="name">f_local.form1</field>
+            <field name="model">f_local</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA  -->
+        <record model="ir.actions.act_window" id="action_f_local">
+        <field name="name">Tipo de factura servicio local</field>
+        <field name="res_model">f_local</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN FACTURA SERVICIO LOCAL **************** -->
+        
+        
+        <!-- DIA DE RECEPCION DE FACTURA -->
+        <!-- ********************************************************* -->
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_r_factura_form1">
+            <field name="name">r_factura.form1</field>
+            <field name="model">r_factura</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_r_factura">
+        <field name="name">Dia de recepcion de factura</field>
+        <field name="res_model">r_factura</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN DIA DE RECEPCION DE FACTURA **************** -->
+        
+        <!-- DIA DE PAGO -->
+        <!-- ********************************************************* -->
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_dia_pago_form1">
+            <field name="name">dia_pago.form1</field>
+            <field name="model">dia_pago</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_dia_pago">
+        <field name="name">Dia de pago</field>
+        <field name="res_model">dia_pago</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN DIA DE PAGO **************** -->
+        
+        <!-- VISTA plazo_cliente -->
+        <record model="ir.ui.view" id="view_plazo_cliente_form1">
+            <field name="name">plazo_cliente.form1</field>
+            <field name="model">plazo_cliente</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_plazo_cliente">
+        <field name="name">Plazo de pago de cliente</field>
+        <field name="res_model">plazo_cliente</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN  **************** -->
+        
+        <!-- VISTA pempresa_2 -->
+        <record model="ir.ui.view" id="view_empresa_2_form1">
+            <field name="name">empresa_2.form1</field>
+            <field name="model">empresa_2</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_empresa_2">
+        <field name="name">Empresa</field>
+        <field name="res_model">empresa_2</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN empresa_2**************** -->
+        
+        
+        <!-- *********************************************************   CAMPOS PROVEEDOR    **************************** -->
+        <!-- PROVEEDOR PARA-->
+        <!-- ********************************************************* -->
+        <!-- VISTA plazo_proveedor -->
+        <record model="ir.ui.view" id="view_plazo_proveedor_form1">
+            <field name="name">plazo_proveedor.form1</field>
+            <field name="model">plazo_proveedor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_plazo_proveedor">
+        <field name="name">Plazo de pago del proveedor</field>
+        <field name="res_model">plazo_proveedor</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN  **************** -->
+        
+        
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_proveedor_para_form1">
+            <field name="name">proveedor_para.form1</field>
+            <field name="model">proveedor_para</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_proveedor_para">
+        <field name="name">Proveedor para</field>
+        <field name="res_model">proveedor_para</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN DIA DE PAGO **************** -->
+        
+        
+        
+        <!-- ESTATUS DE PROVEEDOR -->
+        <!-- ********************************************************* -->
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_estatus_proveedor_form1">
+            <field name="name">estatus_proveedor.form1</field>
+            <field name="model">estatus_proveedor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_estatus_proveedor">
+        <field name="name">Estatus de proveedor</field>
+        <field name="res_model">estatus_proveedor</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN ESTATUS DE PROVEEDOR**************** -->
+        
+        <!-- ACTIVIDAD PROVEEDOR -->
+        <!-- ********************************************************* -->
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_act_proveedor_form1">
+            <field name="name">act_proveedor.form1</field>
+            <field name="model">act_proveedor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_act_proveedor">
+        <field name="name">Actividad de proveedor</field>
+        <field name="res_model">act_proveedor</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN ACTIVIDAD DE PROVEEDOR**************** -->
+        
+        <!-- PROVEEDOR DE ADMINISTRACION -->
+        <!-- ********************************************************* -->
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_admon_proveedor_form1">
+            <field name="name">admon_proveedor.form1</field>
+            <field name="model">admon_proveedor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_admon_proveedor">
+        <field name="name">Proveedor de administracion</field>
+        <field name="res_model">admon_proveedor</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN PROVEEDOR DE ADMINISTRACION**************** -->
+        
+        <!-- PROVEEDOR DE OPERACIONES -->
+        <!-- ********************************************************* -->
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_oper_proveedor_form1">
+            <field name="name">oper_proveedor.form1</field>
+            <field name="model">oper_proveedor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_oper_proveedor">
+        <field name="name">Proveedor de operaciones</field>
+        <field name="res_model">oper_proveedor</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN PROVEEDOR DE OPERACIONES**************** -->
+        
+        <!-- TIPO DE COMERCIO DEL PROVEEDOR -->
+        <!-- ********************************************************* -->
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_comercio_proveedor_form1">
+            <field name="name">comercio_proveedor.form1</field>
+            <field name="model">comercio_proveedor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_comercio_proveedor">
+        <field name="name">Tipo de comercio del proveedor</field>
+        <field name="res_model">comercio_proveedor</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN TIPO DE COMERCIO DEL PROVEEDOR**************** -->
+        
+        <!-- TIPO DE SERVICIO DEL PROVEEDOR -->
+        <!-- ********************************************************* -->
+        <!-- VISTA  -->
+        <record model="ir.ui.view" id="view_servicio_proveedor_form1">
+            <field name="name">servicio_proveedor.form1</field>
+            <field name="model">servicio_proveedor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_servicio_proveedor">
+        <field name="name">Tipo de servicio del proveedor</field>
+        <field name="res_model">servicio_proveedor</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <!-- *************** FIN TIPO DE SERVICIO DEL PROVEEDOR**************** -->
+        
+        
+        <!-- *****************************   CAMPOS PROVEEDOR    **************************** -->
+        
+        
+        <!-- ********************************************************* -->
+        <!-- MENUS DEL MODULO -->
+        <!-- ********************************************************* -->
+        <!-- MENU PRINCIPAL PARA CAMPOS BBC -->
+        <menuitem name="Campos BBC" parent="contacts.res_partner_menu_config" id="campos_bbc"/>
+        <!-- MENUS DE LOS CAMPOS BBC CLIENTE -->
+        <menuitem id="estadoscliente" name="Estados Cliente" parent="campos_bbc"  sequence="1" action="action_estados_cliente"/>
+        <menuitem id="tipocliente" name="Tipo cliente" parent="campos_bbc"  sequence="2" action="action_tipo_cliente"/>
+        <menuitem id="acteconomica" name="Actividad economica" parent="campos_bbc"  sequence="3" action="action_act_economica"/>
+        <menuitem id="trafico_manejar" name="Trafico a manejar" parent="campos_bbc"  sequence="4" action="action_trafico_manejar"/>
+        <menuitem id="comercio_cliente" name="Comercio del cliente" parent="campos_bbc"  sequence="5" action="action_comercio_cliente"/>
+        <menuitem id="servicio_cliente" name="Servicio cliente" parent="campos_bbc"  sequence="6" action="action_servicio_cliente"/>
+        <menuitem id="cuando_facturar" name="Cuando facturar" parent="campos_bbc"  sequence="7" action="action_f_facturar"/>
+        <menuitem id="f_internacional" name="Fac servicio inter" parent="campos_bbc"  sequence="8" action="action_f_internacional"/>
+        <menuitem id="f_local" name="Fac servicio local" parent="campos_bbc"  sequence="9" action="action_f_local"/>
+        <menuitem id="r_factura" name="Recepcion factura" parent="campos_bbc"  sequence="10" action="action_r_factura"/>
+        <menuitem id="dia_pago" name="Dia de pago" parent="campos_bbc"  sequence="11" action="action_dia_pago"/>
+        <menuitem id="plazo_cliente" name="Plazo pago cliente" parent="campos_bbc"  sequence="12" action="action_plazo_cliente"/>
+        <menuitem id="empresa_2" name="Empresa" parent="campos_bbc"  sequence="13" action="action_empresa_2"/>
+        <!-- MENUS DE LOS CAMPOS BBC PROVEEDOR -->
+        <menuitem id="proveedor_para" name="Proveedor para" parent="campos_bbc"  sequence="14" action="action_proveedor_para"/>
+        <menuitem id="estatus_proveedor" name="Estatus del proveedor" parent="campos_bbc"  sequence="15" action="action_estatus_proveedor"/>
+        <menuitem id="act_proveedor" name="Actividad proveedor" parent="campos_bbc"  sequence="16" action="action_act_proveedor"/>
+        <menuitem id="admon_proveedor" name="Proveedor administracion" parent="campos_bbc"  sequence="17" action="action_admon_proveedor"/>
+        <menuitem id="tipo_servicio_proveedor" name="Tipo de proveedor" parent="campos_bbc"  sequence="18" action="action_servicio_proveedor"/>
+        <menuitem id="plazo_proveedor" name="Plazo proveedor" parent="campos_bbc"  sequence="19" action="action_plazo_proveedor"/>
+        <menuitem id="ycomercio" name="comercio proveedor" parent="campos_bbc"  sequence="20" action="action_ycomercio"/>
+        <menuitem id="yservicio" name="servicio proveedor" parent="campos_bbc"  sequence="21" action="action_yservicio"/>
+
+    </data>
+</odoo>

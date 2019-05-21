@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<document filename="test2.pdf">
+<!-- ########################  TEMPLATE FORM ########################  <nextFrame name="second"/>
+
+this section contains the STATIC elements of the document, and the layout of the
+frames on each page.
+-->
+	<template pageSize="(21.6cm,27.85cm)" title="Test2" author="Jose Pablo Castillo"  >
+		<pageTemplate id="first">
+			<frame id="first" x1="0.0" y1="0.0" width="612" height="792"/>
+			<pageGraphics>
+				<setFont name="ARIAL" size="10"/>
+				<place x="0.6cm" y="7cm" width="612.0" height="500">
+					<blockTable colWidths="4cm,12cm" rowHeights="0.8cm" style="Table1">
+						<tr>
+							<td>
+								<para style="Table Contents">
+									<font color="white"> </font>
+								</para>
+							</td>
+							<td>
+<!--nota   conversion de TIME a STRUCTURE STRING  (   STRING A TIME_FORMAT    )-->
+								<para style="Table Contents">[[time.strftime('%d-%B-%Y',time.strptime(str(o.date_invoice),'%d/%m/%Y'))]]</para>
+							</td>
+						</tr>
+					</blockTable>
+					<blockTable colWidths="3cm,11.5cm,2cm,3cm" rowHeights="0.8cm" style="Table3">
+						<tr>
+							<td>
+								<para style="P5">
+								<font color="white"> </font>
+								</para>
+							</td>
+							<td>
+								<para style="P9">[[ (o.partner_id.name) or '' ]]</para>
+							</td>
+							<td>
+								<para style="P5">
+								<font color="white"> </font>
+								</para>
+							</td>
+							<td>
+								<para style="P10">[[ (o.partner_id.vat)  or ' ' ]]</para>
+							</td>
+						</tr>
+					</blockTable>
+					<blockTable colWidths="3cm,11.5cm,2cm,3cm" rowHeights="1.2cm"  style="Table4">
+						<tr>
+							<td>
+								<para style="Table Contents">
+								<font color="white"> </font>
+								</para>
+							</td>
+							<td>
+								<para style="Table Contents">[[' '.join(str(display_address(o.partner_id)).splitlines())]]</para>
+							</td>
+							<td>
+								<para style="P6">
+									<font color="white"> </font>
+								</para>
+							</td>
+							<td>
+								<para style="P6">[[suma_fechas(fecha= time.strftime('%d-%m-%Y',time.strptime(str(o.date_invoice),'%d/%m/%Y')) ,delay=(o.payment_term.line_ids[0].days))]]</para>
+							</td>
+						</tr>
+					</blockTable>
+					<blockTable colWidths="1cm,2.5cm,2.8cm,2.8cm,2.5cm,7cm" rowHeights="1.2cm" style="Table5">
+						<tr>
+							<td>
+								<para style="Table Contents">
+									<font color="white"> </font>
+								</para>
+							</td>
+							<td>
+								<para style="Table Contents">[[o.origin]]</para>
+							</td>
+							<td>
+								<para style="Table Contents">
+									<font color="white"> </font>
+								</para>
+							</td>
+							<td>
+								<para style="Table Contents">[[o.user_id.name]]</para>
+							</td>
+							<td>
+								<para style="Table Contents">[[user.name]]</para>
+							</td>
+							<td>
+								<para style="Table Contents">[[o.Referencia_en_Factura]]</para>
+							</td>
+						</tr>
+					</blockTable>
+				</place>
+				<place x="0" y="1.3cm" width="612.0" height="500">
+					<blockTable colWidths="1cm,2.2cm,1.5cm,11cm,2.3cm,2.3cm" rowHeights="0.8cm" style="Table7">
+						<tr>
+							<td>
+								<para style="Table Contents">
+									<font color="white"> </font>
+								</para>
+							</td>
+							<td>
+								<para style="P4">
+								<font color="white"> </font>
+								</para>
+							</td>
+							<td>
+								<para style="P14">[[ formatLang(o.Cantidad_taotal)]]</para>
+							</td>
+							<td>
+								<para style="P14">[[ o.Descripcion_Unica_facturacion ]]</para>
+							</td>
+							<td>
+								<para style="P14"> [[ o.currency_id.symbol ]][[ o.Unitario_fact ]]</para>
+							</td>
+							<td>
+								<para style="P14"> [[ o.currency_id.symbol ]][[ o.Total_fact ]]</para>
+							</td>
+						</tr>
+					</blockTable>
+				</place>
+
+				<!--lines>1.3cm 6cm 20cm 6cm </lines-->
+			<!--fill color="green"/-->	
+        <!--drawString x="10cm" y="6cm">Parte de Corp Industrias de Centroamerica</drawString-->
+				<setFont name="Helvetica" size='12'/>
+				<drawRightString x="10.3cm" y="4.8cm">[[convertir_int(monito=o.amount_untaxed)]] [[obtener_decimales(monito=o.amount_untaxed)]] </drawRightString>
+				<drawRightString x="20cm" y="4.8cm">[[ formatLang(o.amount_untaxed, digits=get_digits(dp='Account'))]]</drawRightString>
+				<drawRightString x="20cm" y="4cm">[[ formatLang(o.amount_tax, digits=get_digits(dp='Account'))]]</drawRightString>
+				<drawRightString x="20cm" y="3.3cm">[[formatLang(o.amount_total, digits=get_digits(dp='Account'))]] </drawRightString>
+			</pageGraphics>
+		</pageTemplate>
+	</template>
+<!-- ########################  STYLESHEET ######################## 
+this section contains the STYLE information for formatting text and tables.
+-->
+	<stylesheet>
+		<blockTableStyle id="Standard_Outline">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<blockTableStyle id="Table1">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<blockTableStyle id="Table2">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<blockTableStyle id="Table3">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<blockTableStyle id="Table4">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<blockTableStyle id="Table5">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<blockTableStyle id="Table6">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<blockTableStyle id="Table7">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<initialize>
+			<paraStyle name="all" alignment="justify"/>
+		</initialize>
+		<paraStyle name="P2" fontName="ARIAL" fontSize="10" leading="3"/>
+		<paraStyle name="P4" rightIndent="0.0" leftIndent="0.0" fontName="ARIAL" fontSize="10" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+                <paraStyle name="P14" rightIndent="0.0" leftIndent="0.0" fontName="ARIAL" fontSize="10" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+		<paraStyle name="P5" fontName="ARIAL" alignment="CENTER"/>
+		<paraStyle name="P6" fontName="ARIAL" fontSize="10" leading="10"/>
+		<paraStyle name="P9" rightIndent="0.0" leftIndent="0.0" fontName="ARIAL" fontSize="10.0" leading="13" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+		<paraStyle name="P10" rightIndent="0.0" leftIndent="0.0" fontName="ARIAL" fontSize="10" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+		<paraStyle name="Standard" fontName="ARIAL"/>
+		<paraStyle name="Heading" fontName="ARIAL" fontSize="10" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+		<paraStyle name="Text body" fontName="ARIAL" spaceBefore="0.0" spaceAfter="6.0"/>
+		<paraStyle name="List" fontName="ARIAL" spaceBefore="0.0" spaceAfter="6.0"/>
+		<paraStyle name="Caption" fontName="ARIAL" fontSize="10" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+		<paraStyle name="Index" fontName="ARIAL"/>
+		<paraStyle name="Table Contents" fontName="ARIAL"/>
+		<paraStyle name="terp_default_8" rightIndent="0.0" leftIndent="0.0" fontName="ARIAL" fontSize="10" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+		<paraStyle name="terp_default_9" rightIndent="0.0" leftIndent="0.0" fontName="ARIAL" fontSize="10" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+		<paraStyle name="terp_default_2" rightIndent="0.0" leftIndent="0.0" fontName="ARIAL" fontSize="10" leading="3" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+		<paraStyle name="terp_default_Right_8" rightIndent="0.0" leftIndent="0.0" fontName="ARIAL" fontSize="10" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+		<paraStyle name="terp_default_Right_9" rightIndent="0.0" leftIndent="0.0" fontName="ARIAL" fontSize="10" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+		<paraStyle name="terp_default_Note" rightIndent="0.0" leftIndent="9.0" fontName="ARIAL" fontSize="10" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+		<paraStyle name="terp_tblheader_Details" fontName="ARIAL" fontSize="10" leading="11" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
+		<paraStyle name="terp_tblheader_Details_Centre" fontName="ARIAL" fontSize="10" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
+		<paraStyle name="terp_tblheader_Details_Right" fontName="ARIAL" fontSize="10" leading="11" alignment="RIGHT" spaceBefore="6.0" spaceAfter="6.0"/>
+		<paraStyle name="Table Heading" fontName="ARIAL" alignment="CENTER"/>
+		<paraStyle name="Footer" fontName="ARIAL"/>
+		<paraStyle name="MP1" rightIndent="0.0" leftIndent="0.0" fontName="ARIAL" fontSize="10" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+		<images>
+		</images>
+	</stylesheet>
+
+
+<!-- ########################3  STORY ########################### 
+this section contains the FLOWABLE elements of the document. This is
+usually where most of the text goes. This content will flow into
+the frames specified in the <template> section.
+-->
+	<story>
+		<blockTable colWidths="600" style="Table2">
+			<tr>
+				<td>
+					<para style="P2">[[ repeatIn(objects,'o') ]]</para>
+					<para style="P2">[[ setLang(o.partner_id.lang) ]]</para>
+				</td>
+			</tr>
+		</blockTable>
+	</story>
+</document>

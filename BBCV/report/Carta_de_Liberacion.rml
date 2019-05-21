@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(21.6cm,27.95cm)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="57.0" y1="57.0" width="498" height="678"/>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica" textColor="#000000"/>
+    <paraStyle name="P2" fontName="Helvetica" textColor="#000000"/>
+    <paraStyle name="P3" fontName="Helvetica" alignment="CENTER" textColor="#000000"/>
+    <paraStyle name="P4" fontName="Helvetica-Bold" textColor="#000000"/>
+    <paraStyle name="P5" fontName="Helvetica" alignment="JUSTIFY"/>
+    <paraStyle name="P6" fontName="Helvetica" alignment="RIGHT"/>
+    <paraStyle name="P7" fontName="Helvetica"/>
+    <paraStyle name="P8" fontName="Helvetica" spaceBefore="0.0" spaceAfter="0.0" textColor="#000000"/>
+    <paraStyle name="P9" fontName="Helvetica" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0" textColor="#000000"/>
+    <paraStyle name="P10" fontName="Helvetica-Bold" fontSize="8.0" leading="10" spaceBefore="0.0" spaceAfter="0.0" textColor="#000000"/>
+    <paraStyle name="P11" fontName="Helvetica" fontSize="7.0" leading="9" spaceBefore="0.0" spaceAfter="0.0" textColor="#000000"/>
+    <paraStyle name="P12" fontName="Helvetica" fontSize="7.0" leading="9" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0" textColor="#000000"/>
+    <paraStyle name="P13" fontName="Helvetica" spaceBefore="0.0" spaceAfter="0.0" textColor="#000000"/>
+    <paraStyle name="P14" fontName="Helvetica" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P15" fontName="Helvetica" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P16" fontName="Helvetica" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P17" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="P18" fontName="Helvetica" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="No Spacing" fontName="Helvetica" spaceBefore="0.0" spaceAfter="0.0"/>
+    <images/>
+  </stylesheet>
+  <story>
+    <para style="P17">
+      <font face="Helvetica">
+      
+
+
+
+
+
+
+
+      </font>
+    </para>
+    <para style="P6">Guatemala [[time.strftime('%d de %B %Y')]]</para>
+    <para style="Standard">
+      <font color="white">
+
+
+
+
+
+
+
+ </font>
+    </para>
+    <para style="No Spacing">
+      <font face="Helvetica">Sres.:</font>
+    </para>
+    <para style="No Spacing">
+      <font face="Helvetica">BBC Freight</font>
+    </para>
+    <para style="No Spacing">
+      <font face="Helvetica">Presente.</font>
+    </para>
+    <para style="P7">
+      <font color="white"> 
+
+</font>
+    </para>
+    <para style="No Spacing">
+      <font face="Helvetica">Att.: Mischelle Cáceres /Liz Díaz</font>
+    </para>
+    <para style="No Spacing">Operaciones</para>
+    <para style="No Spacing">
+      <font color="white"> 
+
+
+</font>
+    </para>
+    <para style="P5">Por este medio, nuestra empresa: <font face="Helvetica"> [[o.so_datos_consignatario.name]]  </font> solicitamos la LIBERACION del contenedor número: <font face="Helvetica">[[o.so_no_contenedor]]</font>, amparado con el B/L: <font face="Helvetica">[[o.no_hbl]]</font>, el que viene a bordo del buque <font face="Helvetica">[[o.so_no_buque]]</font> el cual será movido por transportes: ____________________ a la dirección de descargue: ________________________la fecha de presentación de póliza en Puerto será: ______________. Llevará seguridad (nombre/teléfono):_________________________
+
+</para>
+    <para style="P5">Contacto: _______________________________   Puesto: _______________________</para>
+    <para style="P5">Email: _________________________________   Teléfonos: ____________________</para>
+    <para style="P5">Transporte: ____________________________   Teléfonos: ____________________ </para>
+    <para style="P5">Tramitador en puerto: ________________ Teléfonos: ____________________
+
+
+</para>
+    <para style="P5">Responsabilizándonos por cualquier daño que pueda ocurrirle al contenedor mientras estén bajo nuestra custodia y comprometiéndonos a devolverlo/s limpio, sin malos olores, y en buen estado y en el tiempo y lugar indicados por ustedes en el aviso de embarque. Asimismo exoneramos a BBC FREIGHT / Industrias de Centroamérica de toda responsabilidad relacionada con el traslado anteriormente solicitado.
+
+</para>
+    <para style="P5">Atentamente,</para>
+    <para style="Standard">
+      <font face="Helvetica"></font>
+    </para>
+    <para style="Standard">__________________,</para>
+    <para style="No Spacing">[[user.name]]</para>
+    <para style="No Spacing">BBC Freight Operaciones</para>
+    <para style="P18">
+      <font face="No Spacing">BBC Freight</font>
+    </para>
+  </story>
+</document>

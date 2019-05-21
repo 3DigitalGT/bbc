@@ -1,0 +1,1689 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!--  VISTA DE FORMS  PARA SALE ORDERS   -->
+<record model="ir.ui.view" id="view_order_form1">
+    <field name="name">sale.order.form.inherit1</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+        <field name="partner_id" position="before">
+            <field name="so_subtitulos1" string="COMERCIAL" readonly="1"/>
+        </field>
+        <field name="partner_id" position="after">
+            <field name="so_comercios"/>
+            <field name="servicio_ventas"/>
+            <field name="tipo_traficos1"/>
+            <field name="so_incotermsclientes"/>
+            <field name="so_incotermservicios" string="Tipo de incoterms del servicio"/>
+            <field name="so_mercaderia"/>
+            <field name="so_ofrecimientos" string="Ofrecimiento especial" invisible="1"/>
+            <field name="so_ofrecim" string="Ofrecimiento especial" placeholder="Ofrecimiento especial"/>
+            <field name="informar_cliente"/>
+            <field name="so_frecuencia" string="Frecuencia"/>
+            <field name="estatus_comercial" invisible="1"/>
+            <field name="status_socomercial"/>
+            
+            <field name="so_subtitulos1" string="" readonly="1"/>
+            <field name="so_subtitulos1" string="PRICING" readonly="1"/>
+            <field name="responsable_pricing"/>
+            <field name="so_statusadmon" string="Instrucciones de pricing"/>
+            <field name="so_tipocambio"/>
+            
+            <field name="so_subtitulos1" string="" readonly="1"/>
+            <field name="so_subtitulos1" string="CONTABILIDAD" readonly="1"/>
+            <field name="so_fpago"/>
+            <field name="estado_conta"/>
+            <field name="liquidador_conta"/>
+            <field name="so_taproximado" string="Tiempo aproximado de tránsito" invisible="1"/>
+            <field name="so_validez" invisible="0"/>
+        </field>
+        <field name="date_order" position="after">
+            <field name="envio_cotizacion" string="Fecha de envío de cotización"/>
+            <field name="so_fpresupuesto" invisible="1"/>
+            <field name="so_fseguimiento" string="Fecha de cierre de venta" invisible="1"/>
+            <field name="so_fcierre" string="Fecha de cierre de venta"/>
+            
+            <field name="so_subtitulos1" string="" readonly="1"/>
+            <field name="so_subtitulos1" string="OPERACIONES" readonly="1"/>
+            <field name="op_internacional"/>
+            <field name="op_local"/>
+            
+            <field name="so_fetd"/>
+            <field name="so_feta"/>
+            <field name="no_mbl" string="No. de MBL/MAWB/carta porte"/>
+            <field name="no_hbl" string="No. de HBL/HAWB/carta porte"/>
+            <field name="no_contenedor" string="No. de contenedor"/>
+            <field name="so_fentrega"/>
+            <field name="so_mescierre" string="Mes de cierre"/>
+            <field name="estado_operaciones"/>
+            <field name="so_statusoperacion" string="Estatus de operación"/>
+            <field name="liquidador_oper"/>
+            <field name="so_statusso" string="Estatus de SO" invisible="1"/>
+        </field>
+    </field>
+</record>
+
+
+<!-- **********************campos pagina pricing **********************************-->
+<record model="ir.ui.view" id="view_order_form_4">
+    <field name="name">sale.order.form.inherit4</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page string="Pricing">
+                <group>
+                    <group>
+                    <field name="so_contacto_rate" string="Contract ID/Rate"/>
+                    <field name="so_agente_trabajar"/>
+                    <field name="so_naviera_trabajar" string="Transporte principal"/>
+                    <field name="so_prov_aduanas"/>
+                    <field name="so_prov_transito" string="Proveedor tránsito terrestre"/>
+                    <field name="so_prov_seguridad"/>
+                    <field name="so_prov_inspeccion" string="Proveedor inspección"/>
+                    <field name="so_prov_seguro"/>
+                    <field name="so_prov_cuadrilla" string="Proveedor cuadrilla"/>
+                    <field name="so_naviera_aerolinea" string="Naviera o aerolínea" invisible="1"/>
+                    <field name="so_lugar_entregas" string="Lugar de entrega (POD)/MBL/MAWB/Carta porte"/>
+                    <field name="flete_mbl" string="Flete" />
+                    <field name="so_lugar_entrega" string="Lugar de entrega (POD)/HBL/HAWB/Carta porte"/>
+                    <field name="flete_hbl" string="Flete" />
+                    <field name="servicio_secundario"/>
+                    <field name="so_fecha_tarifa_ventas"/>
+                    <field name="so_fecha_tarifa_origen"/>
+                    <field name="so_fecha_tarifa_destino"/>
+                    <field name="so_fecha_tarifa_inter"/>
+                    <field name="so_tiempo_almacenaje" invisible="1"/>
+                    <field name="so_tiempo_demoras" invisible="1"/>
+                    <field name="so_cobro_demoras" invisible="1"/>
+                    </group>
+                </group>
+                
+                    <group>
+                    <field name="so_subtitulos" string="NAVIERA/AEROLINEA/TRANSPORTE TERRESTRE" readonly="1"/>
+                    <field name="so_dia_almacenaje" string="Días libres de almacenaje" />
+                    <field name="so_dia_demora" string="Días libres de demoras" />
+                    <field name="dia_estadia" string="Días libres de estadía" />
+                    </group>
+                    
+                
+                    <group>
+                    <field name="so_subtitulos" string="BBC" readonly="1"/>
+                    <field name="so_dia2_almacenaje" string="Días libres de almacenaje" />
+                    <field name="so_dia2_demoras" string="Días libres de demoras" />
+                    <field name="estadia_bbc" string="Días libres de estadía" />
+                    <field name="costo_detallado"/>
+                    <field name="profit_share" string="Profit Share:  $"/>
+                    <field name="f_entrega_cotizacion" string="Fecha entrega cotización"/>
+                    <field name="h_entrega_cotizacion" string="Hora entrega cotización"/>
+                    <field name="so_observaciones_pricing"/>
+                    </group>
+                    <group>
+                        <field name="so_subtitulos" string="CONSIGNEE MBL" readonly="1"/>
+                        <field name="so_company_name" placeholder="Industrias de Centroamérica S.A."/>
+                        <field name="so_direccion2" placeholder="2 Calle vista hermosa II edificio Domani oficina 904 24-00 zona 15 guatemala, guatemala"/>
+                        <field name="so_nit3" placeholder="7929384-0"/>
+                        <field name="so_telefono3" placeholder="22696966"/>
+                        <field name="so_fax3"/>
+                        <field name="so_contacto3" placeholder="Mischelle Cáceres"/>
+                        <field name="so_email3" placeholder="mischelle.caceres@bbcfreight.com"/>
+                        <field name="observaciones_pricing"/>
+                    </group>
+            </page>
+        </notebook>
+    </field>
+</record>
+
+<!--record model="ir.ui.view" id="view_order_form_4_1">
+    <field name="name">sale.order.form.inherit13</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="campos.view_order_form_2_3"/>
+    <field name="arch" type="xml">
+        <field name="frontera_destino" position="after">
+            <field name="direccion_origen"/>
+            <field name="direccion_destino"/>   
+        </field>
+    </field>
+</record-->
+
+<!-- ***********************fin campos pagina pricing******************************** -->
+<!-- *************************************INICIO Comercial**************************************-->
+
+<record model="ir.ui.view" id="view_order_form_22">
+    <field name="name">sale.order.form.inherit22</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page string="Comercial">
+        <group>
+            <group string="DATOS GENERALES">
+            <field name="so_cotizacion_contacto" string="Cotización a nombre de"/>
+            <field name="so_cliente"/>
+            <field name="so_firma"/>
+            <field name="so_tipo_cotizaciones" string="Tipo de cotización"/>
+            <field name="tipo_formato"/>
+            <field name="so_nivel_prioridades"/>
+            <field name="currencys" required="True"/>
+            <field name="o_cotizaciones" string="Ofrecimiento especial cotizacion" invisible="1"/>
+            <field name="o_cotizaciones1" string="Ofrecimiento especial cotización"/>
+            <field name="so_busca_clientes"/>
+            <field name="so_servicios_especiales" string="Servicio especial"/>
+            <field name="estadia_libre" string="Días libres ofrecidos de estadía"/>
+            <field name="ofrecidos_demoras" string="Días libres ofrecidos de demoras"/>
+            <field name="so_volumen_cliente" string="Volumen del cliente"/>
+            <field name="so_frecuencias" string="Frecuencia"/>
+            <field name="so_competencias"/>
+            <field name="name_competencia"/>
+            <field name="direc_origen" string="Dirección de origen"/>
+            <!-- field name="puerto_orig"/ -->
+            <field name="so_valor_mercaderia" string="Valor de la mercancía"/>
+            <field name="so_tipo_equipos" string="Tipo de equipo"/>
+            
+            </group>
+            <group>
+                <field name="so_peso"/>
+                <field name="so_medidas"/>
+                <field name="so_bultos"/>
+                <field name="so_volumen"/>
+                <field name="so_tipo_embalajes"/>
+                <field name="so_tipo_mercaderias" string="Tipo de mercancía"/>
+                <field name="so_incluye_aduana" string="Incluye aduana"/>
+                <field name="so_aduana_origen"/>
+                <field name="so_aduana_destino"/>
+                <field name="so_aduana_ambas"/>
+                <field name="so_tipo_polizas" string="Clase de régimen DUA"/>
+                <field name="so_permisos_especiales" string="Permisos especiales"/>
+            
+                <field name="so_transporte" string="Transporte"/>
+                <field name="so_transporte_origen"/>
+                <field name="so_transporte_destino"/>
+                <field name="so_transporte_ambas"/>
+                <field name="so_sobrepeso" string="Sobrepeso"/>
+                <field name="so_peso2"/>
+                <field name="so_gps" string="GPS"/>
+                <field name="so_gps_origen"/>
+                <field name="so_gps_destino"/>
+                <field name="so_seguridad" string="Seguridad"/>
+                <field name="so_seguridad_origen"/>
+                <field name="so_seguridad_destino"/>
+                <field name="so_tipo_seguridades"/>
+                <field name="so_seguro_mercaderia" string="Seguro de mercancía"/>
+                <field name="so_porcentaje_seguros"/>
+                <field name="so_cuadrilla" string="Carga y descarga"/>
+                <field name="so_cuadrilla_origen"/>
+                <field name="so_cuadrilla_destino"/>
+                <field name="so_personas"/>
+                <field name="so_inspeccion" string="Inspección"/>
+                <field name="so_inspeccion_origen"/>
+                <field name="so_inspeccion_destino"/>
+                <field name="so_tipo_inspecciones" string="Tipo de inspección"/>
+                <field name="so_observaciones_comercial"/>
+                <field name="so_perioricidades" invisible="1"/>
+            </group>
+            
+
+        </group>
+        <group>
+            <group string="DATOS DEL CONSIGNATARIO">
+            <!-- field name="so_subtitulos" string="DATOS DEL CONSIGNATARIO" readonly="1"/ -->
+            <field name="so_datos_consignatario" />
+            <field name="so_contacto2"/>
+            <field name="so_NIT_contacto2"/>
+            <field name="so_direccion4" string="Dirección"/>
+            <field name="so_telefono2" string="Teléfono"/>
+            <field name="so_FAX_contacto2"/>
+            <field name="so_correo4"/>
+            <field name="so_no2_orden"/>
+            <field name="so_otros2"/>
+            <field name="so_agente_carga"/>
+            <field name="so_punto_origen_carga" string="Punto y pais de origen de la carga" help="Point and country of origen of goods" invisible="1"/>
+            </group>
+            <group string="DATOS DEL PROVEEDOR/SHIPPER">
+            <!-- field name="so_subtitulos" string="DATOS DEL PROVEEDOR/SHIPPER" readonly="1"/ -->
+            <field name="so_datos_proveedor" />
+            <field name="so_contacto1" string="Contacto"/>
+            <field name="so_direccion3" string="Dirección"/>
+            <field name="so_telefono" string="Teléfono"/>
+            <field name="so_correo"/>
+            <field name="so_no_orden"/>
+            <field name="so_otros"/>
+            <field name="so_ref_proveedor"/>
+            </group>
+            </group>
+    </page>
+        </notebook>
+    </field>
+</record>
+<!-- *************************************FIN Comercial**************************************-->
+<!-- **********************************Inicio campos pagina Operaciones **************-->
+<record model="ir.ui.view" id="view_order_form_3">
+    <field name="name">sale.order.form.inherit3</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page string="Operaciones">
+                <group>
+                    <group string="OPERACIÓN INICIAL" >
+                        <!-- field name="so_subtitulos" string="OPERACIÓN INICIAL" readonly="1"/ -->
+                        <field name="so_booking" string="Booking number" invisible="1"/>
+                        <field name="so_no_buque"/>
+                        <field name="so_no_contenedor" />
+                        <field name="Peso_bruto_Kg"/>
+                        <field name="so_carga_lista"/>
+                        <field name="so_alerta_zarpa" string="Fecha de envío pre-alerta zarpe"/>
+                        <field name="so_asegurado" string="Asegurado"/>
+                        <field name="so_no_poliza" string="No. de póliza seguro"/>
+                        <field name="fecha_seguro"/>
+                        <field name="so_fecha_marchamo" string="No. de marchamo"/>
+                        <field name="so_tracking"/>
+                        <field name="so_courier"/>
+                    </group>
+                    <group string="Datos del piloto">
+                        <!-- field name="so_subtitulos" string="Datos del piloto" readonly="1"/ -->
+                        <field name="piloto_name"/>
+                        <field name="cel_piloto"/>
+                        <field name="placa_piloto" string="No. placa"/>
+                        <field name="direccion_entrega" string="Dirección de entrega de mercancía"/>
+                        <field name="so_subtitulos" string="" readonly="1"/>
+                        <field name="so_subtitulos" string="Datos de seguridad" readonly="1"/>
+                        <field name="seguridad_nombre"/>
+                        <field name="cel_seguridad"/>
+                        <field name="observaciones_seg" string="Observaciones"/>
+                        
+                    
+                    </group>
+                </group>
+                    <!-- group 000 string="Datos del proveedor/Shipper" -->
+                <group>
+                    <group  string="MBL/MAWB/Carta de porte">
+                        <!-- field name="so_subtitulos" string="MBL/MAWB/Carta de porte" readonly="1"/ -->
+                        <field name="so_original1" string="Original"/>
+                        <field name="so_express1"/>
+                        <field name="so_telex1"/>
+                        <field name="so_mbl5" />
+                        
+                        <field name="so_subtitulos" string="" readonly="1"/>
+                        <field name="so_subtitulos" string="MBL" readonly="1"/>
+                        <field name="so_pol2" string="POL"/>
+                        <field name="so_pod3" string="POD"/>
+                        <field name="so_pod4" string="POD"/>
+                        <field name="so_flete3" string="Flete"/>
+                    </group>
+                    <group string="LIQUIDACIÓN DE OPERACIÓN">
+                        <!-- field name="so_subtitulos" string="LIQUIDACIÓN DE OPERACIÓN" readonly="1"/ -->
+                        <field name="so_subtitulos" string="NAVIERA" readonly="1"/>
+                        <field name="dias_almacenaje" string="Días libres de almacenaje"/>
+                        <field name="so_fecha_demora" string="Fecha inicio"/>
+                        <field name="so_fecha_almacenaje" string="Fecha fin"/>
+                        <field name="dias_demoras" string="Días libres de demoras"/>
+                        <field name="so_fecha2_demora" string="Fecha inicio"/>
+                        <field name="so_fecha2_almacenaje" string="Fecha fin"/>
+                        <field name="dias_estadia" string="Días libres de estadía"/>
+                        <field name="fecha_estadia2" string="Fecha inicio"/>
+                        <field name="fecha_estadia" string="Fecha fin"/>
+                        <field name="so_subtitulos" string="CONSIGNEE HBL" readonly="1"/>
+                        <field name="so_company_name4"/>
+                        <field name="so_direccion5"/>
+                        <field name="so_nit4"/>
+                        <field name="so_telefono4"/>
+                        <field name="so_fax4"/>
+                        <field name="so_contacto4"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="HBL/MAWB/Carta de porte">
+                        <!-- field name="so_subtitulos" string="HBL/MAWB/Carta de porte" readonly="1"/ -->
+                        <field name="so_original2" string="Original"/>
+                        <field name="so_express2"/>
+                        <field name="so_telex2"/>
+                        <field name="so_no_hbl" string="No. HBL/HAWB" />
+                        <field name="so_subtitulos" string="" readonly="1"/>
+                        <field name="so_subtitulos" string="HBL" readonly="1"/>
+                        <field name="so_pol1" string="POL"/>
+                        <field name="so_pod1" string="POD"/>
+                        <field name="so_pod2" string="POD"/>
+                        <field name="so_flete2" string="Flete"/>
+                        <field name="so_observaciones_operaciones"/>
+                    </group>
+                    <group string="BBC">
+                        <!-- field name="so_subtitulos" string="BBC" readonly="1"/ -->
+                        <field name="bbc_almacenaje" string="Días libres de almacenaje"/>
+                        <field name="bbc_inicio" string="Fecha inicio"/>
+                        <field name="bbc_fin" string="Fecha fin"/>
+                        <field name="bbc_demoras" string="Días libres de demoras"/>
+                        <field name="bbc_inicio2" string="Fecha inicio"/>
+                        <field name="bbc_fin2" string="Fecha fin"/>
+                        <field name="bbc_estadia" string="Días libres de estadía"/>
+                        <field name="bbc_inicio3" string="Fecha inicio"/>
+                        <field name="bbc_fin3" string="Fecha fin"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="OPERACIÓN FINAL">
+                        <!-- field name="so_subtitulos" string="OPERACIÓN FINAL" readonly="1"/ -->
+                        <field name="so_envio_notificacion" string="Fecha de envío de notificación"/>
+                        <field name="so_envio_estribo" string="Fecha de envío pre-alerta arribo"/>
+                        <!-- field name="poliza_dua" string="No. de orden declaración"/> -->
+                        <field name="so_present_poliza" string="Fecha de presentación de DUA"/>
+                        <field name="so_manifestado" string="Manifestado"/>
+                        <field name="so_no_contenedor_final"/>
+                        <field name="so_no_manifiesto"/>
+                        <field name="so_fecha_manifiesto"/>
+                    </group>
+                    <group string="GESTION ADUANERA FINAL">
+<!--                         field name="so_subtitulos" string="GESTION ADUANERA FINAL" readonly="1"/ -->
+                        <field name="poliza_dua" string="No. de orden declaración"/>
+                        <field name="so_present_poliza" string="Fecha de presentación de DUA"/>
+                        <field name="Estatus_Selectividad" />
+                        <field name="Asignacion_de_rampa" />
+                        <field name="so_tramitador_puerto" string="Gestor en puerto/frontera"/>
+                        <field name="Gestado_en_lugar" />
+                        <field name="Inspeccion_fisica_adicional" />
+                        <field name="Entidad_De_inspeccion" />
+                    </group>
+                </group>
+                <group>
+                    <group string="LIQUIDACION DE GASTOS">
+                        <!-- field name="so_subtitulos" string="LIQUIDACION DE GASTOS" readonly="1"/ -->
+                        <field name="liquidaciones" string="Liquidación de gastos" invisible="1"/>
+                        <field name="gastosri" string="Liquidación de gastos RI"/>
+                        <field name="gastos_demoras" string="Liquidación de gastos de demoras"/>
+                        <field name="gastos_almacenajes" string="Liquidación de gastos de almacenaje"/>
+                        <field name="liquidaciones_estadias" string="Liquidación de gastos de estadías"/>
+                        <field name="fecha_devolucion" string="Fecha de devolución del contenedor"/>
+                        <field name="devoluciones_garantias" string="Devolución de depósitos en garantía"/>
+                        <field name="fecha_finalizacion" string="Fecha finalización de la operación"/>
+                        <field name="valor_estadias" string="Valor estadías de transportes"/>
+                    </group>
+                </group>
+                <group>
+                    <group  string = "FACTURACIÓN">
+                        <!-- field name="so_subtitulos" string="FACTURACIÓN" readonly="1"/ -->
+                        <field name="factura1" string="Primer facturación"/>
+                        <field name="factura2" string="Segunda facturación"/>
+                        <field name="factura3" string="Tercer facturación"/>
+                        <field name="factura4" string="Cuarta facturación"/>
+                        
+                        <field name="so_subtitulos" string="" readonly="1"/>
+                        <field name="so_subtitulos" string="ORDEN COMPRAS PENDIENTES" readonly="1"/>
+                        <field name="factura5" string="Orden de compra primer facturación"/>
+                        <field name="factura6" string="Orden de compra segunda facturación"/>
+                        <field name="factura7" string="Orden de compra tercer facturación"/>
+                        <field name="factura8" string="Orden de compra cuarta facturación"/>
+                        <field name="observaciones_facturacion"/>
+                    </group>
+                </group>
+                  
+            </page>
+        </notebook>
+    </field>
+</record>
+<!--**************************************** fin campos pagina Operaciones************** -->
+<!--********************************** INICIO campos pagina ADMINISTRACION************** -->
+<record model="ir.ui.view" id="view_order_form_5">
+    <field name="name">sale.order.form.inherit5</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page string="Administracion">
+            <group>
+            <field name="so_pago_cliente" string="Tiempo de pago del cliente"/>
+            <field name="so_pago_transporte" string="Tiempo de pago del transporte principal"/>
+            <field name="factura9" string="Tipo de factura del ciente para esta SO"/>
+            <field name="factura10" string="Tipo de factura del proveedor"/>
+            
+            <field name="so_subtitulos" string="" readonly="1"/>
+            <field name="so_subtitulos" string="FACTURACIÓN" readonly="1"/>
+            <field name="primerfa" string="Primer facturación"/>
+            <field name="no_fact1" string="No de factura"/>
+            <field name="segundafa" string="Segunda facturación"/>
+            <field name="no_fact2" string="No de factura"/>
+            <field name="tercerafa" string="Tercer facturación"/>
+            <field name="no_fact3" string="No de factura"/>
+            <field name="cuartafa" string="Cuarta facturación"/>
+            <field name="no_fact4" string="No de factura"/>
+            <!--<field name="so_envio_facturar" string="Envío a facturar"/>
+            <field name="so_facturado3" string="Facturado"/>
+            <field name="so_no_factura"/>-->
+            
+            <field name="so_subtitulos" string="" readonly="1"/>
+            <field name="so_subtitulos" string="ORDEN DE COMPRA RECIBIDA" readonly="1"/>
+            <field name="factura11" string="OC primer facturación"/>
+            <field name="oc1" string="No de OC"/>
+            <field name="factura12" string="OC segunda facturación"/>
+            <field name="oc2" string="No de OC"/>
+            <field name="factura13" string="OC tercer facturación"/>
+            <field name="oc3" string="No de OC"/>
+            <field name="factura14" string="OC cuarta facturación"/>
+            <field name="oc4" string="No de OC"/>
+            
+            <field name="so_subtitulos" string="" readonly="1"/>
+            <field name="so_subtitulos" string="COMISIONES PAGADAS" readonly="1"/>
+            <field name="comision_ventas" string="Comisiones pagadas de ventas"/>
+            <field name="document" string="No de documento"/>
+            <field name="comision_pagadas" string="Comisiones pagadas de operaciones"/>
+            <field name="document1" string="No de documento"/>
+            
+            <field name="so_observaciones_admon"/>
+
+            </group>
+            </page>
+        </notebook>
+    </field>
+</record>
+
+
+<!--********************************** INICIO campos pagina CORTE DE DOCUMENTO************** -->
+
+<record model="ir.ui.view" id="view_order_form_6">
+    <field name="name">sale.order.form.inherit6</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page string="Corte de documento">
+                <group>
+                        <field name="so_subtitulos" string="DATOS DEL PROVEEDOR/SHIPPER" readonly="1"/>
+                        <field name="shipper1" string="Empresa"/>
+                        <field name="shipper2" string="Contacto"/>
+                        <field name="shipper3" string="Dirección"/>
+                        <field name="shipper4" string="Teléfono"/>
+                        <field name="shipper5" string="No. de orden"/>
+                        <field name="shipper6" string="Otros"/>
+                        <field name="shipper7" string="Referencia proveedor"/>
+                        <field name="shipper_lading" string="Booking No."/>
+                        <field name="shipper_booking" string="Bill of lading No."/>
+                        <field name="shipper_export" string="Export references"/>
+                        
+                        <field name="so_subtitulos" string="" readonly="1"/>
+                        <field name="so_subtitulos" string="DATOS DEL CONSIGNATARIO" readonly="1"/>
+                        <field name="consignatario1" string="Empresa"/>
+                        <field name="consignatario2" string="Contacto"/>
+                        <field name="consignatario3" string="Dirección"/>
+                        <field name="consignatario4" string="Teléfono"/>
+                        <field name="consignatario5" string="No. de orden"/>
+                        <field name="consignatario6" string="Otros"/>
+                        <field name="consignatario7" string="Agente de carga/Forwarding agent"/>
+                        <field name="consignatario8" string="Punto y país de origen de la carga"/>
+                        <field name="consignatario_forwarding" string="Forwarding agent. F.M.C. No."/>
+                        <field name="consignatario_point" string="Point and country of origin of goods"/>
+                        <field name="consignatario_notify" string="Notify party"/>
+                        <field name="consignatario_delivery" string="For delivery please apply to"/>
+                        
+                        <field name="so_subtitulos" string="" readonly="1"/>
+                        <field name="so_pre_carriage"/>
+                        <field name="so_pleace_receipt"/>
+                        <field name="so_routing"/>
+                        <field name="so_export_carrier" string="Export carrier(VESSEL/VOY/FLAG)"/>
+                        <field name="port"/>
+                        <field name="so_loading"/>
+                        <field name="discharge"/>
+                        <field name="place_delivery"/>
+                        <field name="so_type_move"/>
+                        <field name="so_mrk_contairner"/>
+                        <field name="so_no_pkgs"/>
+                        <field name="so_descripcion_paquetes"/>
+                        <field name="so_gross"/>
+                        <field name="so_measurement"/>
+                        <field name="so_freight"/>
+                        <field name="so_basis"/>
+                        <field name="so_rate"/>
+                        <field name="so_prepaid"/>
+                        <field name="so_collect"/>
+                        
+                        <field name="total_prepaid"/>
+                        <field name="total_collect"/>
+                        <field name="date_by"/>
+                        <field name="on"/>
+                        <field name="so_by"/>
+                        <field name="observaciones_oper"/>
+                        
+                        <field name="so_no_vessel" invisible="1"/>  
+                    </group>
+            </page>
+        </notebook>
+    </field>
+</record>
+
+<!--********************************** INICIO campos pagina OPERACIONES************** -->
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_so_frecuencia1_form1">
+    <field name="name">so_frecuencia1.form1</field>
+    <field name="model">so_frecuencia1</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_so_frecuencia1">
+<field name="name">Frecuencia</field>
+<field name="res_model">so_frecuencia1</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+
+
+
+<!--********************************** INICIO campos pagina OPERACIONES************** -->
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_puertos_de_zarpe_form">
+    <field name="name">puertos_de_zarpe.form</field>
+    <field name="model">puertos_de_zarpe</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_puertos_de_zarpe">
+<field name="name">puertos_de_zarpe</field>
+<field name="res_model">puertos_de_zarpe</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+
+
+<!-- *************** FIN **************** -->
+
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_estatus_socomercial_form1">
+    <field name="name">estatus_socomercial.form1</field>
+    <field name="model">estatus_socomercial</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_estatus_socomercial">
+<field name="name">Estatus comercial</field>
+<field name="res_model">estatus_socomercial</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_o_cotizacion_form1">
+    <field name="name">o_cotizacion.form1</field>
+    <field name="model">o_cotizacion</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_o_cotizacion">
+<field name="name">Ofrecimiento cotizacion</field>
+<field name="res_model">o_cotizacion</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_primer_fac_form1">
+    <field name="name">primer_fac.form1</field>
+    <field name="model">primer_fac</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_primer_fac">
+<field name="name">Facturacion</field>
+<field name="res_model">primer_fac</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_segunda_fac_form1">
+    <field name="name">segunda_fac.form1</field>
+    <field name="model">segunda_fac</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!--ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_segunda_fac">
+<field name="name">Facturacion</field>
+<field name="res_model">segunda_fac</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+ <!--*************** FIN **************** -->
+
+  <!--VISTA  -->
+<record model="ir.ui.view" id="view_tercer_fac_form1">
+    <field name="name">tercer_fac.form1</field>
+    <field name="model">tercer_fac</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+ <!--ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_tercer_fac">
+<field name="name">Facturacion</field>
+<field name="res_model">tercer_fac</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+  <!--*************** FIN **************** -->
+
+<!--      VISTA    -->
+<record model="ir.ui.view" id="view_cuarta_fac_form1">
+    <field name="name">cuarta_fac.form1</field>
+    <field name="model">cuarta_fac</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+ <!--     ACCION PARA ABRIR LA FORMA         -->
+<record model="ir.actions.act_window" id="action_cuarta_fac">
+<field name="name">Facturacion</field>
+<field name="res_model">cuarta_fac</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+ <!--  *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_fact1_form1">
+    <field name="name">fact1.form1</field>
+    <field name="model">fact1</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!--ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_fact1">
+<field name="name">Facturacion</field>
+<field name="res_model">fact1</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!--*************** FIN **************** -->
+
+ <!--VISTA -->
+<record model="ir.ui.view" id="view_fact2_form1">
+    <field name="name">fact2.form1</field>
+    <field name="model">fact2</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+ <!--ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_fact2">
+<field name="name">Facturacion</field>
+<field name="res_model">fact2</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+ <!--VISTA  -->
+<record model="ir.ui.view" id="view_fact3_form1">
+    <field name="name">fact3.form1</field>
+    <field name="model">fact3</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+ <!--ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_fact3">
+<field name="name">Facturacion</field>
+<field name="res_model">fact3</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+  <!--*************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_fact4_form1">
+    <field name="name">fact4.form1</field>
+    <field name="model">fact4</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!--ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_fact4">
+<field name="name">Facturacion</field>
+<field name="res_model">fact4</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_liquidacion_gasto_form1">
+    <field name="name">liquidacion_gasto.form1</field>
+    <field name="model">liquidacion_gasto</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_liquidacion_gasto">
+<field name="name">Liquidacion gastos</field>
+<field name="res_model">liquidacion_gasto</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_gastos_ri_form1">
+    <field name="name">gastos_ri.form1</field>
+    <field name="model">gastos_ri</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_gastos_ri">
+<field name="name">Gastos ri</field>
+<field name="res_model">gastos_ri</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_gasto_demora_form1">
+    <field name="name">gasto_demora.form1</field>
+    <field name="model">gasto_demora</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_gasto_demora">
+<field name="name">Gasto demora</field>
+<field name="res_model">gasto_demora</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_gasto_almacen_form1">
+    <field name="name">gasto_almacen.form1</field>
+    <field name="model">gasto_almacen</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_gasto_almacen">
+<field name="name">Gasto almacenaje</field>
+<field name="res_model">gasto_almacen</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_liquidacion_estadia_form1">
+    <field name="name">liquidacion_estadia.form1</field>
+    <field name="model">liquidacion_estadia</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_liquidacion_estadia">
+<field name="name">Liquidacion estadia</field>
+<field name="res_model">liquidacion_estadia</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_devolucion_garantia_form1">
+    <field name="name">devolucion_garantia.form1</field>
+    <field name="model">devolucion_garantia</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_devolucion_garantia">
+<field name="name">Devolucion garantia</field>
+<field name="res_model">devolucion_garantia</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+
+
+
+
+<!--********************************** INICIO campos pagina ADMINISTRACION************** -->
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_fac_cliente_form1">
+    <field name="name">fac_cliente.form1</field>
+    <field name="model">fac_cliente</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_fac_cliente">
+<field name="name">fac_cliente</field>
+<field name="res_model">fac_cliente</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_fac_prov_form1">
+    <field name="name">fac_prov.form1</field>
+    <field name="model">fac_prov</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_fac_prov">
+<field name="name">Facturacion</field>
+<field name="res_model">fac_prov</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_fac1_form1">
+    <field name="name">fac1.form1</field>
+    <field name="model">fac1</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_fac1">
+<field name="name">Facturacion</field>
+<field name="res_model">fac1</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_fac2_form1">
+    <field name="name">fac2.form1</field>
+    <field name="model">fac2</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_fac2">
+<field name="name">Facturacion</field>
+<field name="res_model">fac2</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_fac3_form1">
+    <field name="name">fac3.form1</field>
+    <field name="model">fac3</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_fac3">
+<field name="name">Facturacion</field>
+<field name="res_model">fac3</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_fac4_form1">
+    <field name="name">fac4.form1</field>
+    <field name="model">fac4</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_fac4">
+<field name="name">Facturacion</field>
+<field name="res_model">fac4</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_comision_venta_form1">
+    <field name="name">comision_venta.form1</field>
+    <field name="model">comision_venta</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_comision_venta">
+<field name="name">Comision</field>
+<field name="res_model">comision_venta</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_comision_pag_form1">
+    <field name="name">comision_pag.form1</field>
+    <field name="model">comision_pag</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_comision_pag">
+<field name="name">Comision</field>
+<field name="res_model">comision_pag</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_formatos_form1">
+    <field name="name">formatos.form1</field>
+    <field name="model">formatos</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_formatos">
+<field name="name">Formatos</field>
+<field name="res_model">formatos</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_so_operaciones_form1">
+    <field name="name">so_operaciones.form1</field>
+    <field name="model">so_operaciones</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_so_operaciones">
+<field name="name">Estado SO operaciones</field>
+<field name="res_model">so_operaciones</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_estado_contabilidad_form1">
+    <field name="name">estado_contabilidad.form1</field>
+    <field name="model">estado_contabilidad</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_estado_contabilidad">
+<field name="name">Estado SO contabilidad</field>
+<field name="res_model">estado_contabilidad</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_informar_form1">
+    <field name="name">informar.form1</field>
+    <field name="model">informar</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_informar">
+<field name="name">Informar</field>
+<field name="res_model">informar</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_t_trafico_form1">
+    <field name="name">t_trafico.form1</field>
+    <field name="model">t_trafico</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_t_trafico">
+<field name="name">Tipo de trafico</field>
+<field name="res_model">t_trafico</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA  -->
+<record model="ir.ui.view" id="view_t_venta_form1">
+    <field name="name">t_venta.form1</field>
+    <field name="model">t_venta</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA-->
+<record model="ir.actions.act_window" id="action_t_venta">
+<field name="name">Tipo de servicio de venta</field>
+<field name="res_model">t_venta</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN **************** -->
+
+<!-- VISTA DE TIPO DE COMERCIO -->
+<record model="ir.ui.view" id="view_so_comercio_form1">
+    <field name="name">so_comercio.form1</field>
+    <field name="model">so_comercio</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA TIPO DE COMERCIO-->
+<record model="ir.actions.act_window" id="action_so_comercio">
+<field name="name">Tipo de comercio</field>
+<field name="res_model">so_comercio</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN TIPO DE COMERCIO **************** -->
+
+<!-- VISTA DE PAIS DE INCOTERMS CLIENTE -->
+<record model="ir.ui.view" id="view_so_incotermscliente_form1">
+    <field name="name">so_incotermscliente.form1</field>
+    <field name="model">so_incotermscliente</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA INCOTERMS CLIENTE-->
+<record model="ir.actions.act_window" id="action_so_incotermscliente">
+<field name="name">Tipo de incoterms del cliente</field>
+<field name="res_model">so_incotermscliente</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN PAIS DE INCOTERMS CLIENTE **************** -->
+
+<!-- VISTA DE PAIS DE INCOTERMS SERVICIO -->
+<record model="ir.ui.view" id="view_so_incotermservicio_form1">
+    <field name="name">so_incotermservicio.form1</field>
+    <field name="model">so_incotermservicio</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA INCOTERMS SERVICIO-->
+<record model="ir.actions.act_window" id="action_so_incotermservicio">
+<field name="name">Tipo de incoterms del servicio</field>
+<field name="res_model">so_incotermservicio</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN PAIS DE INCOTERMS SERVICIO **************** -->
+
+<!-- VISTA DE PAIS DE OFRECIMIENTOS ESPECIAL -->
+<record model="ir.ui.view" id="view_so_ofrecimiento_form1">
+    <field name="name">so_ofrecimiento.form1</field>
+    <field name="model">so_ofrecimiento</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA OFRECIMIENTO ESPECIAL-->
+<record model="ir.actions.act_window" id="action_so_ofrecimiento">
+<field name="name">Ofrecimiento especial</field>
+<field name="res_model">so_ofrecimiento</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN PAIS DE OFRECIMIENTO ESPECIAL **************** -->
+
+<!-- *************** INICIO CAMPOS DIEGO PESTAÑA COMERCIAL **************** -->
+<!-- VISTA TIPO COTIZACION -->
+<record model="ir.ui.view" id="view_so_tipo_cotizacion_form1">
+    <field name="name">so_tipo_cotizacion.form1</field>
+    <field name="model">so_tipo_cotizacion</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA TIPO COTIZACION-->
+<record model="ir.actions.act_window" id="action_so_tipo_cotizacion">
+<field name="name">Tipo de cotizacion</field>
+<field name="res_model">so_tipo_cotizacion</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN TIPO COTIZACION **************** -->
+
+
+<!-- VISTA prioridad -->
+<record model="ir.ui.view" id="view_so_nivel_prioridad_form1">
+    <field name="name">so_nivel_prioridad.form1</field>
+    <field name="model">so_nivel_prioridad</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA TIPO COTIZACION-->
+<record model="ir.actions.act_window" id="action_so_nivel_prioridad">
+<field name="name">Nivel de prioridad</field>
+<field name="res_model">so_nivel_prioridad</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN prioridad**************** -->
+
+<!-- VISTA currency -->
+<record model="ir.ui.view" id="view_currency_form1">
+    <field name="name">currency.form1</field>
+    <field name="model">currency</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA TIPO COTIZACION-->
+<record model="ir.actions.act_window" id="action_currency">
+<field name="name">Tipo de moneda</field>
+<field name="res_model">currency</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN currency**************** -->
+
+<!-- VISTA tipo equipo -->
+<record model="ir.ui.view" id="view_so_tipo_equipo_form1">
+    <field name="name">so_tipo_equipo.form1</field>
+    <field name="model">so_tipo_equipo</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA TIPO COTIZACION-->
+<record model="ir.actions.act_window" id="action_so_tipo_equipo">
+<field name="name">Tipo de equipo</field>
+<field name="res_model">so_tipo_equipo</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN tipo equipo**************** -->
+
+<!-- VISTA tipo embalaje -->
+<record model="ir.ui.view" id="view_so_tipo_embalaje_form1">
+    <field name="name">so_tipo_embalaje.form1</field>
+    <field name="model">so_tipo_embalaje</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA TIPO COTIZACION-->
+<record model="ir.actions.act_window" id="action_so_tipo_embalaje">
+<field name="name">Tipo de embalaje</field>
+<field name="res_model">so_tipo_embalaje</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN tipo embalaje**************** -->
+
+<!-- VISTA tipo mercaderia -->
+<record model="ir.ui.view" id="view_so_tipo_mercaderia_form1">
+    <field name="name">so_tipo_mercaderia.form1</field>
+    <field name="model">so_tipo_mercaderia</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA mercaderia-->
+<record model="ir.actions.act_window" id="action_so_tipo_mercaderia">
+<field name="name">Tipo de mercaderia</field>
+<field name="res_model">so_tipo_mercaderia</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN tipo mercaderia**************** -->
+
+<!-- VISTA tipo poliza-->
+<record model="ir.ui.view" id="view_so_tipo_poliza_form1">
+    <field name="name">so_tipo_poliza.form1</field>
+    <field name="model">so_tipo_poliza</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA -->
+<record model="ir.actions.act_window" id="action_so_tipo_poliza">
+<field name="name">Tipo de poliza</field>
+<field name="res_model">so_tipo_poliza</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN tipo poliza**************** -->
+
+<!-- VISTA tipo poliza-->
+<record model="ir.ui.view" id="view_so_busca_cliente_form1">
+    <field name="name">so_busca_cliente.form1</field>
+    <field name="model">so_busca_cliente</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA -->
+<record model="ir.actions.act_window" id="action_so_busca_cliente">
+<field name="name">Que busca el cliente</field>
+<field name="res_model">so_busca_cliente</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN tipo poliza**************** -->
+
+<!-- VISTA periodicidad-->
+<record model="ir.ui.view" id="view_so_perioricidad_form1">
+    <field name="name">so_perioricidad.form1</field>
+    <field name="model">so_perioricidad</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA -->
+<record model="ir.actions.act_window" id="action_so_perioricidad">
+<field name="name">Perioricidad</field>
+<field name="res_model">so_perioricidad</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN periodicidad**************** -->
+
+<!-- VISTA frecuencia-->
+<record model="ir.ui.view" id="view_so_frecuencia_form1">
+    <field name="name">so_frecuencia.form1</field>
+    <field name="model">so_frecuencia</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA -->
+<record model="ir.actions.act_window" id="action_so_frecuencia">
+<field name="name">Frecuencia</field>
+<field name="res_model">so_frecuencia</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN frecuencia**************** -->
+
+<!-- VISTA frecuencia-->
+<record model="ir.ui.view" id="view_so_competencia_form1">
+    <field name="name">so_competencia.form1</field>
+    <field name="model">so_competencia</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA -->
+<record model="ir.actions.act_window" id="action_so_competencia">
+<field name="name">Competencia</field>
+<field name="res_model">so_competencia</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN frecuencia**************** -->
+
+<!-- VISTA tipo seguridad-->
+<record model="ir.ui.view" id="view_so_tipo_seguridad_form1">
+    <field name="name">so_tipo_seguridad.form1</field>
+    <field name="model">so_tipo_seguridad</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA -->
+<record model="ir.actions.act_window" id="action_so_tipo_seguridad">
+<field name="name">Tipo de seguridad</field>
+<field name="res_model">so_tipo_seguridad</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN tipo seguridad**************** -->
+<!-- VISTA tipo seguridad-->
+<record model="ir.ui.view" id="view_so_porcentaje_seguro_form1">
+    <field name="name">so_porcentaje_seguro.form1</field>
+    <field name="model">so_porcentaje_seguro</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA -->
+<record model="ir.actions.act_window" id="action_so_porcentaje_seguro">
+<field name="name">Porcentaje de seguro</field>
+<field name="res_model">so_porcentaje_seguro</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN tipo seguridad**************** -->
+
+<!-- VISTA tipo inspeccion-->
+<record model="ir.ui.view" id="view_so_tipo_inspeccion_form1">
+    <field name="name">so_tipo_inspecciono.form1</field>
+    <field name="model">so_tipo_inspeccion</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name" />
+            </group>
+        </form>
+    </field>
+</record>
+<!-- ACCION PARA ABRIR LA FORMA -->
+<record model="ir.actions.act_window" id="action_so_tipo_inspeccion">
+<field name="name">Tipo de inspeccion</field>
+<field name="res_model">so_tipo_inspeccion</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+<!-- *************** FIN tipo inspeccion**************** -->
+<!-- *************** FIN CAMPOS  COMERCIAL **************** -->
+
+<!-- ***************************************MENU PRINCIPAL PARA CAMPOS BBC****************************************** -->
+<!-- *************** CAMPOS OVERRIDING POR JOSE PABLO CASTILLO  **************** -->
+<!-- **ventas* -->
+<record id="sale.res_partner_menu" model="ir.ui.menu">
+    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing')),(4,ref('group_BBCV_Contabilidad_Gerencia')),(4,ref('group_BBCV_Contabilidad_Operador')),(4,ref('group_BBCV_Operaciones'))]"/>
+</record>
+<!-- **ventas/ventas* -->
+<record id="sale.sale_menu_root" model="ir.ui.menu">
+    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing')),(4,ref('group_BBCV_Contabilidad_Gerencia')),(4,ref('group_BBCV_Contabilidad_Operador')),(4,ref('group_BBCV_Operaciones'))]"/>
+</record>
+<!-- **config* -->
+<record id="sale.menu_sale_config" model="ir.ui.menu">
+    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor'))]"/>
+</record>
+<!-- **clientes* 
+<record id="base.menu_partner_form" model="ir.ui.menu">
+    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador'))]"/>
+</record> -->
+<!-- **iniciativas* -->
+<record id="crm.menu_crm_leads" model="ir.ui.menu">
+    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador'))]"/>
+</record>
+<!-- **oportunidades* -->
+<record id="crm.menu_crm_opportunities" model="ir.ui.menu">
+    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing'))]"/>
+</record>
+<!-- **presupuestos* -->
+<record id="sale.menu_sale_quotations" model="ir.ui.menu">
+    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing'))]"/>
+</record>
+<!-- **Pedidos de Venta* -->
+<record id="sale.menu_sale_order" model="ir.ui.menu">
+    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing')),(4,ref('group_BBCV_Contabilidad_Gerencia')),(4,ref('group_BBCV_Contabilidad_Operador')),(4,ref('group_BBCV_Operaciones'))]"/>
+</record>
+<!-- **productos* -->
+<record id="sale.menu_product" model="ir.ui.menu">
+    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor'))]"/>
+</record>
+
+<!-- **Llamadas Telefonicas* 
+<record id="crm.menu_crm_case_phone" model="ir.ui.menu">
+    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing')),(4,ref('group_BBCV_Contabilidad_Gerencia')),(4,ref('group_BBCV_Contabilidad_Operador')),(4,ref('group_BBCV_Operaciones'))]"/>
+</record> -->
+
+<!--menuitem name="Campos so" parent="base.menu_base_partner" id="base.menu_sales" groups="group_BBCV_Manager_Admin"/-->
+<!-- ***************************************MENU PRINCIPAL PARA CAMPOS BBC****************************************** -->
+<menuitem name="Campos so" parent="sale.menu_sale_config" id="campos_so" groups="group_BBCV_Manager_Admin"/>
+
+<!-- ************** MENUS DE LOS CAMPOS BBC CLIENTE ****************** -->
+<menuitem id="tipocomercio" name="Tipo comercio" parent="campos_so"  sequence="1" action="action_so_comercio"/>
+<menuitem id="incotermscliente" name="Inconterms cliente" parent="campos_so"  sequence="1" action="action_so_incotermscliente"/>
+<menuitem id="incotermservicio" name="Inconterms servicio" parent="campos_so"  sequence="1" action="action_so_incotermservicio"/>
+<menuitem id="ofrecimientoespecal" name="Ofrecimiento especial" parent="campos_so"  sequence="1" action="action_so_ofrecimiento"/>
+<menuitem id="tipocotizacion" name="Tipo cotizacion" parent="campos_so"  sequence="1" action="action_so_tipo_cotizacion"/>
+<menuitem id="nivelprioridad" name="Pais origen" parent="campos_so"  sequence="1" action="action_so_nivel_prioridad"/>
+<menuitem id="currency" name="Tipo de moneda" parent="campos_so"  sequence="1" action="action_currency"/>
+<menuitem id="tipoequipo" name="Tipo equipo" parent="campos_so"  sequence="1" action="action_so_tipo_equipo"/>
+<menuitem id="tipoembalaje" name="Tipo embalaje" parent="campos_so"  sequence="1" action="action_so_tipo_embalaje"/>
+<menuitem id="tipomercaderia" name="Tipo mercaderia" parent="campos_so"  sequence="1" action="action_so_tipo_mercaderia"/>
+<menuitem id="tipopoliza" name="Tipo poliza" parent="campos_so"  sequence="1" action="action_so_tipo_poliza"/>
+<menuitem id="buscacliente" name="Servicio especial" parent="campos_so"  sequence="1" action="action_so_busca_cliente"/>
+<menuitem id="perioricidad" name="Perioricidad" parent="campos_so"  sequence="1" action="action_so_perioricidad"/>
+<menuitem id="frecuencia" name="Frecuencia" parent="campos_so"  sequence="1" action="action_so_frecuencia"/>
+<menuitem id="puertos_de_zarpe" name="puertos_de_zarpe" parent="campos_so"  sequence="1" action="action_puertos_de_zarpe"/>
+<menuitem id="competencia" name="Competencia" parent="campos_so"  sequence="1" action="action_so_competencia"/>
+<menuitem id="tiposeguridad" name="Tipo Seguridad" parent="campos_so"  sequence="1" action="action_so_tipo_seguridad"/>
+<menuitem id="porcentajeseguro" name="Porcentaje seguro" parent="campos_so"  sequence="1" action="action_so_porcentaje_seguro"/>
+<menuitem id="tipoinspeccion" name="Tipo inspeccion" parent="campos_so"  sequence="1" action="action_so_tipo_inspeccion"/>
+<!-- **********************************************FIN MENUS********************************************************* -->
+
+    </data>
+</odoo>

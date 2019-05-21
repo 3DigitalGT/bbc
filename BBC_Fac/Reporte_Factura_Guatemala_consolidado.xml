@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report
+			id="Fact_Guatemala_Consolidado"
+			string="Fac_Guate_Consolidado"
+                        model="account.invoice"
+			name="account.invoice.Fact_Guatemala_Consolidado"
+			rml="BBC_Fac/report/OpenERP-Factura_Guatemala_consolidado.rml"
+			auto="False"
+			header="False" 
+			attachment="(object.state in ('open','paid')) and ('INV-Gua-con-'+(object.number or '').replace('/','')+'.pdf')"
+			/>
+	</data>
+</openerp>
