@@ -68,7 +68,7 @@ SI ELIMINAS ALGUN AVEZ UNA VISTA ir.iu.view hay que resetear el SERVIDOR!!!!!! p
         <!-- VISTA tipo inspeccion-->
         <record model="ir.ui.view" id="view_documento_proveedor_form1">
             <field name="name">documento_proveedor.form1</field>
-            <field name="model">documento_proveedor</field>
+            <field name="model">account.documento_proveedor</field>
             <field name="arch" type="xml">
                 <form>
                     <group>
@@ -80,7 +80,7 @@ SI ELIMINAS ALGUN AVEZ UNA VISTA ir.iu.view hay que resetear el SERVIDOR!!!!!! p
         <!-- ACCION PARA ABRIR LA FORMA -->
         <record model="ir.actions.act_window" id="action_documento_proveedor">
             <field name="name">Tipo de documento del proveedor</field>
-            <field name="res_model">documento_proveedor</field>
+            <field name="res_model">account.documento_proveedor</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
