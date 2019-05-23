@@ -11,7 +11,8 @@
     <field name="priority" eval="1"/>
     <field name="arch" type="xml">
         <!--<tree string="Sales Orders" fonts="bold:message_unread==True" colors="grey:state=='cancel';blue:state in ('waiting_date','manual');red:state in ('invoice_except','shipping_except')">-->
-        <tree name="sale_orders">
+        <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="replace">
+        <!--<tree name="sale_orders">-->
             <field name="name" string="Order Number"/>
             <field name="date_order"/>
             <field name="envio_cotizacion"/>
@@ -27,7 +28,8 @@
             <field name="utilidad" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
             <field name="utilidad2" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
             <field name="so_nivel_prioridades" />
-        </tree>
+        <!--</tree>-->
+        </xpath>
     </field>
 </record>
         <!--record id="view_order_tree" model="ir.ui.view">
