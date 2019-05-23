@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--   VISTA DE ARBOL PARA SALE ORDERS-->
+        <record id="bbcv_sale_order_tree" model="ir.ui.view">
+            <field name="name">bbcv_sale_order_tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="view_mode">tree</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <!--<tree name="sale_orders" string="Sales Orders">-->
+                <tree name="sale_orders">
+                    <field name="name" string="Order Number"/>
+                    <field name="date_order"/>
+                    <field name="envio_cotizacion"/>
+                    <field name="so_fcierre"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="message_unread" invisible="1"/>
+                    <field name="amount_total" sum="Total Tax Included"/>
+                    <field name="profit_pricingg" sum="Total Pricing Profit Included" groups="BBCV.group_BBCV_Pricing,BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin, BBCV.group_BBCV_Comercial_jefe, BBCV.group_BBCV_Comercial_operador"/>
+                    <field name="profit_finall" sum="Total Profit Included"  groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
+                    <field name="state"/>
+                    <field name="status_socomercial" string="Estatus Comercial"/>
+                    <field name="utilidad" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
+                    <field name="utilidad2" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
+                    <field name="so_nivel_prioridades" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_order_form_campos_1">
+            <field name="name">sale.order.form.campos.inherit.1</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="tipo_traficos1" position="after">
+                    <field name="pais_origen" string="Pais de Origen" />
+                    <field name="pais_destino" string="Pais de Destino" />
+                </field>
+                <field name="so_statusso" position="after">
+                <!--<field name="so_subtitulos2" string="" readonly="1"/>-->
+                    <!--<group string = "Sistema">-->
+                        <!--<field name="so_subtitulos2" string="SISTEMA" readonly="1"/>-->
+                        <separator string = "Sistema"/>
+                        <field name="profit_pricingg" groups="BBCV.group_BBCV_Pricing, BBCV.group_BBCV_Asesor,BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Comercial_jefe, BBCV.group_BBCV_Comercial_operador"/>
+                        <field name="profit_finall" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
+                        <field name="utilidad2"/>
+                        <field name="utilidad" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
+                        <field name="observaciones1"/>
+                    <!--</group>-->
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_order_form_campos_2">
+            <field name="name">sale.order.form.campos.inherit.2</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                    <field name="direc_origen" position="after">
+                        <field name="puerto_orig"/>
+                        <field name="aero_orig"/>
+                        <field name="frontera_orig"/>
+                        <field name="direc_destino" string="Dirección de destino"/>
+                        <field name="puerto_dest"/>
+                        <field name="aero_destino"/>
+                        <field name="front_destino"/>
+                    </field>
+                    <field name="so_tipo_equipos" position="after">
+                        <field name="cant_contenedores"/>
+                    </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_order_form_campos_3">
+            <field name="name">sale.order.form.campos.inherit.3</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="so_prov_cuadrilla" position="after">
+                    <separator string = "Datos Origen"/>
+                    <field name="puerto_carga"/>
+                    <field name="aereo_origen" string="Aeropuerto de origen"/>
+                    <field name="frontera_origen"/>
+                    <field name="direccion_origen"/>
+                    <separator string = "Datos Destino"/>
+                    <field name="puerto_descarga"/>
+                    <field name="aereo_destino" string="Aeropuerto de destino"/>
+                    <field name="frontera_destino"/>
+                    <field name="direccion_destino"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_order_line_tree_new_campos">
+            <field name="name">sale.order.line.tree.new.campos.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+                    <field name="proveedor" groups="BBCV.group_BBCV_Pricing,BBCV.group_BBCV_Operaciones,BBCV.group_BBCV_Contabilidad_Operador, BBCV.group_BBCV_Contabilidad_Gerencia,BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Manager_Admin"/>
+                    <field name="price_cost" groups="base.group_user" sum="Price"/>
+                    <field name="cost_operaciones" groups="BBCV.group_BBCV_Operaciones,BBCV.group_BBCV_Contabilidad_Operador,BBCV.group_BBCV_Contabilidad_Gerencia,BBCV.group_BBCV_Asesor,BBCV.group_BBCV_Manager_Admin" sum="Price"/>
+                    <field name="precio_venta" groups="base.group_user" sum="Price"/>
+                    <field name="profit_pricing" groups="BBCV.group_BBCV_Comercial_jefe,BBCV.group_BBCV_Comercial_operador,BBCV.group_BBCV_Pricing,BBCV.group_BBCV_Contabilidad_Operador,BBCV.group_BBCV_Contabilidad_Gerencia,BBCV.group_BBCV_Asesor,BBCV.group_BBCV_Manager_Admin" sum="profit_pricing"/>
+                    <field name="profit_final" groups="BBCV.group_BBCV_Operaciones,BBCV.group_BBCV_Contabilidad_Operador,BBCV.group_BBCV_Contabilidad_Gerencia,BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Manager_Admin" sum="Price" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id='frontera_view_form' model="ir.ui.view">
+            <field name="name">res.country.frontera.form</field>
+            <field name="model">res.country.frontera</field>
+            <field name="arch" type="xml">
+                <form string="Fronteras por Pais" >
+                    <sheet>
+                        <group>
+                            <field name="country_id" />
+                            <field name="name" />
+                            <field name="code" />
+                        </group>
+                    </sheet>
+               </form>
+            </field>
+        </record>
+
+        <record id="view_frontera_tree" model="ir.ui.view">
+            <field name="name">res.country.frontera.tree</field>
+            <field name="model">res.country.frontera</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Fronteras por Pais">
+                    <field name="country_id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='puerto_view_form' model="ir.ui.view">
+            <field name="name">res.country.puerto.form</field>
+            <field name="model">res.country.puerto</field>
+            <field name="arch" type="xml">
+                <form string="Puertos por Pais" >
+                    <sheet>
+                        <group>
+                            <field name="country_id" />
+                            <field name="name" />
+                            <field name="code" />
+                        </group>
+                    </sheet>
+               </form>
+            </field>
+        </record>
+
+        <record id="view_puerto_tree" model="ir.ui.view">
+            <field name="name">res.country.puerto.tree</field>
+            <field name="model">res.country.puerto</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Puertos por Pais">
+                    <field name="country_id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='aereo_view_form' model="ir.ui.view">
+            <field name="name">res.country.aereo.form</field>
+            <field name="model">res.country.aereo</field>
+            <field name="arch" type="xml">
+                <form string="Aereopuertos por Pais" >
+                    <sheet>
+                        <group>
+                            <field name="country_id" />
+                            <field name="name" />
+                            <field name="code" />
+                        </group>
+                    </sheet>
+               </form>
+            </field>
+        </record>
+
+        <record id="view_aereo_tree" model="ir.ui.view">
+            <field name="name">res.country.aereo.tree</field>
+            <field name="model">res.country.aereo</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Aereopuertos por Pais">
+                    <field name="country_id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_puertos">
+            <field name="name">Puertos por Pais</field>
+            <field name="res_model">res.country.puerto</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_frontera">
+            <field name="name">Fronteras por Pais</field>
+            <field name="res_model">res.country.frontera</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+         <record model="ir.actions.act_window" id="action_aereo">
+            <field name="name">Aereopuertos por Pais</field>
+            <field name="res_model">res.country.aereo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="puerto_menu" name="Puertos, Fronteras y Aereopuertos por Pais"
+            parent="contacts.res_partner_menu_config" 
+            sequence="10" groups="BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Asesor"/>
+        <menuitem id="puertos_menu_a" name="Puertos"
+            parent="puerto_menu" action="action_puertos" groups="BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Asesor"/>
+        <menuitem id="frontera_menu_a" name="Fronteras"
+            parent="puerto_menu" action="action_frontera" groups="BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Asesor"/>
+        <menuitem id="aereo_menu_a" name="Aereopuertos"
+            parent="puerto_menu" action="action_aereo" groups="BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Asesor"/>
+
+    </data>
+</odoo>
+
