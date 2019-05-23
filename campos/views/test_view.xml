@@ -11,7 +11,8 @@
             <field name="priority" eval="1"/>
             <field name="arch" type="xml">
                 <!--<tree name="sale_orders" string="Sales Orders">-->
-                <tree name="sale_orders">
+                <!--<tree name="sale_orders">-->
+                <xpath expr="/tree">
                     <field name="name" string="Order Number"/>
                     <field name="date_order"/>
                     <field name="envio_cotizacion"/>
@@ -27,7 +28,8 @@
                     <field name="utilidad" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
                     <field name="utilidad2" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
                     <field name="so_nivel_prioridades" />
-                </tree>
+                </xpath>
+                <!--</tree>-->
             </field>
         </record>
 
