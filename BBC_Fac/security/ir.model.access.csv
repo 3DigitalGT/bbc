@@ -1,6 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
-access_xdocumento_cliente_user,xdocumento_cliente.user,model_xdocumento_cliente,base.group_user,1,1,1,1
-access_documento_proveedor_user,documento_proveedor.user,model_documento_proveedor,base.group_user,1,1,1,1
+access_documento_cliente_user,account.documento_cliente.user,model_account_documento_cliente,base.group_user,1,1,1,1
+access_documento_proveedor_user,account.documento_proveedor.user,model_account_documento_proveedor,base.group_user,1,1,1,1
 
 
