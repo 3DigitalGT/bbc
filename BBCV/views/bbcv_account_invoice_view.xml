@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="bbcv_account_invoice_saleorder_purchase">
+            <field name="name">account_invoice_saleorder_purchase</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_bank_id" position="after">
+                    <field name="purchase_saleorder_id" string="SO" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="bbcv_account_invoice_saleorder_sale">
+            <field name="name">account_invoice_saleorder_sale</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="cash_rounding_id" position="after" >
+                    <field name="sale_saleorder_id" string="SO" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

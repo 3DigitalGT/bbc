@@ -12,23 +12,23 @@
             <field name="arch" type="xml">
                 <!--<tree name="sale_orders" string="Sales Orders">-->
                 <!--<tree name="sale_orders">-->
-                <xpath expr="/tree">
-                    <field name="name" string="Order Number"/>
+                <field name="name" position = "after">
                     <field name="date_order"/>
                     <field name="envio_cotizacion"/>
                     <field name="so_fcierre"/>
-                    <field name="partner_id"/>
-                    <field name="user_id"/>
+                </field>
+                <field name="amount_total" position="after">
                     <field name="message_unread" invisible="1"/>
-                    <field name="amount_total" sum="Total Tax Included"/>
                     <field name="profit_pricingg" sum="Total Pricing Profit Included" groups="BBCV.group_BBCV_Pricing,BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin, BBCV.group_BBCV_Comercial_jefe, BBCV.group_BBCV_Comercial_operador"/>
                     <field name="profit_finall" sum="Total Profit Included"  groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
-                    <field name="state"/>
-                    <field name="status_socomercial" string="Estatus Comercial"/>
                     <field name="utilidad" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
                     <field name="utilidad2" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
+                </field>
+                <field name="invoice_status" position="after">
+                    <field name="state"/>
+                    <field name="status_socomercial" string="Estatus Comercial"/>
                     <field name="so_nivel_prioridades" />
-                </xpath>
+                </field>
                 <!--</tree>-->
             </field>
         </record>

@@ -39,14 +39,13 @@
             <field name="so_taproximado" string="Tiempo aproximado de tránsito" invisible="1"/>
             <field name="so_validez" invisible="0"/>
         </field>
-        <field name="date_order" position="after">
+        <field name="payment_term_id" position="after">
             <field name="envio_cotizacion" string="Fecha de envío de cotización"/>
             <field name="so_fpresupuesto" invisible="1"/>
             <field name="so_fseguimiento" string="Fecha de cierre de venta" invisible="1"/>
             <field name="so_fcierre" string="Fecha de cierre de venta"/>
             
-            <field name="so_subtitulos1" string="" readonly="1"/>
-            <field name="so_subtitulos1" string="OPERACIONES" readonly="1"/>
+            <separator string = "OPERACIONES"/>
             <field name="op_internacional"/>
             <field name="op_local"/>
             
@@ -65,15 +64,112 @@
     </field>
 </record>
 
+<!-- *************************************INICIO Comercial**************************************-->
 
-<!-- **********************campos pagina pricing **********************************-->
-<record model="ir.ui.view" id="view_order_form_4">
-    <field name="name">sale.order.form.inherit4</field>
+<record model="ir.ui.view" id="view_order_form_22">
+    <field name="name">sale.order.form.inherit22</field>
     <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
-        <notebook position="inside">
-            <page string="Pricing">
+        <page name="other_information" position="after">
+            <page string="Comercial" name="page_comercial">
+            <group>
+                <group string="DATOS GENERALES">
+                <field name="so_cotizacion_contacto" string="Cotización a nombre de"/>
+                <field name="so_cliente"/>
+                <field name="so_firma"/>
+                <field name="so_tipo_cotizaciones" string="Tipo de cotización"/>
+                <field name="tipo_formato"/>
+                <field name="so_nivel_prioridades"/>
+                <field name="currencys" required="True"/>
+                <field name="o_cotizaciones" string="Ofrecimiento especial cotizacion" invisible="1"/>
+                <field name="o_cotizaciones1" string="Ofrecimiento especial cotización"/>
+                <field name="so_busca_clientes"/>
+                <field name="so_servicios_especiales" string="Servicio especial"/>
+                <field name="estadia_libre" string="Días libres ofrecidos de estadía"/>
+                <field name="ofrecidos_demoras" string="Días libres ofrecidos de demoras"/>
+                <field name="so_volumen_cliente" string="Volumen del cliente"/>
+                <field name="so_frecuencias" string="Frecuencia"/>
+                <field name="so_competencias"/>
+                <field name="name_competencia"/>
+                <field name="direc_origen" string="Dirección de origen"/>
+                <!-- field name="puerto_orig"/ -->
+                <field name="so_valor_mercaderia" string="Valor de la mercancía"/>
+                <field name="so_tipo_equipos" string="Tipo de equipo"/>
+
+                </group>
+                <group>
+                    <field name="so_peso"/>
+                    <field name="so_medidas"/>
+                    <field name="so_bultos"/>
+                    <field name="so_volumen"/>
+                    <field name="so_tipo_embalajes"/>
+                    <field name="so_tipo_mercaderias" string="Tipo de mercancía"/>
+                    <field name="so_incluye_aduana" string="Incluye aduana"/>
+                    <field name="so_aduana_origen"/>
+                    <field name="so_aduana_destino"/>
+                    <field name="so_aduana_ambas"/>
+                    <field name="so_tipo_polizas" string="Clase de régimen DUA"/>
+                    <field name="so_permisos_especiales" string="Permisos especiales"/>
+
+                    <field name="so_transporte" string="Transporte"/>
+                    <field name="so_transporte_origen"/>
+                    <field name="so_transporte_destino"/>
+                    <field name="so_transporte_ambas"/>
+                    <field name="so_sobrepeso" string="Sobrepeso"/>
+                    <field name="so_peso2"/>
+                    <field name="so_gps" string="GPS"/>
+                    <field name="so_gps_origen"/>
+                    <field name="so_gps_destino"/>
+                    <field name="so_seguridad" string="Seguridad"/>
+                    <field name="so_seguridad_origen"/>
+                    <field name="so_seguridad_destino"/>
+                    <field name="so_tipo_seguridades"/>
+                    <field name="so_seguro_mercaderia" string="Seguro de mercancía"/>
+                    <field name="so_porcentaje_seguros"/>
+                    <field name="so_cuadrilla" string="Carga y descarga"/>
+                    <field name="so_cuadrilla_origen"/>
+                    <field name="so_cuadrilla_destino"/>
+                    <field name="so_personas"/>
+                    <field name="so_inspeccion" string="Inspección"/>
+                    <field name="so_inspeccion_origen"/>
+                    <field name="so_inspeccion_destino"/>
+                    <field name="so_tipo_inspecciones" string="Tipo de inspección"/>
+                    <field name="so_observaciones_comercial"/>
+                    <field name="so_perioricidades" invisible="1"/>
+                </group>
+
+
+            </group>
+            <group>
+                <group string="DATOS DEL CONSIGNATARIO">
+                <!-- field name="so_subtitulos" string="DATOS DEL CONSIGNATARIO" readonly="1"/ -->
+                <field name="so_datos_consignatario" />
+                <field name="so_contacto2"/>
+                <field name="so_NIT_contacto2"/>
+                <field name="so_direccion4" string="Dirección"/>
+                <field name="so_telefono2" string="Teléfono"/>
+                <field name="so_FAX_contacto2"/>
+                <field name="so_correo4"/>
+                <field name="so_no2_orden"/>
+                <field name="so_otros2"/>
+                <field name="so_agente_carga"/>
+                <field name="so_punto_origen_carga" string="Punto y pais de origen de la carga" help="Point and country of origen of goods" invisible="1"/>
+                </group>
+                <group string="DATOS DEL PROVEEDOR/SHIPPER">
+                <!-- field name="so_subtitulos" string="DATOS DEL PROVEEDOR/SHIPPER" readonly="1"/ -->
+                <field name="so_datos_proveedor" />
+                <field name="so_contacto1" string="Contacto"/>
+                <field name="so_direccion3" string="Dirección"/>
+                <field name="so_telefono" string="Teléfono"/>
+                <field name="so_correo"/>
+                <field name="so_no_orden"/>
+                <field name="so_otros"/>
+                <field name="so_ref_proveedor"/>
+                </group>
+                </group>
+            </page>
+            <page string="Pricing" name = "page_pricing">
                 <group>
                     <group>
                     <field name="so_contacto_rate" string="Contract ID/Rate"/>
@@ -100,15 +196,15 @@
                     <field name="so_cobro_demoras" invisible="1"/>
                     </group>
                 </group>
-                
+
                     <group>
                     <field name="so_subtitulos" string="NAVIERA/AEROLINEA/TRANSPORTE TERRESTRE" readonly="1"/>
                     <field name="so_dia_almacenaje" string="Días libres de almacenaje" />
                     <field name="so_dia_demora" string="Días libres de demoras" />
                     <field name="dia_estadia" string="Días libres de estadía" />
                     </group>
-                    
-                
+
+
                     <group>
                     <field name="so_subtitulos" string="BBC" readonly="1"/>
                     <field name="so_dia2_almacenaje" string="Días libres de almacenaje" />
@@ -132,140 +228,7 @@
                         <field name="observaciones_pricing"/>
                     </group>
             </page>
-        </notebook>
-    </field>
-</record>
-
-<!--record model="ir.ui.view" id="view_order_form_4_1">
-    <field name="name">sale.order.form.inherit13</field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="campos.view_order_form_2_3"/>
-    <field name="arch" type="xml">
-        <field name="frontera_destino" position="after">
-            <field name="direccion_origen"/>
-            <field name="direccion_destino"/>   
-        </field>
-    </field>
-</record-->
-
-<!-- ***********************fin campos pagina pricing******************************** -->
-<!-- *************************************INICIO Comercial**************************************-->
-
-<record model="ir.ui.view" id="view_order_form_22">
-    <field name="name">sale.order.form.inherit22</field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form"/>
-    <field name="arch" type="xml">
-        <notebook position="inside">
-            <page string="Comercial">
-        <group>
-            <group string="DATOS GENERALES">
-            <field name="so_cotizacion_contacto" string="Cotización a nombre de"/>
-            <field name="so_cliente"/>
-            <field name="so_firma"/>
-            <field name="so_tipo_cotizaciones" string="Tipo de cotización"/>
-            <field name="tipo_formato"/>
-            <field name="so_nivel_prioridades"/>
-            <field name="currencys" required="True"/>
-            <field name="o_cotizaciones" string="Ofrecimiento especial cotizacion" invisible="1"/>
-            <field name="o_cotizaciones1" string="Ofrecimiento especial cotización"/>
-            <field name="so_busca_clientes"/>
-            <field name="so_servicios_especiales" string="Servicio especial"/>
-            <field name="estadia_libre" string="Días libres ofrecidos de estadía"/>
-            <field name="ofrecidos_demoras" string="Días libres ofrecidos de demoras"/>
-            <field name="so_volumen_cliente" string="Volumen del cliente"/>
-            <field name="so_frecuencias" string="Frecuencia"/>
-            <field name="so_competencias"/>
-            <field name="name_competencia"/>
-            <field name="direc_origen" string="Dirección de origen"/>
-            <!-- field name="puerto_orig"/ -->
-            <field name="so_valor_mercaderia" string="Valor de la mercancía"/>
-            <field name="so_tipo_equipos" string="Tipo de equipo"/>
-            
-            </group>
-            <group>
-                <field name="so_peso"/>
-                <field name="so_medidas"/>
-                <field name="so_bultos"/>
-                <field name="so_volumen"/>
-                <field name="so_tipo_embalajes"/>
-                <field name="so_tipo_mercaderias" string="Tipo de mercancía"/>
-                <field name="so_incluye_aduana" string="Incluye aduana"/>
-                <field name="so_aduana_origen"/>
-                <field name="so_aduana_destino"/>
-                <field name="so_aduana_ambas"/>
-                <field name="so_tipo_polizas" string="Clase de régimen DUA"/>
-                <field name="so_permisos_especiales" string="Permisos especiales"/>
-            
-                <field name="so_transporte" string="Transporte"/>
-                <field name="so_transporte_origen"/>
-                <field name="so_transporte_destino"/>
-                <field name="so_transporte_ambas"/>
-                <field name="so_sobrepeso" string="Sobrepeso"/>
-                <field name="so_peso2"/>
-                <field name="so_gps" string="GPS"/>
-                <field name="so_gps_origen"/>
-                <field name="so_gps_destino"/>
-                <field name="so_seguridad" string="Seguridad"/>
-                <field name="so_seguridad_origen"/>
-                <field name="so_seguridad_destino"/>
-                <field name="so_tipo_seguridades"/>
-                <field name="so_seguro_mercaderia" string="Seguro de mercancía"/>
-                <field name="so_porcentaje_seguros"/>
-                <field name="so_cuadrilla" string="Carga y descarga"/>
-                <field name="so_cuadrilla_origen"/>
-                <field name="so_cuadrilla_destino"/>
-                <field name="so_personas"/>
-                <field name="so_inspeccion" string="Inspección"/>
-                <field name="so_inspeccion_origen"/>
-                <field name="so_inspeccion_destino"/>
-                <field name="so_tipo_inspecciones" string="Tipo de inspección"/>
-                <field name="so_observaciones_comercial"/>
-                <field name="so_perioricidades" invisible="1"/>
-            </group>
-            
-
-        </group>
-        <group>
-            <group string="DATOS DEL CONSIGNATARIO">
-            <!-- field name="so_subtitulos" string="DATOS DEL CONSIGNATARIO" readonly="1"/ -->
-            <field name="so_datos_consignatario" />
-            <field name="so_contacto2"/>
-            <field name="so_NIT_contacto2"/>
-            <field name="so_direccion4" string="Dirección"/>
-            <field name="so_telefono2" string="Teléfono"/>
-            <field name="so_FAX_contacto2"/>
-            <field name="so_correo4"/>
-            <field name="so_no2_orden"/>
-            <field name="so_otros2"/>
-            <field name="so_agente_carga"/>
-            <field name="so_punto_origen_carga" string="Punto y pais de origen de la carga" help="Point and country of origen of goods" invisible="1"/>
-            </group>
-            <group string="DATOS DEL PROVEEDOR/SHIPPER">
-            <!-- field name="so_subtitulos" string="DATOS DEL PROVEEDOR/SHIPPER" readonly="1"/ -->
-            <field name="so_datos_proveedor" />
-            <field name="so_contacto1" string="Contacto"/>
-            <field name="so_direccion3" string="Dirección"/>
-            <field name="so_telefono" string="Teléfono"/>
-            <field name="so_correo"/>
-            <field name="so_no_orden"/>
-            <field name="so_otros"/>
-            <field name="so_ref_proveedor"/>
-            </group>
-            </group>
-    </page>
-        </notebook>
-    </field>
-</record>
-<!-- *************************************FIN Comercial**************************************-->
-<!-- **********************************Inicio campos pagina Operaciones **************-->
-<record model="ir.ui.view" id="view_order_form_3">
-    <field name="name">sale.order.form.inherit3</field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form"/>
-    <field name="arch" type="xml">
-        <notebook position="inside">
-            <page string="Operaciones">
+            <page string="Operaciones" name = "page_operaciones">
                 <group>
                     <group string="OPERACIÓN INICIAL" >
                         <!-- field name="so_subtitulos" string="OPERACIÓN INICIAL" readonly="1"/ -->
@@ -293,8 +256,8 @@
                         <field name="seguridad_nombre"/>
                         <field name="cel_seguridad"/>
                         <field name="observaciones_seg" string="Observaciones"/>
-                        
-                    
+
+
                     </group>
                 </group>
                     <!-- group 000 string="Datos del proveedor/Shipper" -->
@@ -305,7 +268,7 @@
                         <field name="so_express1"/>
                         <field name="so_telex1"/>
                         <field name="so_mbl5" />
-                        
+
                         <field name="so_subtitulos" string="" readonly="1"/>
                         <field name="so_subtitulos" string="MBL" readonly="1"/>
                         <field name="so_pol2" string="POL"/>
@@ -400,93 +363,31 @@
                         <field name="valor_estadias" string="Valor estadías de transportes"/>
                     </group>
                 </group>
-                <group>
-                    <group  string = "FACTURACIÓN">
-                        <!-- field name="so_subtitulos" string="FACTURACIÓN" readonly="1"/ -->
-                        <field name="factura1" string="Primer facturación"/>
-                        <field name="factura2" string="Segunda facturación"/>
-                        <field name="factura3" string="Tercer facturación"/>
-                        <field name="factura4" string="Cuarta facturación"/>
-                        
-                        <field name="so_subtitulos" string="" readonly="1"/>
-                        <field name="so_subtitulos" string="ORDEN COMPRAS PENDIENTES" readonly="1"/>
-                        <field name="factura5" string="Orden de compra primer facturación"/>
-                        <field name="factura6" string="Orden de compra segunda facturación"/>
-                        <field name="factura7" string="Orden de compra tercer facturación"/>
-                        <field name="factura8" string="Orden de compra cuarta facturación"/>
-                        <field name="observaciones_facturacion"/>
-                    </group>
+                <group  string = "Facturas de Venta">
+                    <field name = "sale_invoice_ids" nolabel = '1' readonly="1">
+                        <tree >
+                            <field name = "number"/>
+                            <field name = "partner_id"/>
+                            <field name = "date_invoice"/>
+                            <field name = "amount_total" sum="Total"/>
+                            <field name = "state"/>
+                        </tree>
+                    </field>
                 </group>
-                  
+                <group  string = "Facturas de Compra">
+                    <field name = "purchase_invoice_ids" nolabel = '1' readonly="1">
+                        <tree>
+                            <field name = "number"/>
+                            <field name = "partner_id"/>
+                            <field name = "date_invoice"/>
+                            <field name = "amount_total" sum="Total"/>
+                            <field name = "state"/>
+                        </tree>
+                    </field>
+                </group>
+
             </page>
-        </notebook>
-    </field>
-</record>
-<!--**************************************** fin campos pagina Operaciones************** -->
-<!--********************************** INICIO campos pagina ADMINISTRACION************** -->
-<record model="ir.ui.view" id="view_order_form_5">
-    <field name="name">sale.order.form.inherit5</field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form"/>
-    <field name="arch" type="xml">
-        <notebook position="inside">
-            <page string="Administracion">
-            <group>
-            <field name="so_pago_cliente" string="Tiempo de pago del cliente"/>
-            <field name="so_pago_transporte" string="Tiempo de pago del transporte principal"/>
-            <field name="factura9" string="Tipo de factura del ciente para esta SO"/>
-            <field name="factura10" string="Tipo de factura del proveedor"/>
-            
-            <field name="so_subtitulos" string="" readonly="1"/>
-            <field name="so_subtitulos" string="FACTURACIÓN" readonly="1"/>
-            <field name="primerfa" string="Primer facturación"/>
-            <field name="no_fact1" string="No de factura"/>
-            <field name="segundafa" string="Segunda facturación"/>
-            <field name="no_fact2" string="No de factura"/>
-            <field name="tercerafa" string="Tercer facturación"/>
-            <field name="no_fact3" string="No de factura"/>
-            <field name="cuartafa" string="Cuarta facturación"/>
-            <field name="no_fact4" string="No de factura"/>
-            <!--<field name="so_envio_facturar" string="Envío a facturar"/>
-            <field name="so_facturado3" string="Facturado"/>
-            <field name="so_no_factura"/>-->
-            
-            <field name="so_subtitulos" string="" readonly="1"/>
-            <field name="so_subtitulos" string="ORDEN DE COMPRA RECIBIDA" readonly="1"/>
-            <field name="factura11" string="OC primer facturación"/>
-            <field name="oc1" string="No de OC"/>
-            <field name="factura12" string="OC segunda facturación"/>
-            <field name="oc2" string="No de OC"/>
-            <field name="factura13" string="OC tercer facturación"/>
-            <field name="oc3" string="No de OC"/>
-            <field name="factura14" string="OC cuarta facturación"/>
-            <field name="oc4" string="No de OC"/>
-            
-            <field name="so_subtitulos" string="" readonly="1"/>
-            <field name="so_subtitulos" string="COMISIONES PAGADAS" readonly="1"/>
-            <field name="comision_ventas" string="Comisiones pagadas de ventas"/>
-            <field name="document" string="No de documento"/>
-            <field name="comision_pagadas" string="Comisiones pagadas de operaciones"/>
-            <field name="document1" string="No de documento"/>
-            
-            <field name="so_observaciones_admon"/>
-
-            </group>
-            </page>
-        </notebook>
-    </field>
-</record>
-
-
-<!--********************************** INICIO campos pagina CORTE DE DOCUMENTO************** -->
-
-<record model="ir.ui.view" id="view_order_form_6">
-    <field name="name">sale.order.form.inherit6</field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form"/>
-    <field name="arch" type="xml">
-        <notebook position="inside">
-            <page string="Corte de documento">
+            <page string="Corte de documento" name = "page_corte">
                 <group>
                         <field name="so_subtitulos" string="DATOS DEL PROVEEDOR/SHIPPER" readonly="1"/>
                         <field name="shipper1" string="Empresa"/>
@@ -499,7 +400,7 @@
                         <field name="shipper_lading" string="Booking No."/>
                         <field name="shipper_booking" string="Bill of lading No."/>
                         <field name="shipper_export" string="Export references"/>
-                        
+
                         <field name="so_subtitulos" string="" readonly="1"/>
                         <field name="so_subtitulos" string="DATOS DEL CONSIGNATARIO" readonly="1"/>
                         <field name="consignatario1" string="Empresa"/>
@@ -514,7 +415,7 @@
                         <field name="consignatario_point" string="Point and country of origin of goods"/>
                         <field name="consignatario_notify" string="Notify party"/>
                         <field name="consignatario_delivery" string="For delivery please apply to"/>
-                        
+
                         <field name="so_subtitulos" string="" readonly="1"/>
                         <field name="so_pre_carriage"/>
                         <field name="so_pleace_receipt"/>
@@ -535,20 +436,65 @@
                         <field name="so_rate"/>
                         <field name="so_prepaid"/>
                         <field name="so_collect"/>
-                        
+
                         <field name="total_prepaid"/>
                         <field name="total_collect"/>
                         <field name="date_by"/>
                         <field name="on"/>
                         <field name="so_by"/>
                         <field name="observaciones_oper"/>
-                        
-                        <field name="so_no_vessel" invisible="1"/>  
+
+                        <field name="so_no_vessel" invisible="1"/>
                     </group>
             </page>
-        </notebook>
+            <page string="Administracion">
+            <group>
+            <field name="so_pago_cliente" string="Tiempo de pago del cliente"/>
+            <field name="so_pago_transporte" string="Tiempo de pago del transporte principal"/>
+            <field name="factura9" string="Tipo de factura del ciente para esta SO"/>
+            <field name="factura10" string="Tipo de factura del proveedor"/>
+
+            <field name="so_subtitulos" string="" readonly="1"/>
+            <field name="so_subtitulos" string="FACTURACIÓN" readonly="1"/>
+            <field name="primerfa" string="Primer facturación"/>
+            <field name="no_fact1" string="No de factura"/>
+            <field name="segundafa" string="Segunda facturación"/>
+            <field name="no_fact2" string="No de factura"/>
+            <field name="tercerafa" string="Tercer facturación"/>
+            <field name="no_fact3" string="No de factura"/>
+            <field name="cuartafa" string="Cuarta facturación"/>
+            <field name="no_fact4" string="No de factura"/>
+            <!--<field name="so_envio_facturar" string="Envío a facturar"/>
+            <field name="so_facturado3" string="Facturado"/>
+            <field name="so_no_factura"/>-->
+
+            <field name="so_subtitulos" string="" readonly="1"/>
+            <field name="so_subtitulos" string="ORDEN DE COMPRA RECIBIDA" readonly="1"/>
+            <field name="factura11" string="OC primer facturación"/>
+            <field name="oc1" string="No de OC"/>
+            <field name="factura12" string="OC segunda facturación"/>
+            <field name="oc2" string="No de OC"/>
+            <field name="factura13" string="OC tercer facturación"/>
+            <field name="oc3" string="No de OC"/>
+            <field name="factura14" string="OC cuarta facturación"/>
+            <field name="oc4" string="No de OC"/>
+
+            <field name="so_subtitulos" string="" readonly="1"/>
+            <field name="so_subtitulos" string="COMISIONES PAGADAS" readonly="1"/>
+            <field name="comision_ventas" string="Comisiones pagadas de ventas"/>
+            <field name="document" string="No de documento"/>
+            <field name="comision_pagadas" string="Comisiones pagadas de operaciones"/>
+            <field name="document1" string="No de documento"/>
+
+            <field name="so_observaciones_admon"/>
+
+            </group>
+            </page>
+        </page>
     </field>
 </record>
+<!-- *************************************FIN Comercial**************************************-->
+
 
 <!--********************************** INICIO campos pagina OPERACIONES************** -->
 <!-- VISTA  -->

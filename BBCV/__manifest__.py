@@ -33,6 +33,7 @@
     'data': [
         'security/BBCV_security.xml',
         'security/ir.model.access.csv',
+        'views/bbcv_account_invoice_view.xml',
         'views/BBCV_view.xml',
     ],
     #'demo': ['sale_demo.xml'],

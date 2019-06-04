@@ -492,7 +492,9 @@ class res_test(models.Model):
     so_observaciones_comercial = fields.Text('Observaciones', write=['BBCV.group_comercial_bbc'])
     #'servicio_venta = fields.Many2one('servicio_ventas','Tipo de servicio de venta'),
     #'tipo_trafico = fields.many2one('tipos_trafico','Tipo de trafico')
-    
+
+    sale_invoice_ids = fields.One2many("account.invoice","sale_saleorder_id",string = "Facturas de Venta")
+    purchase_invoice_ids = fields.One2many("account.invoice", "purchase_saleorder_id", string = "Facturas de Compra")
 
 
     @api.onchange('so_datos_proveedor')
@@ -917,3 +919,8 @@ class so_tipo_inspeccion(models.Model):
 
     name = fields.Char('Descripcion')
 
+class bbcv_account_invoice(models.Model):
+    _inherit = 'account.invoice'
+
+    sale_saleorder_id = fields.Many2one("sale.order","Orden de Venta")
+    purchase_saleorder_id = fields.Many2one("sale.order", "Orden de Compra")
