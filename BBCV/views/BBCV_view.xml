@@ -55,9 +55,9 @@
             <field name="no_hbl" string="No. de HBL/HAWB/carta porte"/>
             <field name="no_contenedor" string="No. de contenedor"/>
             <field name="so_fentrega"/>
-            <field name="so_mescierre" string="Mes de cierre"/>
+            <field name="so_mescierre" string="Mes y Año de Cierre" class="oe_inline"/>
+            <field name="so_aniocierre" />
             <field name="estado_operaciones"/>
-            <field name="so_statusoperacion" string="Estatus de operación"/>
             <field name="liquidador_oper"/>
             <field name="so_statusso" string="Estatus de SO" invisible="1"/>
         </field>
@@ -288,13 +288,6 @@
                         <field name="dias_estadia" string="Días libres de estadía"/>
                         <field name="fecha_estadia2" string="Fecha inicio"/>
                         <field name="fecha_estadia" string="Fecha fin"/>
-                        <field name="so_subtitulos" string="CONSIGNEE HBL" readonly="1"/>
-                        <field name="so_company_name4"/>
-                        <field name="so_direccion5"/>
-                        <field name="so_nit4"/>
-                        <field name="so_telefono4"/>
-                        <field name="so_fax4"/>
-                        <field name="so_contacto4"/>
                     </group>
                 </group>
                 <group>
@@ -327,18 +320,14 @@
                 </group>
                 <group>
                     <group string="OPERACIÓN FINAL">
-                        <!-- field name="so_subtitulos" string="OPERACIÓN FINAL" readonly="1"/ -->
                         <field name="so_envio_notificacion" string="Fecha de envío de notificación"/>
                         <field name="so_envio_estribo" string="Fecha de envío pre-alerta arribo"/>
-                        <!-- field name="poliza_dua" string="No. de orden declaración"/> -->
-                        <field name="so_present_poliza" string="Fecha de presentación de DUA"/>
                         <field name="so_manifestado" string="Manifestado"/>
                         <field name="so_no_contenedor_final"/>
                         <field name="so_no_manifiesto"/>
                         <field name="so_fecha_manifiesto"/>
                     </group>
                     <group string="GESTION ADUANERA FINAL">
-<!--                         field name="so_subtitulos" string="GESTION ADUANERA FINAL" readonly="1"/ -->
                         <field name="poliza_dua" string="No. de orden declaración"/>
                         <field name="so_present_poliza" string="Fecha de presentación de DUA"/>
                         <field name="Estatus_Selectividad" />
@@ -351,7 +340,6 @@
                 </group>
                 <group>
                     <group string="LIQUIDACION DE GASTOS">
-                        <!-- field name="so_subtitulos" string="LIQUIDACION DE GASTOS" readonly="1"/ -->
                         <field name="liquidaciones" string="Liquidación de gastos" invisible="1"/>
                         <field name="gastosri" string="Liquidación de gastos RI"/>
                         <field name="gastos_demoras" string="Liquidación de gastos de demoras"/>

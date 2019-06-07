@@ -11,37 +11,7 @@
                  <field name="name" position="before">
                     <field name="c_nombre" string="" required="1"/>
                  </field>
-                 <!-- <field name="is_company" position="replace">
-                 </field> -->
-                 <!-- <field name="user_id" position="after">
-                    <field name="is_company" invisible="1"/>
-                    <field name="empresa2" invisible="1"/>
-                    <field name="empresados" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
-                    <field name="c_supervisor" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
-                    <field name="c_seguimiento" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
-                    <field name="estado_cliente" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Estatus del cliente"/>
-                    
-                    <field name="tipos_cliente" string="Tipo de cliente"/>
-                    <field name="activ_economica" attrs="{'invisible': [('is_company','!=', True)]}" string="Actividad económica"/> 
-                    <field name="pais_servicios" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="País de origen de servicios"/>
-                    <field name="trafic_manejar" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Tipo de tráfico a manejar"/>
-                    <field name="comercio_clientes" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
-                    <field name="servicio_clientes" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
-                    <field name="otro_servicio" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Otro tipo de servicio del cliente"/> 
-                    <field name="c_encargado_pagos" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
-                    <field name="c_encargado_operaciones" attrs="{'invisible': [('is_company','!=', True)]}"/>
-                    Proveedor
-                    <field name="encargado_cobros" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
-                    <field name="p_tipo_base" string="Tipo de base" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
-                    Proveedor
-                    <field name="c_gerente" attrs="{'invisible': [('is_company','!=', True)]}"/>
-                    <field name="c_internacional" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
-                    <field name="c_local" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
-                    <field name="c_ultimo_seguimiento" attrs="{'invisible': [('is_company','!=', True)]}"/>
-                    
-                    <button type="action" string="Proximo seguimiento" name="328" context="{'search_default_partner_ids': active_id, 'default_partner_ids' : [active_id]}" attrs="{'invisible': [('is_company','!=', True)]}"/>
-                </field> -->
-                
+
                 <field name="vat" position="after">
                     <field name="is_company" invisible="1"/>
                     <field name="empresa2" invisible="1"/>
@@ -50,24 +20,15 @@
                     <field name="c_seguimiento" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
                     <field name="estado_cliente" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Estatus del cliente"/>
                     
-                    <field name="tipos_cliente" string="Tipo de cliente"/>
-                    <field name="activ_economica" attrs="{'invisible': [('is_company','!=', True)]}" string="Actividad económica"/> 
+                    <field name="tipos_cliente" string="Tipo de cliente" attrs="{'invisible': [('customer','!=', True)]}"/>
+                    <field name="activ_economica" attrs="{'invisible': [('is_company','!=', True),('customer','!=', True)]}" string="Actividad económica"/>
                     <field name="pais_servicios" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="País de origen de servicios"/>
                     <field name="trafic_manejar" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Tipo de tráfico a manejar"/>
                     <field name="comercio_clientes" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
                     <field name="servicio_clientes" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
                     <field name="otro_servicio" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Otro tipo de servicio del cliente"/> 
-                    <field name="c_encargado_pagos" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
-                    <field name="c_encargado_operaciones" attrs="{'invisible': [('is_company','!=', True)]}"/>
-                    <field name="encargado_cobros" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
                     <field name="p_tipo_base" string="Tipo de base" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
-                    <field name="c_gerente" attrs="{'invisible': [('is_company','!=', True)]}"/>
-                    <field name="c_internacional" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
-                    <field name="c_local" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}"/>
-                    <field name="c_ultimo_seguimiento" attrs="{'invisible': [('is_company','!=', True)]}"/>
-                    
-                    <button type="action" string="Proximo seguimiento" name="328" context="{'search_default_partner_ids': active_id, 'default_partner_ids' : [active_id]}" attrs="{'invisible': [('is_company','!=', True)]}"/>
-                    <field name="regimen" attrs="{'invisible': [('is_company','!=', True)]}" string="Tipo de régimen"/>
+
                     <field name="proveedores_para"  string="Proveedor para"/>
                     <field name="pais_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
                     <field name="origen_servicio" string="País de origen del servicio" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
@@ -79,16 +40,13 @@
                     <field name="servicio_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" invisible="1"/>
                     <field name="ycomercios" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Tipo de comercio del proveedor"/>
                     <field name="yservicios" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Tipo de servicio del proveedor"/>
-                    <field name="c_seguimiento_prov" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
+                    <field name="p_tipo_base" string="Tipo de base" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
                 </field>
                 
                 <field name="title" position="after">
                     <field name="c_facebook" placheholder="https://www.facebook.com/pages/BBC-Freight/486388461506119?ref=hl"/>
                     <field name="c_twitter" placeholder="@BBCFreight "/>
                     <field name="c_linkedin" placeholder="http://gt.linkedin.com/pub/bbc-freight/a2/73/a92"/>
-                    <field name="c_direc_bodega" string="Dirección de bodega" attrs="{'invisible': [('is_company','!=', True)]}"/>
-                    <field name="c_direc_fiscal" string="Dirección fiscal" attrs="{'invisible': [('is_company','!=', True)]}"/>
-                    <field name="c_direc_oficina" string="Dirección de oficina" attrs="{'invisible': [('is_company','!=', True)]}"/>
                     <field name="f_factura" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="¿Cuando se manda a facturar?"/>
                     <field name="f_internacion" attrs="{'invisible': [('is_company','!=', True)]}" string="Tipo de factura servicio internacional"/>
                     <field name="f_lokal" attrs="{'invisible': [('is_company','!=', True)]}" string="Tipo de factura servicio local"/>

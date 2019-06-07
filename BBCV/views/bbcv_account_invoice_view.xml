@@ -8,6 +8,7 @@
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
                 <field name="partner_bank_id" position="after">
+                    <separator string = "Referencia SO"/>
                     <field name="purchase_saleorder_id" string="SO" />
                 </field>
             </field>
@@ -19,6 +20,7 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <field name="cash_rounding_id" position="after" >
+                    <separator string = "Referencia SO"/>
                     <field name="sale_saleorder_id" string="SO" />
                 </field>
             </field>

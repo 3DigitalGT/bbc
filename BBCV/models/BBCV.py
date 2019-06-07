@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, exceptions, fields, models, _, SUPERUSER_ID
+from datetime import datetime
 
 
 class res_test(models.Model):
@@ -201,38 +202,13 @@ class res_test(models.Model):
     so_feta = fields.Date('ETA', write=['BBCV.group_operaciones_bbc'])
     so_fentrega = fields.Date('Fecha de entrega a cliente', write=['BBCV.group_operaciones_bbc'])
     so_fpago = fields.Date('Fecha de pago', write=['BBCV.group_contabilidad_bbc'])
-    so_mescierre = fields.Selection([
-                    ('1','(1/2015)'),
-                    ('2','(2/2015)'),
-                    ('3','(3/2015)'),
-                    ('4','(4/2015)'),
-                    ('5','(5/2015)'),
-                    ('6','(6/2015)'),
-                    ('7','(7/2015)'),
-                    ('8','(8/2015)'),
-                    ('9','(9/2015)'),
-                    ('10','(10/2015)'),
-                    ('11','(11/2015)'),
-                    ('12','(12/2015)'),
-                    ('13','(1/2016)'),
-                    ('14','(2/2016)'),
-                    ('15','(3/2016)'),
-                    ('16','(4/2016)'),
-                    ('17','(5/2016)'),
-                    ('18','(6/2016)'),
-                    ('19','(7/2016)'),
-                    ('20','(8/2016)'),
-                    ('21','(9/2016)'),
-                    ('22','(10/2016)'),
-                    ('23','(11/2016)'),
-                    ('24','(12/2016)'),
-                                            ('25','(1/2017)'),
-                                            ('26','(2/2017)'),
-                                            ('27','(3/2017)'),
-                                            ('28','(4/2017)'),
-                                            ('29','(5/2017)'),
-                                            ('30','(6/2017)'),    
-    ], write=['BBCV.group_operaciones_bbc'])
+    so_aniocierre = fields.Selection(
+        [(num, str(num)) for num in range((datetime.now().year) - 5, (datetime.now().year) + 5)],
+        'Año')
+    so_mescierre = fields.Selection([(1, 'Enero'), (2, 'Febrero'), (3, 'Marzo'), (4, 'Abril'),
+                              (5, 'Mayo'), (6, 'Junio'), (7, 'Julio'), (8, 'Agosto'),
+                              (9, 'Septiembre'), (10, 'Octubre'), (11, 'Noviembre'), (12, 'Diciembre'), ],
+                             string='Mes Muestreo')
     so_tipocambio = fields.Char('Tipo de cambio', write=['BBCV.group_pricing_bbc'])
     so_statusso = fields.Selection([
                     ('E','SO por facturar'),

@@ -7,10 +7,14 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <field name="fiscal_position_id" position="after">
-                    <field name="xtipo_documento_cliente" string="Tipo de documento"/>
+                <field name="payment_term_id" position = "after">
+                    <separator string="Impresión Invoice"/>
+                    <field name="Impresion_Invoice" string="Impresion Invoice "/>
                     <field name="Referencia_en_Factura" string="Ref. Factura"/>
                     <field name="Observaciones_d" string="Observaciones Facturacion"/>
+                </field>
+                <field name="team_id" position = "after">
+                    <separator string="Impresión Consolidada"/>
                     <field name="Impresion_Consolidada_factgt" string="Impresion Consolidada "/>
                     <field name="Cantidad_taotal" string="Cantidad" attrs="{'invisible':[('Impresion_Consolidada_factgt', '!=', True)]}"/>
                     <field name="Descripcion_Unica_facturacion" string="Descipcion Consolidada " attrs="{'invisible':[('Impresion_Consolidada_factgt', '!=', True)]}"/>
@@ -18,28 +22,10 @@
                     <field name="Total_fact" string="Precio Total" attrs="{'invisible':[('Impresion_Consolidada_factgt', '!=', True)]}"/>
                 </field>
                 <field name="reference" position="after">
-                    <!-- <group>
-                        <group string="Datos Factura Panama"> -->
-                            <field name="Impresion_Invoice" string="Impresion Invoice "/>
-                            <field name="Para_panama" string="Contacto: " attrs="{'invisible':[('Impresion_Invoice', '!=', True)]}"/>
-                            <field name="Para_panamaPOD" string="POD:" attrs="{'invisible':[('Impresion_Invoice', '!=', True)]}"/>
-                            <field name="Para_panamaPOL" string="POL:" attrs="{'invisible':[('Impresion_Invoice', '!=', True)]}"/>
-                   <!--      </group>
-                    </group> -->
-                </field>
-            </field>
-        </record>
-
-        <!--delete model="ir.ui.view" id="account.invoice_form_cliente2" />
-SI ELIMINAS ALGUN AVEZ UNA VISTA ir.iu.view hay que resetear el SERVIDOR!!!!!! pase 2 dias con eso
-        <delete model="ir.ui.view" id="account.invoice_form_cliente_2" /-->
-        <record model="ir.ui.view" id="account_invoice_form_supplier_fac">
-            <field name="model">account.invoice</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="account.invoice_supplier_form"/>
-            <field name="arch" type="xml">
-            <field name="reference" position="after">
-                    <field name="tipo_documento_proveedor" string="Tipo de documento"/>
+                    <separator string = "Factura Panama" />
+                    <field name="Para_panama" string="Contacto: " attrs="{'invisible':[('Impresion_Invoice', '!=', True)]}"/>
+                    <field name="Para_panamaPOD" string="POD:" attrs="{'invisible':[('Impresion_Invoice', '!=', True)]}"/>
+                    <field name="Para_panamaPOL" string="POL:" attrs="{'invisible':[('Impresion_Invoice', '!=', True)]}"/>
                 </field>
             </field>
         </record>
