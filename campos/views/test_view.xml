@@ -19,10 +19,10 @@
                 </field>
                 <field name="amount_total" position="after">
                     <field name="message_unread" invisible="1"/>
-                    <field name="profit_pricingg" sum="Total Pricing Profit Included" groups="BBCV.group_BBCV_Pricing,BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin, BBCV.group_BBCV_Comercial_jefe, BBCV.group_BBCV_Comercial_operador"/>
-                    <field name="profit_finall" sum="Total Profit Included"  groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
-                    <field name="utilidad" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
-                    <field name="utilidad2" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
+                    <field name="profit_pricingg" sum="Total Pricing Profit Included" />
+                    <field name="profit_finall" sum="Total Profit Included"  />
+                    <field name="utilidad" />
+                    <field name="utilidad2" />
                 </field>
                 <field name="invoice_status" position="after">
                     <field name="state"/>
@@ -47,10 +47,10 @@
                     <!--<group string = "Sistema">-->
                         <!--<field name="so_subtitulos2" string="SISTEMA" readonly="1"/>-->
                         <separator string = "Sistema"/>
-                        <field name="profit_pricingg" groups="BBCV.group_BBCV_Pricing, BBCV.group_BBCV_Asesor,BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Comercial_jefe, BBCV.group_BBCV_Comercial_operador"/>
-                        <field name="profit_finall" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
+                        <field name="profit_pricingg"/>
+                        <field name="profit_finall" />
                         <field name="utilidad2"/>
-                        <field name="utilidad" groups="BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Contabilidad_Gerencia, BBCV.group_BBCV_Manager_Admin"/>
+                        <field name="utilidad" />
                         <field name="observaciones1"/>
                     <!--</group>-->
                 </field>
@@ -103,12 +103,11 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
-                    <field name="proveedor" groups="BBCV.group_BBCV_Pricing,BBCV.group_BBCV_Operaciones,BBCV.group_BBCV_Contabilidad_Operador, BBCV.group_BBCV_Contabilidad_Gerencia,BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Manager_Admin"/>
-                    <field name="price_cost" groups="base.group_user" sum="Price"/>
-                    <field name="cost_operaciones" groups="BBCV.group_BBCV_Operaciones,BBCV.group_BBCV_Contabilidad_Operador,BBCV.group_BBCV_Contabilidad_Gerencia,BBCV.group_BBCV_Asesor,BBCV.group_BBCV_Manager_Admin" sum="Price"/>
-                    <field name="precio_venta" groups="base.group_user" sum="Price"/>
-                    <field name="profit_pricing" groups="BBCV.group_BBCV_Comercial_jefe,BBCV.group_BBCV_Comercial_operador,BBCV.group_BBCV_Pricing,BBCV.group_BBCV_Contabilidad_Operador,BBCV.group_BBCV_Contabilidad_Gerencia,BBCV.group_BBCV_Asesor,BBCV.group_BBCV_Manager_Admin" sum="profit_pricing"/>
-                    <field name="profit_final" groups="BBCV.group_BBCV_Operaciones,BBCV.group_BBCV_Contabilidad_Operador,BBCV.group_BBCV_Contabilidad_Gerencia,BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Manager_Admin" sum="Price" />
+                    <field name="proveedor" />
+                    <field name="price_cost"  sum="Price"/>
+                    <field name="precio_venta" sum="Price"/>
+                    <field name="profit_pricing"  sum="profit_pricing"/>
+                    <field name="profit_final"  sum="Price" />
                 </xpath>
             </field>
         </record>
@@ -222,14 +221,14 @@
         </record>
 
         <menuitem id="puerto_menu" name="Puertos, Fronteras y Aereopuertos por Pais"
-            parent="contacts.res_partner_menu_config" 
-            sequence="10" groups="BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Asesor"/>
+            parent="crm.crm_menu_config"
+            sequence="10" />
         <menuitem id="puertos_menu_a" name="Puertos"
-            parent="puerto_menu" action="action_puertos" groups="BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Asesor"/>
+            parent="puerto_menu" action="action_puertos" />
         <menuitem id="frontera_menu_a" name="Fronteras"
-            parent="puerto_menu" action="action_frontera" groups="BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Asesor"/>
+            parent="puerto_menu" action="action_frontera" />
         <menuitem id="aereo_menu_a" name="Aereopuertos"
-            parent="puerto_menu" action="action_aereo" groups="BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Asesor"/>
+            parent="puerto_menu" action="action_aereo"/>
 
     </data>
 </odoo>
