@@ -1,20 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_sale_order_bbcv1,sale.order.BBCVPricing,model_sale_order,group_BBCV_Pricing,1,1,1,1
-access_sale_order_line_bbcv2,sale.order.line,sale.model_sale_order_line,group_BBCV_Pricing,1,1,1,1
-access_sale_order_bbcv3,sale.order.BBCVPricing,model_sale_order,group_BBCV_Comercial_jefe,1,1,1,1
-access_sale_order_line_bbcv4,sale.order.line,sale.model_sale_order_line,group_BBCV_Comercial_jefe,1,1,1,1
-access_sale_order_bbcv5,sale.order.BBCVPricing,model_sale_order,group_BBCV_Comercial_operador,1,1,1,1
-access_sale_order_line_bbcv6,sale.order.line,sale.model_sale_order_line,group_BBCV_Comercial_operador,1,1,1,1
-access_sale_order_bbcv7,sale.order.BBCVPricing,model_sale_order,group_BBCV_Contabilidad_Gerencia,1,0,0,0
-access_sale_order_line_bbcv8,sale.order.line,sale.model_sale_order_line,group_BBCV_Contabilidad_Gerencia,1,1,0,0
-access_sale_order_bbcv9,sale.order.BBCVPricing,model_sale_order,group_BBCV_Contabilidad_Operador,1,0,0,0
-access_sale_order_line_bbcv10,sale.order.line,sale.model_sale_order_line,group_BBCV_Contabilidad_Operador,1,1,0,0
-access_sale_order_bbcv11,sale.order.BBCVPricing,model_sale_order,group_BBCV_Manager_Admin,1,1,1,1
-access_sale_order_line_bbcv12,sale.order.line,sale.model_sale_order_line,group_BBCV_Manager_Admin,1,1,1,1
-access_sale_order_bbcv13,sale.order.BBCVPricing,model_sale_order,group_BBCV_Operaciones,1,1,1,1
-access_sale_order_line_bbcv14,sale.order.line,sale.model_sale_order_line,group_BBCV_Operaciones,1,1,1,1
-access_sale_order_bbcv15,sale.order.BBCVPricing,model_sale_order,group_BBCV_Asesor,1,1,1,1
-access_sale_order_line_bbcv16,sale.order.line,sale.model_sale_order_line,group_BBCV_Asesor,1,1,1,1
 
 access_puertos_de_zarpe_user,puertos_de_zarpe.user,model_puertos_de_zarpe,base.group_user,1,1,1,1
 access_so_frecuencia1_user,so_frecuencia1.user,model_so_frecuencia1,base.group_user,1,1,1,1
