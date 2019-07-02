@@ -81,9 +81,9 @@ class res_test(models.Model):
     c_comida = fields.Char('Comida favorita')
     c_hobbies = fields.Text('Hobbies')
     c_name_hijo = fields.Char('Nombre hijo')
-    c_cumple_hijo = fields.Date('Cumpleaños hijo')
+    c_cumple_hijo = fields.Date('Cumpleanios hijo')
     c_name_hijo2 = fields.Char('Nombre hijo')
-    c_cumple_hijo2 = fields.Date('Cumpleaños hijo')
+    c_cumple_hijo2 = fields.Date('Cumpleanios hijo')
     c_restaurante = fields.Char('Restaurante favorito')
 
 

@@ -1,0 +1,17 @@
+<odoo>
+  <data>
+      <record id="td_generico_gt_invoice_xml" model="ir.ui.view">
+        <field name="name">account.invoice_gt_generico</field>
+        <field name="model">account.invoice</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//*[@name='reference']" position="replace">
+              <field name = "doc_type"/>
+              <field name = "doc_serie"/>
+              <field name = "doc_number"/>
+          </xpath>
+        </field>
+      </record>
+  </data>
+</odoo>

@@ -1,0 +1,59 @@
+<odoo>
+  <data>
+  
+      <record id="view_partner_gt" model="ir.ui.view">
+        <field name="name">res.partner</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//*[@name='vat']" position="replace"></xpath>
+          <xpath expr="//*[@name='type']" position="after">
+            <field name = "legal_name"/>
+            <field name = "vat" string="NIT"/>
+          </xpath>
+          
+        </field>
+      </record>
+      
+      <record id="view_account_tax_gt" model="ir.ui.view">
+        <field name="name">account.tax</field>
+        <field name="model">account.tax</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//*[@name='price_include']" position="after">
+            <field name = "is_vat"/>
+          </xpath>
+          
+        </field>
+      </record>
+
+     	<record id="sh_res_company" model="ir.ui.view">
+		<field name="name">res.currency.amount.in.words.view</field>
+		<field name="model">res.currency</field>
+		<field name="inherit_id" ref="base.view_currency_form"/>
+		<field name="arch" type="xml">
+			<field name="currency_subunit_label" position="before">
+				<field name="amount_separator"/>
+			</field>
+			<field name="currency_subunit_label" position="after">
+				<field name="close_financial_text"/>
+			</field>
+		</field>
+        </record>
+
+        <record id="payment_ref" model="ir.ui.view">
+            <field name="name">account.payment.reference</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <field name="communication" position="after">
+                    <field name="type"/>
+                    <field name="reference"/>
+                </field>
+		    </field>
+	    </record>
+  
+  </data>
+</odoo>

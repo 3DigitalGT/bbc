@@ -9,7 +9,7 @@
     <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
         <field name="partner_id" position="before">
-            <field name="so_subtitulos1" string="COMERCIAL" readonly="1"/>
+            <separator string="COMERCIAL"/>
         </field>
         <field name="partner_id" position="after">
             <field name="so_comercios"/>
@@ -25,14 +25,12 @@
             <field name="estatus_comercial" invisible="1"/>
             <field name="status_socomercial"/>
             
-            <field name="so_subtitulos1" string="" readonly="1"/>
-            <field name="so_subtitulos1" string="PRICING" readonly="1"/>
+            <separator string="PRICING"/>
             <field name="responsable_pricing"/>
             <field name="so_statusadmon" string="Instrucciones de pricing"/>
             <field name="so_tipocambio"/>
             
-            <field name="so_subtitulos1" string="" readonly="1"/>
-            <field name="so_subtitulos1" string="CONTABILIDAD" readonly="1"/>
+            <separator string="CONTABILIDAD"/>
             <field name="so_fpago"/>
             <field name="estado_conta"/>
             <field name="liquidador_conta"/>
@@ -74,72 +72,112 @@
         <page name="other_information" position="after">
             <page string="Comercial" name="page_comercial">
             <group>
-                <group string="DATOS GENERALES">
-                <field name="so_cotizacion_contacto" string="Cotización a nombre de"/>
-                <field name="so_cliente"/>
-                <field name="so_firma"/>
-                <field name="so_tipo_cotizaciones" string="Tipo de cotización"/>
-                <field name="tipo_formato"/>
-                <field name="so_nivel_prioridades"/>
-                <field name="currencys" required="True"/>
-                <field name="o_cotizaciones" string="Ofrecimiento especial cotizacion" invisible="1"/>
-                <field name="o_cotizaciones1" string="Ofrecimiento especial cotización"/>
-                <field name="so_busca_clientes"/>
-                <field name="so_servicios_especiales" string="Servicio especial"/>
-                <field name="estadia_libre" string="Días libres ofrecidos de estadía"/>
-                <field name="ofrecidos_demoras" string="Días libres ofrecidos de demoras"/>
-                <field name="so_volumen_cliente" string="Volumen del cliente"/>
-                <field name="so_frecuencias" string="Frecuencia"/>
-                <field name="so_competencias"/>
-                <field name="name_competencia"/>
-                <field name="direc_origen" string="Dirección de origen"/>
-                <!-- field name="puerto_orig"/ -->
-                <field name="so_valor_mercaderia" string="Valor de la mercancía"/>
-                <field name="so_tipo_equipos" string="Tipo de equipo"/>
+                <group string = "DATOS GENERALES" colspan="4"/>
+                <group >
+                    <field name="so_cotizacion_contacto" string="Cotización a nombre de"/>
+                    <field name="so_cliente"/>
+                    <field name="so_firma"/>
+                    <field name="so_tipo_cotizaciones" string="Tipo de cotización"/>
+                    <field name="tipo_formato"/>
+                    <field name="so_nivel_prioridades"/>
+                    <field name="currencys" required="True"/>
+                    <field name="o_cotizaciones" string="Ofrecimiento especial cotizacion" invisible="1"/>
+                    <field name="o_cotizaciones1" string="Ofrecimiento especial cotización"/>
+                    <field name="so_busca_clientes"/>
+                    <field name="so_servicios_especiales" string="Servicio especial"/>
+                    <field name="estadia_libre" string="Días libres ofrecidos de estadía"/>
+                    <field name="ofrecidos_demoras" string="Días libres ofrecidos de demoras"/>
 
                 </group>
                 <group>
+                    <field name="so_volumen_cliente" string="Volumen del cliente"/>
+                    <field name="so_frecuencias" string="Frecuencia"/>
+                    <field name="so_competencias"/>
+                    <field name="name_competencia"/>
+                    <field name="direc_origen" string="Dirección de origen"/>
+                    <field name="so_valor_mercaderia" string="Valor de la mercancía"/>
+                    <field name="so_tipo_equipos" string="Tipo de equipo"/>
                     <field name="so_peso"/>
                     <field name="so_medidas"/>
                     <field name="so_bultos"/>
                     <field name="so_volumen"/>
                     <field name="so_tipo_embalajes"/>
                     <field name="so_tipo_mercaderias" string="Tipo de mercancía"/>
-                    <field name="so_incluye_aduana" string="Incluye aduana"/>
-                    <field name="so_aduana_origen"/>
-                    <field name="so_aduana_destino"/>
-                    <field name="so_aduana_ambas"/>
-                    <field name="so_tipo_polizas" string="Clase de régimen DUA"/>
-                    <field name="so_permisos_especiales" string="Permisos especiales"/>
-
-                    <field name="so_transporte" string="Transporte"/>
-                    <field name="so_transporte_origen"/>
-                    <field name="so_transporte_destino"/>
-                    <field name="so_transporte_ambas"/>
-                    <field name="so_sobrepeso" string="Sobrepeso"/>
+                </group>
+            </group>
+            <group>
+                <!--<field name="so_incluye_aduana" string="Incluye aduana"/>-->
+                    <group string="Incluye Aduana">
+                        <group col = "8">
+                            <field name="so_aduana_origen"/>
+                            <field name="so_aduana_destino"/>
+                        </group>
+                        <group>
+                            <field name="so_tipo_polizas" string="Clase de régimen DUA"/>
+                            <field name="so_permisos_especiales" string="Permisos especiales"/>
+                        </group>
+                    </group>
+                    <!--<field name="so_transporte" string="Transporte"/>-->
+                    <group string="Transporte">
+                        <group col="4">
+                            <field name="so_transporte_origen" class="oe_inline"/>
+                            <field name="so_transporte_destino"/>
+                        </group>
+                        <!--<field name="so_transporte_ambas"/>/<field name="so_sobrepeso" string="Sobrepeso"/>-->
+                    </group>
+            </group>
+            <group>
+                <group string="Sobrepeso">
                     <field name="so_peso2"/>
-                    <field name="so_gps" string="GPS"/>
-                    <field name="so_gps_origen"/>
+                    <!--<field name="so_gps" string="GPS"/>-->
+                </group>
+                <group string="GPS" col = "4">
+                    <field name="so_gps_origen" class="oe_inline"/>
                     <field name="so_gps_destino"/>
-                    <field name="so_seguridad" string="Seguridad"/>
-                    <field name="so_seguridad_origen"/>
-                    <field name="so_seguridad_destino"/>
-                    <field name="so_tipo_seguridades"/>
+                </group>
+            </group>
+            <group>
+                <!--<field name="so_seguridad" string="Seguridad"/>-->
+                <group string="Seguridad">
+                    <group col = "4">
+                        <field name="so_seguridad_origen"/>
+                        <field name="so_seguridad_destino"/>
+                    </group>
+                    <group>
+                        <field name="so_tipo_seguridades"/>
+                    </group>
+                </group>
+                <group string="Seguro">
                     <field name="so_seguro_mercaderia" string="Seguro de mercancía"/>
                     <field name="so_porcentaje_seguros"/>
-                    <field name="so_cuadrilla" string="Carga y descarga"/>
-                    <field name="so_cuadrilla_origen"/>
-                    <field name="so_cuadrilla_destino"/>
-                    <field name="so_personas"/>
-                    <field name="so_inspeccion" string="Inspección"/>
-                    <field name="so_inspeccion_origen"/>
-                    <field name="so_inspeccion_destino"/>
+                </group>
+            </group>
+            <group>
+                <!--<field name="so_cuadrilla" string="Carga y descarga"/>-->
+                <group string="Carga y Descarga">
+                    <group col="4">
+                        <field name="so_cuadrilla_origen" class="oe_inline"/>
+                        <field name="so_cuadrilla_destino"/>
+                    </group>
+                    <group>
+                        <field name="so_personas"/>
+                    </group>
+                    <!--<field name="so_inspeccion" string="Inspección"/>-->
+                </group>
+                <group string="Inspección">
+                    <group col="4">
+                        <field name="so_inspeccion_origen" class="oe_inline"/>
+                        <field name="so_inspeccion_destino"/>
+                    </group>
+                    <group>
                     <field name="so_tipo_inspecciones" string="Tipo de inspección"/>
-                    <field name="so_observaciones_comercial"/>
+                    </group>
+
                     <field name="so_perioricidades" invisible="1"/>
                 </group>
-
-
+            </group>
+            <group colspan="1" string = "OBSERVACIONES">
+                <field name="so_observaciones_comercial" nolabel="1"/>
             </group>
             <group>
                 <group string="DATOS DEL CONSIGNATARIO">
@@ -170,63 +208,80 @@
                 </group>
             </page>
             <page string="Pricing" name = "page_pricing">
-                <group>
+                <group string = "Proveedores">
                     <group>
-                    <field name="so_contacto_rate" string="Contract ID/Rate"/>
-                    <field name="so_agente_trabajar"/>
-                    <field name="so_naviera_trabajar" string="Transporte principal"/>
-                    <field name="so_prov_aduanas"/>
-                    <field name="so_prov_transito" string="Proveedor tránsito terrestre"/>
-                    <field name="so_prov_seguridad"/>
-                    <field name="so_prov_inspeccion" string="Proveedor inspección"/>
-                    <field name="so_prov_seguro"/>
-                    <field name="so_prov_cuadrilla" string="Proveedor cuadrilla"/>
-                    <field name="so_naviera_aerolinea" string="Naviera o aerolínea" invisible="1"/>
-                    <field name="so_lugar_entregas" string="Lugar de entrega (POD)/MBL/MAWB/Carta porte"/>
-                    <field name="flete_mbl" string="Flete" />
-                    <field name="so_lugar_entrega" string="Lugar de entrega (POD)/HBL/HAWB/Carta porte"/>
-                    <field name="flete_hbl" string="Flete" />
-                    <field name="servicio_secundario"/>
-                    <field name="so_fecha_tarifa_ventas"/>
-                    <field name="so_fecha_tarifa_origen"/>
-                    <field name="so_fecha_tarifa_destino"/>
-                    <field name="so_fecha_tarifa_inter"/>
-                    <field name="so_tiempo_almacenaje" invisible="1"/>
-                    <field name="so_tiempo_demoras" invisible="1"/>
-                    <field name="so_cobro_demoras" invisible="1"/>
+                        <field name="so_contacto_rate" string="Contract ID/Rate"/>
+                        <field name="so_agente_trabajar"/>
+                        <field name="so_naviera_trabajar" string="Transporte principal"/>
+                        <field name="so_prov_aduanas"/>
+                        <field name="so_prov_transito" string="Proveedor tránsito terrestre"/>
+                    </group>
+                    <group>
+                        <field name="so_prov_seguridad"/>
+                        <field name="so_prov_inspeccion" string="Proveedor inspección"/>
+                        <field name="so_prov_seguro"/>
+                        <field name="so_prov_cuadrilla" string="Proveedor cuadrilla"/>
+                        <field name="so_naviera_aerolinea" string="Naviera o aerolínea" invisible="1"/>
                     </group>
                 </group>
-
-                    <group>
-                    <field name="so_subtitulos" string="NAVIERA/AEROLINEA/TRANSPORTE TERRESTRE" readonly="1"/>
-                    <field name="so_dia_almacenaje" string="Días libres de almacenaje" />
-                    <field name="so_dia_demora" string="Días libres de demoras" />
-                    <field name="dia_estadia" string="Días libres de estadía" />
+                <group>
+                    <group  string="Lugar de entrega (POD)/MBL/MAWB/Carta porte" >
+                        <field name="so_lugar_entregas" />
+                        <field name="flete_mbl" string="Flete" />
                     </group>
-
-
+                    <group string="Lugar de entrega (POD)/HBL/HAWB/Carta porte">
+                        <field name="so_lugar_entrega" />
+                        <field name="flete_hbl" string="Flete" />
+                        <field name="servicio_secundario"/>
+                        <field name="so_tiempo_almacenaje" invisible="1"/>
+                        <field name="so_tiempo_demoras" invisible="1"/>
+                        <field name="so_cobro_demoras" invisible="1"/>
+                    </group>
+                </group>
+                <group string = "Validez de Fechas">
                     <group>
-                    <field name="so_subtitulos" string="BBC" readonly="1"/>
-                    <field name="so_dia2_almacenaje" string="Días libres de almacenaje" />
-                    <field name="so_dia2_demoras" string="Días libres de demoras" />
-                    <field name="estadia_bbc" string="Días libres de estadía" />
-                    <field name="costo_detallado"/>
-                    <field name="profit_share" string="Profit Share:  $"/>
-                    <field name="f_entrega_cotizacion" string="Fecha entrega cotización"/>
-                    <field name="h_entrega_cotizacion" string="Hora entrega cotización"/>
-                    <field name="so_observaciones_pricing"/>
+                        <field name="so_fecha_tarifa_ventas" string = "Tarifa Ventas"/>
+                        <field name="so_fecha_tarifa_origen" string = "Tarifa Costo Origen"/>
                     </group>
                     <group>
-                        <field name="so_subtitulos" string="CONSIGNEE MBL" readonly="1"/>
-                        <field name="so_company_name" placeholder="Industrias de Centroamérica S.A."/>
-                        <field name="so_direccion2" placeholder="2 Calle vista hermosa II edificio Domani oficina 904 24-00 zona 15 guatemala, guatemala"/>
-                        <field name="so_nit3" placeholder="7929384-0"/>
-                        <field name="so_telefono3" placeholder="22696966"/>
-                        <field name="so_fax3"/>
-                        <field name="so_contacto3" placeholder="Mischelle Cáceres"/>
-                        <field name="so_email3" placeholder="mischelle.caceres@bbcfreight.com"/>
-                        <field name="observaciones_pricing"/>
+                        <field name="so_fecha_tarifa_destino" string = "Tarifa Costo Destino"/>
+                        <field name="so_fecha_tarifa_inter" string = "Tarifa Flete Intl."/>
                     </group>
+                </group>
+                <group colspan = "1" col="6" string="NAVIERA/AEROLINEA/TRANSPORTE TERRESTRE">
+                        <field name="so_dia_almacenaje" string="Días libres de almacenaje" />
+                        <field name="so_dia_demora" string="Días libres de demoras" />
+                        <field name="dia_estadia" string="Días libres de estadía" />
+                </group>
+                <group  string="BBC">
+                    <group colspan="2" col="6">
+                        <field name="so_dia2_almacenaje" string="Días libres de almacenaje" />
+                        <field name="so_dia2_demoras" string="Días libres de demoras" />
+                        <field name="estadia_bbc" string="Días libres de estadía" />
+                    </group>
+                    <group col="4" colspan="2">
+                        <field name="profit_share" string="Profit Share:  $"/>
+                        <field name="f_entrega_cotizacion" string="Fecha entrega cotización"/>
+                    </group>
+                    <group colspan="2" string = "Costo Detallado">
+                        <field name="costo_detallado" nolabel="1"/>
+                    </group>
+                                            <!--<field name="h_entrega_cotizacion" string="Hora entrega cotización"/>-->
+                    <group colspan="2" string="Observaciones">
+                        <field name="so_observaciones_pricing" nolabel="1"/>
+                    </group>
+                </group>
+                    <!--<group>-->
+                        <!--<field name="so_subtitulos" string="CONSIGNEE MBL" readonly="1"/>-->
+                        <!--<field name="so_company_name" placeholder="Industrias de Centroamérica S.A."/>-->
+                        <!--<field name="so_direccion2" placeholder="2 Calle vista hermosa II edificio Domani oficina 904 24-00 zona 15 guatemala, guatemala"/>-->
+                        <!--<field name="so_nit3" placeholder="7929384-0"/>-->
+                        <!--<field name="so_telefono3" placeholder="22696966"/>-->
+                        <!--<field name="so_fax3"/>-->
+                        <!--<field name="so_contacto3" placeholder="Mischelle Cáceres"/>-->
+                        <!--<field name="so_email3" placeholder="mischelle.caceres@bbcfreight.com"/>-->
+                        <!--<field name="observaciones_pricing"/>-->
+                    <!--</group>-->
             </page>
             <page string="Operaciones" name = "page_operaciones">
                 <group>
@@ -375,75 +430,73 @@
                 </group>
 
             </page>
-            <page string="Corte de documento" name = "page_corte">
-                <group>
-                        <field name="so_subtitulos" string="DATOS DEL PROVEEDOR/SHIPPER" readonly="1"/>
-                        <field name="shipper1" string="Empresa"/>
-                        <field name="shipper2" string="Contacto"/>
-                        <field name="shipper3" string="Dirección"/>
-                        <field name="shipper4" string="Teléfono"/>
-                        <field name="shipper5" string="No. de orden"/>
-                        <field name="shipper6" string="Otros"/>
-                        <field name="shipper7" string="Referencia proveedor"/>
-                        <field name="shipper_lading" string="Booking No."/>
-                        <field name="shipper_booking" string="Bill of lading No."/>
-                        <field name="shipper_export" string="Export references"/>
+            <!--<page string="Corte de documento" name = "page_corte">-->
+                <!--<group>-->
+                        <!--<field name="so_subtitulos" string="DATOS DEL PROVEEDOR/SHIPPER" readonly="1"/>-->
+                        <!--<field name="shipper1" string="Empresa"/>-->
+                        <!--<field name="shipper2" string="Contacto"/>-->
+                        <!--<field name="shipper3" string="Dirección"/>-->
+                        <!--<field name="shipper4" string="Teléfono"/>-->
+                        <!--<field name="shipper5" string="No. de orden"/>-->
+                        <!--<field name="shipper6" string="Otros"/>-->
+                        <!--<field name="shipper7" string="Referencia proveedor"/>-->
+                        <!--<field name="shipper_landing" string="Booking No."/>-->
+                        <!--<field name="shipper_booking" string="Bill of lading No."/>-->
+                        <!--<field name="shipper_export" string="Export references"/>-->
 
-                        <field name="so_subtitulos" string="" readonly="1"/>
-                        <field name="so_subtitulos" string="DATOS DEL CONSIGNATARIO" readonly="1"/>
-                        <field name="consignatario1" string="Empresa"/>
-                        <field name="consignatario2" string="Contacto"/>
-                        <field name="consignatario3" string="Dirección"/>
-                        <field name="consignatario4" string="Teléfono"/>
-                        <field name="consignatario5" string="No. de orden"/>
-                        <field name="consignatario6" string="Otros"/>
-                        <field name="consignatario7" string="Agente de carga/Forwarding agent"/>
-                        <field name="consignatario8" string="Punto y país de origen de la carga"/>
-                        <field name="consignatario_forwarding" string="Forwarding agent. F.M.C. No."/>
-                        <field name="consignatario_point" string="Point and country of origin of goods"/>
-                        <field name="consignatario_notify" string="Notify party"/>
-                        <field name="consignatario_delivery" string="For delivery please apply to"/>
+                        <!--<field name="so_subtitulos" string="" readonly="1"/>-->
+                        <!--<field name="so_subtitulos" string="DATOS DEL CONSIGNATARIO" readonly="1"/>-->
+                        <!--<field name="consignatario1" string="Empresa"/>-->
+                        <!--<field name="consignatario2" string="Contacto"/>-->
+                        <!--<field name="consignatario3" string="Dirección"/>-->
+                        <!--<field name="consignatario4" string="Teléfono"/>-->
+                        <!--<field name="consignatario5" string="No. de orden"/>-->
+                        <!--<field name="consignatario6" string="Otros"/>-->
+                        <!--<field name="consignatario7" string="Agente de carga/Forwarding agent"/>-->
+                        <!--<field name="consignatario8" string="Punto y país de origen de la carga"/>-->
+                        <!--<field name="consignatario_forwarding" string="Forwarding agent. F.M.C. No."/>-->
+                        <!--<field name="consignatario_point" string="Point and country of origin of goods"/>-->
+                        <!--<field name="consignatario_notify" string="Notify party"/>-->
+                        <!--<field name="consignatario_delivery" string="For delivery please apply to"/>-->
 
-                        <field name="so_subtitulos" string="" readonly="1"/>
-                        <field name="so_pre_carriage"/>
-                        <field name="so_pleace_receipt"/>
-                        <field name="so_routing"/>
-                        <field name="so_export_carrier" string="Export carrier(VESSEL/VOY/FLAG)"/>
-                        <field name="port"/>
-                        <field name="so_loading"/>
-                        <field name="discharge"/>
-                        <field name="place_delivery"/>
-                        <field name="so_type_move"/>
-                        <field name="so_mrk_contairner"/>
-                        <field name="so_no_pkgs"/>
-                        <field name="so_descripcion_paquetes"/>
-                        <field name="so_gross"/>
-                        <field name="so_measurement"/>
-                        <field name="so_freight"/>
-                        <field name="so_basis"/>
-                        <field name="so_rate"/>
-                        <field name="so_prepaid"/>
-                        <field name="so_collect"/>
+                        <!--<field name="so_subtitulos" string="" readonly="1"/>-->
+                        <!--<field name="so_pre_carriage"/>-->
+                        <!--<field name="so_pleace_receipt"/>-->
+                        <!--<field name="so_routing"/>-->
+                        <!--<field name="so_export_carrier" string="Export carrier(VESSEL/VOY/FLAG)"/>-->
+                        <!--<field name="port"/>-->
+                        <!--<field name="so_loading"/>-->
+                        <!--<field name="discharge"/>-->
+                        <!--<field name="place_delivery"/>-->
+                        <!--<field name="so_type_move"/>-->
+                        <!--<field name="so_mrk_contairner"/>-->
+                        <!--<field name="so_no_pkgs"/>-->
+                        <!--<field name="so_descripcion_paquetes"/>-->
+                        <!--<field name="so_gross"/>-->
+                        <!--<field name="so_measurement"/>-->
+                        <!--<field name="so_freight"/>-->
+                        <!--<field name="so_basis"/>-->
+                        <!--<field name="so_rate"/>-->
+                        <!--<field name="so_prepaid"/>-->
+                        <!--<field name="so_collect"/>-->
 
-                        <field name="total_prepaid"/>
-                        <field name="total_collect"/>
-                        <field name="date_by"/>
-                        <field name="on"/>
-                        <field name="so_by"/>
-                        <field name="observaciones_oper"/>
+                        <!--<field name="total_prepaid"/>-->
+                        <!--<field name="total_collect"/>-->
+                        <!--<field name="date_by"/>-->
+                        <!--<field name="on"/>-->
+                        <!--<field name="so_by"/>-->
+                        <!--<field name="observaciones_oper"/>-->
 
-                        <field name="so_no_vessel" invisible="1"/>
-                    </group>
-            </page>
+                        <!--<field name="so_no_vessel" invisible="1"/>-->
+                    <!--</group>-->
+            <!--</page>-->
             <page string="Administracion">
             <group>
-            <field name="so_pago_cliente" string="Tiempo de pago del cliente"/>
             <field name="so_pago_transporte" string="Tiempo de pago del transporte principal"/>
             <field name="factura9" string="Tipo de factura del ciente para esta SO"/>
             <field name="factura10" string="Tipo de factura del proveedor"/>
 
-            <field name="so_subtitulos" string="" readonly="1"/>
-            <field name="so_subtitulos" string="FACTURACIÓN" readonly="1"/>
+            <separator string="FACTURACIÓN"/>
             <field name="primerfa" string="Primer facturación"/>
             <field name="no_fact1" string="No de factura"/>
             <field name="segundafa" string="Segunda facturación"/>
@@ -456,8 +509,7 @@
             <field name="so_facturado3" string="Facturado"/>
             <field name="so_no_factura"/>-->
 
-            <field name="so_subtitulos" string="" readonly="1"/>
-            <field name="so_subtitulos" string="ORDEN DE COMPRA RECIBIDA" readonly="1"/>
+            <separator string="ORDEN DE COMPRA RECIBIDA"/>
             <field name="factura11" string="OC primer facturación"/>
             <field name="oc1" string="No de OC"/>
             <field name="factura12" string="OC segunda facturación"/>
@@ -467,8 +519,7 @@
             <field name="factura14" string="OC cuarta facturación"/>
             <field name="oc4" string="No de OC"/>
 
-            <field name="so_subtitulos" string="" readonly="1"/>
-            <field name="so_subtitulos" string="COMISIONES PAGADAS" readonly="1"/>
+            <separator string="COMISIONES PAGADAS"/>
             <field name="comision_ventas" string="Comisiones pagadas de ventas"/>
             <field name="document" string="No de documento"/>
             <field name="comision_pagadas" string="Comisiones pagadas de operaciones"/>
@@ -1549,74 +1600,28 @@
 <!-- *************** FIN tipo inspeccion**************** -->
 <!-- *************** FIN CAMPOS  COMERCIAL **************** -->
 
-<!-- ***************************************MENU PRINCIPAL PARA CAMPOS BBC****************************************** -->
-<!-- *************** CAMPOS OVERRIDING POR JOSE PABLO CASTILLO  **************** -->
-<!-- **ventas* -->
-<record id="sale.res_partner_menu" model="ir.ui.menu">
-    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing')),(4,ref('group_BBCV_Contabilidad_Gerencia')),(4,ref('group_BBCV_Contabilidad_Operador')),(4,ref('group_BBCV_Operaciones'))]"/>
-</record>
-<!-- **ventas/ventas* -->
-<record id="sale.sale_menu_root" model="ir.ui.menu">
-    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing')),(4,ref('group_BBCV_Contabilidad_Gerencia')),(4,ref('group_BBCV_Contabilidad_Operador')),(4,ref('group_BBCV_Operaciones'))]"/>
-</record>
-<!-- **config* -->
-<record id="sale.menu_sale_config" model="ir.ui.menu">
-    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor'))]"/>
-</record>
-<!-- **clientes* 
-<record id="base.menu_partner_form" model="ir.ui.menu">
-    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador'))]"/>
-</record> -->
-<!-- **iniciativas* -->
-<record id="crm.menu_crm_leads" model="ir.ui.menu">
-    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador'))]"/>
-</record>
-<!-- **oportunidades* -->
-<record id="crm.menu_crm_opportunities" model="ir.ui.menu">
-    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing'))]"/>
-</record>
-<!-- **presupuestos* -->
-<record id="sale.menu_sale_quotations" model="ir.ui.menu">
-    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing'))]"/>
-</record>
-<!-- **Pedidos de Venta* -->
-<record id="sale.menu_sale_order" model="ir.ui.menu">
-    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing')),(4,ref('group_BBCV_Contabilidad_Gerencia')),(4,ref('group_BBCV_Contabilidad_Operador')),(4,ref('group_BBCV_Operaciones'))]"/>
-</record>
-<!-- **productos* -->
-<record id="sale.menu_product" model="ir.ui.menu">
-    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor'))]"/>
-</record>
 
-<!-- **Llamadas Telefonicas* 
-<record id="crm.menu_crm_case_phone" model="ir.ui.menu">
-    <field name="groups_id" eval="[(4,ref('group_BBCV_Manager_Admin')),(4,ref('group_BBCV_Asesor')),(4,ref('group_BBCV_Comercial_jefe')),(4,ref('group_BBCV_Comercial_operador')),(4,ref('group_BBCV_Pricing')),(4,ref('group_BBCV_Contabilidad_Gerencia')),(4,ref('group_BBCV_Contabilidad_Operador')),(4,ref('group_BBCV_Operaciones'))]"/>
-</record> -->
-
-<!--menuitem name="Campos so" parent="base.menu_base_partner" id="base.menu_sales" groups="group_BBCV_Manager_Admin"/-->
 <!-- ***************************************MENU PRINCIPAL PARA CAMPOS BBC****************************************** -->
-<menuitem name="Campos so" parent="sale.menu_sale_config" id="campos_so" groups="group_BBCV_Manager_Admin"/>
+<menuitem name="BBC Freight" parent="sale.menu_sale_config" id="campos_so"/>
 
 <!-- ************** MENUS DE LOS CAMPOS BBC CLIENTE ****************** -->
 <menuitem id="tipocomercio" name="Tipo comercio" parent="campos_so"  sequence="1" action="action_so_comercio"/>
-<menuitem id="incotermscliente" name="Inconterms cliente" parent="campos_so"  sequence="1" action="action_so_incotermscliente"/>
-<menuitem id="incotermservicio" name="Inconterms servicio" parent="campos_so"  sequence="1" action="action_so_incotermservicio"/>
-<menuitem id="ofrecimientoespecal" name="Ofrecimiento especial" parent="campos_so"  sequence="1" action="action_so_ofrecimiento"/>
-<menuitem id="tipocotizacion" name="Tipo cotizacion" parent="campos_so"  sequence="1" action="action_so_tipo_cotizacion"/>
-<menuitem id="nivelprioridad" name="Pais origen" parent="campos_so"  sequence="1" action="action_so_nivel_prioridad"/>
-<menuitem id="currency" name="Tipo de moneda" parent="campos_so"  sequence="1" action="action_currency"/>
-<menuitem id="tipoequipo" name="Tipo equipo" parent="campos_so"  sequence="1" action="action_so_tipo_equipo"/>
-<menuitem id="tipoembalaje" name="Tipo embalaje" parent="campos_so"  sequence="1" action="action_so_tipo_embalaje"/>
-<menuitem id="tipomercaderia" name="Tipo mercaderia" parent="campos_so"  sequence="1" action="action_so_tipo_mercaderia"/>
-<menuitem id="tipopoliza" name="Tipo poliza" parent="campos_so"  sequence="1" action="action_so_tipo_poliza"/>
-<menuitem id="buscacliente" name="Servicio especial" parent="campos_so"  sequence="1" action="action_so_busca_cliente"/>
+<menuitem id="ofrecimientoespecal" name="Ofrecimiento Especial" parent="campos_so"  sequence="1" action="action_so_ofrecimiento"/>
+<menuitem id="tipocotizacion" name="Tipo Cotizacion" parent="campos_so"  sequence="1" action="action_so_tipo_cotizacion"/>
+<menuitem id="nivelprioridad" name="Pais Origen" parent="campos_so"  sequence="1" action="action_so_nivel_prioridad"/>
+<menuitem id="currency" name="Tipo de Moneda" parent="campos_so"  sequence="1" action="action_currency"/>
+<menuitem id="tipoequipo" name="Tipo Equipo" parent="campos_so"  sequence="1" action="action_so_tipo_equipo"/>
+<menuitem id="tipoembalaje" name="Tipo Embalaje" parent="campos_so"  sequence="1" action="action_so_tipo_embalaje"/>
+<menuitem id="tipomercaderia" name="Tipo Mercaderia" parent="campos_so"  sequence="1" action="action_so_tipo_mercaderia"/>
+<menuitem id="tipopoliza" name="Tipo Poliza" parent="campos_so"  sequence="1" action="action_so_tipo_poliza"/>
+<menuitem id="buscacliente" name="Servicio Especial" parent="campos_so"  sequence="1" action="action_so_busca_cliente"/>
 <menuitem id="perioricidad" name="Perioricidad" parent="campos_so"  sequence="1" action="action_so_perioricidad"/>
 <menuitem id="frecuencia" name="Frecuencia" parent="campos_so"  sequence="1" action="action_so_frecuencia"/>
-<menuitem id="puertos_de_zarpe" name="puertos_de_zarpe" parent="campos_so"  sequence="1" action="action_puertos_de_zarpe"/>
+<menuitem id="puertos_de_zarpe" name="Puertos de Zarpe" parent="campos_so"  sequence="1" action="action_puertos_de_zarpe"/>
 <menuitem id="competencia" name="Competencia" parent="campos_so"  sequence="1" action="action_so_competencia"/>
 <menuitem id="tiposeguridad" name="Tipo Seguridad" parent="campos_so"  sequence="1" action="action_so_tipo_seguridad"/>
-<menuitem id="porcentajeseguro" name="Porcentaje seguro" parent="campos_so"  sequence="1" action="action_so_porcentaje_seguro"/>
-<menuitem id="tipoinspeccion" name="Tipo inspeccion" parent="campos_so"  sequence="1" action="action_so_tipo_inspeccion"/>
+<menuitem id="porcentajeseguro" name="Porcentaje Seguro" parent="campos_so"  sequence="1" action="action_so_porcentaje_seguro"/>
+<menuitem id="tipoinspeccion" name="Tipo Inspeccion" parent="campos_so"  sequence="1" action="action_so_tipo_inspeccion"/>
 <!-- **********************************************FIN MENUS********************************************************* -->
 
     </data>
