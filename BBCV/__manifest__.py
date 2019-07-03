@@ -29,6 +29,7 @@
     'depends': ['base', 'product', 'crm', 'sale_crm'],
     'data': [
         'security/ir.model.access.csv',
+        'security/bbc_groups.xml',
         'views/bbcv_account_invoice_view.xml',
         'views/BBCV_view.xml',
     ],

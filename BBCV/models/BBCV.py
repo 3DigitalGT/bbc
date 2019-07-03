@@ -7,6 +7,7 @@ from datetime import datetime
 class res_test(models.Model):
     _inherit = "sale.order"
 
+    operator_id = fields.Many2one('res.users', string='Operator', index=True, track_visibility='onchange', track_sequence=2, default=lambda self: self.env.user)
     flete_mbl = fields.Selection([
                     ('C3','Collect'),
                     ('C4','Prepaid')
@@ -163,16 +164,15 @@ class res_test(models.Model):
     estadia_libre = fields.Char('Dias Libres Estadia')
     ofrecidos_demoras = fields.Char('Dias Libres Demoras')
     tipo_formato = fields.Many2one('formatos','Tipo de Formatos')
-    liquidador_oper = fields.Many2one('res.partner','Liquidador Operaciones')
     estado_operaciones = fields.Many2one('so_operaciones','Estado SO operaciones')
     no_mbl = fields.Char('MBL')
     no_hbl = fields.Char('HBL')
     op_internacional = fields.Many2one('res.partner','Operador Internacional')
     op_local = fields.Many2one('res.partner','Operador Local')
     envio_cotizacion = fields.Date('Fecha Envio')
-    liquidador_conta = fields.Many2one('res.partner','Liquidador Ccontabilidad')
+    liquidador_conta = fields.Many2one('res.users', string='Responsable Contabilidad', index=True, track_visibility='onchange', track_sequence=2, default=lambda self: self.env.user)
     estado_conta = fields.Many2one('estado_contabilidad','Estado SO Contabilidad')
-    responsable_pricing = fields.Many2one('res.partner','Responsable Pricing')
+    responsable_pricing = fields.Many2one('res.users', string='Responsable Pricing', index=True, track_visibility='onchange', track_sequence=2, default=lambda self: self.env.user)
     so_subtitulos1 = fields.Char('')
     informar_cliente = fields.Many2one('informar','Como Informar al Ciente')
     estatus_comercial = fields.Char('Estatus SO Comercial')
