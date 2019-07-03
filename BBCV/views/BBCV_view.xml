@@ -9,44 +9,43 @@
     <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
         <field name="partner_id" position="before">
-            <separator string="COMERCIAL"/>
+                <separator string="COMERCIAL"/>
         </field>
         <field name="partner_id" position="after">
+            <field name="user_id"/>
             <field name="so_comercios"/>
             <field name="servicio_ventas"/>
             <field name="tipo_traficos1"/>
             <field name="so_incotermsclientes"/>
             <field name="so_incotermservicios" string="Tipo de incoterms del servicio"/>
             <field name="so_mercaderia"/>
-            <field name="so_ofrecimientos" string="Ofrecimiento especial" invisible="1"/>
             <field name="so_ofrecim" string="Ofrecimiento especial" placeholder="Ofrecimiento especial"/>
-            <field name="informar_cliente"/>
             <field name="so_frecuencia" string="Frecuencia"/>
-            <field name="estatus_comercial" invisible="1"/>
-            <field name="status_socomercial"/>
-            
+
             <separator string="PRICING"/>
             <field name="responsable_pricing"/>
             <field name="so_statusadmon" string="Instrucciones de pricing"/>
             <field name="so_tipocambio"/>
             
             <separator string="CONTABILIDAD"/>
+            <field name="liquidador_conta"/>
             <field name="so_fpago"/>
             <field name="estado_conta"/>
-            <field name="liquidador_conta"/>
             <field name="so_taproximado" string="Tiempo aproximado de tránsito" invisible="1"/>
             <field name="so_validez" invisible="0"/>
+        </field>
+        <field name="confirmation_date" position="before">
+            <separator string="COTIZACIÓN"/>
         </field>
         <field name="payment_term_id" position="after">
             <field name="envio_cotizacion" string="Fecha de envío de cotización"/>
             <field name="so_fpresupuesto" invisible="1"/>
-            <field name="so_fseguimiento" string="Fecha de cierre de venta" invisible="1"/>
             <field name="so_fcierre" string="Fecha de cierre de venta"/>
             
             <separator string = "OPERACIONES"/>
+            <field name="operator_id"/>
             <field name="op_internacional"/>
             <field name="op_local"/>
-            
             <field name="so_fetd"/>
             <field name="so_feta"/>
             <field name="no_mbl" string="No. de MBL/MAWB/carta porte"/>
@@ -56,7 +55,6 @@
             <field name="so_mescierre" string="Mes y Año de Cierre" class="oe_inline"/>
             <field name="so_aniocierre" />
             <field name="estado_operaciones"/>
-            <field name="liquidador_oper"/>
             <field name="so_statusso" string="Estatus de SO" invisible="1"/>
         </field>
     </field>
@@ -80,7 +78,6 @@
                     <field name="so_tipo_cotizaciones" string="Tipo de cotización"/>
                     <field name="tipo_formato"/>
                     <field name="so_nivel_prioridades"/>
-                    <field name="currencys" required="True"/>
                     <field name="o_cotizaciones" string="Ofrecimiento especial cotizacion" invisible="1"/>
                     <field name="o_cotizaciones1" string="Ofrecimiento especial cotización"/>
                     <field name="so_busca_clientes"/>
