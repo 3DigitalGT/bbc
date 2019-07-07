@@ -23,26 +23,16 @@
     'name': 'BBC_fac',
     'version': '1.0',
     'category': 'Sales Management',
-    #'sequence': 14,
-    #'summary': 'Quotations, Sales Orders, Invoicing',
     'description': """
 ...........""",
     'author': 'jose castillo',
     'website': 'http://www.openerp.com',
-    #'images': ['images/sale_dashboard.jpeg','images/Sale_order_line_to_invoice.jpeg','images/sale_order.jpeg','images/sales_analysis.jpeg'],
     'depends': ['base', 'product', 'crm', 'sale'],
     'data': [
         'views/bbc_fac_view.xml',
         'security/ir.model.access.csv',
     ],
-    #'demo': ['sale_demo.xml'],
-    #'test': [
-    #    'test/sale_order_demo.yml',
-    #    'test/manual_order_policy.yml',
-    #    'test/cancel_order.yml',
-    #    'test/delete_order.yml',
-    #    'test/edi_sale_order.yml',
-    #],
+
     'installable': True,
     'auto_install': False,
     'application': True,
