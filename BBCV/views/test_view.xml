@@ -63,7 +63,6 @@
                     <field name="pais_destino" string="Pais de Destino" />
                 </field>
                 <field name="so_statusso" position="after">
-
                     <separator string = "Sistema"/>
                     <field name="profit_pricingg"/>
                     <field name="profit_finall" />
@@ -77,7 +76,7 @@
         <record model="ir.ui.view" id="view_order_form_campos_2">
             <field name="name">sale.order.form.campos.inherit.2</field>
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="inherit_id" ref="view_order_form_22"/>
             <field name="arch" type="xml">
                     <field name="direc_origen" position="after">
                         <field name="puerto_orig"/>
@@ -94,25 +93,25 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_order_form_campos_3">
-            <field name="name">sale.order.form.campos.inherit.3</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="arch" type="xml">
-                <field name="so_prov_cuadrilla" position="after">
-                    <separator string = "Datos Origen"/>
-                    <field name="puerto_carga"/>
-                    <field name="aereo_origen" string="Aeropuerto de origen"/>
-                    <field name="frontera_origen"/>
-                    <field name="direccion_origen"/>
-                    <separator string = "Datos Destino"/>
-                    <field name="puerto_descarga"/>
-                    <field name="aereo_destino" string="Aeropuerto de destino"/>
-                    <field name="frontera_destino"/>
-                    <field name="direccion_destino"/>
-                </field>
-            </field>
-        </record>
+        <!--<record model="ir.ui.view" id="view_order_form_campos_3">-->
+            <!--<field name="name">sale.order.form.campos.inherit.3</field>-->
+            <!--<field name="model">sale.order</field>-->
+            <!--<field name="inherit_id" ref="BBCV.view_order_form_comercial"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<field name="so_prov_cuadrilla" position="after">-->
+                    <!--<separator string = "Datos Origen"/>-->
+                    <!--<field name="puerto_carga"/>-->
+                    <!--<field name="aereo_origen" string="Aeropuerto de origen"/>-->
+                    <!--<field name="frontera_origen"/>-->
+                    <!--<field name="direccion_origen"/>-->
+                    <!--<separator string = "Datos Destino"/>-->
+                    <!--<field name="puerto_descarga"/>-->
+                    <!--<field name="aereo_destino" string="Aeropuerto de destino"/>-->
+                    <!--<field name="frontera_destino"/>-->
+                    <!--<field name="direccion_destino"/>-->
+                <!--</field>-->
+            <!--</field>-->
+        <!--</record>-->
 
         <record model="ir.ui.view" id="sale_order_line_tree_new_campos">
             <field name="name">sale.order.line.tree.new.campos.form</field>
@@ -120,7 +119,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
-                    <field name="profit_final" groups="BBCV.group_BBCV_Operaciones,BBCV.group_BBCV_Contabilidad_Operador,BBCV.group_BBCV_Contabilidad_Gerencia,BBCV.group_BBCV_Asesor, BBCV.group_BBCV_Manager_Admin" sum="Price" />
+                    <field name="profit_final" sum="Price" />
                     <field name="proveedor" />
                     <field name="price_cost"  sum="Price"/>
                     <field name="precio_venta" sum="Price"/>
@@ -238,19 +237,10 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="puerto_menu" name="Puertos, Fronteras y Aereopuertos por Pais"
-            sequence="10" groups="BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Asesor"/>
-            parent="crm.crm_menu_config"
-            sequence="10" />
-        <menuitem id="puertos_menu_a" name="Puertos"
-           parent="puerto_menu" action="action_puertos" groups="BBCV.group_BBCV_Manager_Admin,BBCV.group_BBCV_Asesor"/>
-            parent="puerto_menu" action="action_puertos" />
-        <menuitem id="frontera_menu_a" name="Fronteras"
-
-            parent="puerto_menu" action="action_frontera" />
-        <menuitem id="aereo_menu_a" name="Aereopuertos"
-
-            parent="puerto_menu" action="action_aereo"/>
+        <menuitem id="puerto_menu" name="Puertos, Fronteras y Aereopuertos por Pais" parent="crm.crm_menu_config" sequence="10" />
+        <menuitem id="puertos_menu_a" name="Puertos" parent="puerto_menu" action="action_puertos"/>
+        <menuitem id="frontera_menu_a" name="Fronteras" parent="puerto_menu" action="action_frontera" />
+        <menuitem id="aereo_menu_a" name="Aereopuertos" parent="puerto_menu" action="action_aereo"/>
 
     </data>
 </odoo>

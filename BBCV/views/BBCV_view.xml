@@ -2,12 +2,12 @@
 <odoo>
     <data>
 
-<!--  VISTA DE FORMS  PARA SALE ORDERS   -->
-<record model="ir.ui.view" id="view_order_form1">
-    <field name="name">sale.order.form.inherit1</field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form"/>
-    <field name="arch" type="xml">
+        <!--  VISTA DE FORMS  PARA SALE ORDERS   -->
+        <record model="ir.ui.view" id="view_order_form1">
+        <field name="name">sale.order.form.inherit1</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
         <field name="partner_id" position="before">
                 <separator string="COMERCIAL"/>
         </field>
@@ -37,7 +37,7 @@
         <field name="validity_date" position="before">
             <separator string="COTIZACIÓN"/>
         </field>
-        <field name="validity_id" position="after">
+        <field name="validity_date" position="after">
             <field name="envio_cotizacion" string="Fecha de envío de cotización"/>
             <field name="so_fpresupuesto" invisible="1"/>
             <field name="so_fcierre" string="Fecha de cierre de venta"/>
@@ -62,8 +62,8 @@
 
 <!-- *************************************INICIO Comercial**************************************-->
 
-<record model="ir.ui.view" id="view_order_form_22">
-    <field name="name">sale.order.form.inherit22</field>
+<record model="ir.ui.view" id="view_order_form_comercial">
+    <field name="name">sale.order.form.commercial</field>
     <field name="model">sale.order</field>
     <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
@@ -280,6 +280,17 @@
                         <!--<field name="observaciones_pricing"/>-->
                     <!--</group>-->
             </page>
+        </page>
+    </field>
+</record>
+
+<record model="ir.ui.view" id="view_order_form_operations">
+    <field name="name">sale.order.form.operations</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="view_order_form_comercial"/>
+    <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_operations_own')])]"/>
+    <field name="arch" type="xml">
+        <page name="page_pricing" position="after">
             <page string="Operaciones" name = "page_operaciones">
                 <group>
                     <group string="OPERACIÓN INICIAL" >
@@ -427,66 +438,79 @@
                 </group>
 
             </page>
-            <!--<page string="Corte de documento" name = "page_corte">-->
-                <!--<group>-->
-                        <!--<field name="so_subtitulos" string="DATOS DEL PROVEEDOR/SHIPPER" readonly="1"/>-->
-                        <!--<field name="shipper1" string="Empresa"/>-->
-                        <!--<field name="shipper2" string="Contacto"/>-->
-                        <!--<field name="shipper3" string="Dirección"/>-->
-                        <!--<field name="shipper4" string="Teléfono"/>-->
-                        <!--<field name="shipper5" string="No. de orden"/>-->
-                        <!--<field name="shipper6" string="Otros"/>-->
-                        <!--<field name="shipper7" string="Referencia proveedor"/>-->
-                        <!--<field name="shipper_landing" string="Booking No."/>-->
-                        <!--<field name="shipper_booking" string="Bill of lading No."/>-->
-                        <!--<field name="shipper_export" string="Export references"/>-->
+        </page>
+    </field>
+</record>
 
-                        <!--<field name="so_subtitulos" string="" readonly="1"/>-->
-                        <!--<field name="so_subtitulos" string="DATOS DEL CONSIGNATARIO" readonly="1"/>-->
-                        <!--<field name="consignatario1" string="Empresa"/>-->
-                        <!--<field name="consignatario2" string="Contacto"/>-->
-                        <!--<field name="consignatario3" string="Dirección"/>-->
-                        <!--<field name="consignatario4" string="Teléfono"/>-->
-                        <!--<field name="consignatario5" string="No. de orden"/>-->
-                        <!--<field name="consignatario6" string="Otros"/>-->
-                        <!--<field name="consignatario7" string="Agente de carga/Forwarding agent"/>-->
-                        <!--<field name="consignatario8" string="Punto y país de origen de la carga"/>-->
-                        <!--<field name="consignatario_forwarding" string="Forwarding agent. F.M.C. No."/>-->
-                        <!--<field name="consignatario_point" string="Point and country of origin of goods"/>-->
-                        <!--<field name="consignatario_notify" string="Notify party"/>-->
-                        <!--<field name="consignatario_delivery" string="For delivery please apply to"/>-->
+<record model="ir.ui.view" id="view_order_form_admon">
+    <field name="name">sale.order.form.accounting</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="view_order_form_operations"/>
+    <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_accounting')])]"/>
+    <field name="arch" type="xml">
+        <page name="page_operaciones" position="after">
+            <!--
+            <page string="Corte de documento" name = "page_corte">
+                <group>
+                        <field name="so_subtitulos" string="DATOS DEL PROVEEDOR/SHIPPER" readonly="1"/>
+                        <field name="shipper1" string="Empresa"/>
+                        <field name="shipper2" string="Contacto"/>
+                        <field name="shipper3" string="Dirección"/>
+                        <field name="shipper4" string="Teléfono"/>
+                        <field name="shipper5" string="No. de orden"/>
+                        <field name="shipper6" string="Otros"/>
+                        <field name="shipper7" string="Referencia proveedor"/>
+                        <field name="shipper_landing" string="Booking No."/>
+                        <field name="shipper_booking" string="Bill of lading No."/>
+                        <field name="shipper_export" string="Export references"/>
 
-                        <!--<field name="so_subtitulos" string="" readonly="1"/>-->
-                        <!--<field name="so_pre_carriage"/>-->
-                        <!--<field name="so_pleace_receipt"/>-->
-                        <!--<field name="so_routing"/>-->
-                        <!--<field name="so_export_carrier" string="Export carrier(VESSEL/VOY/FLAG)"/>-->
-                        <!--<field name="port"/>-->
-                        <!--<field name="so_loading"/>-->
-                        <!--<field name="discharge"/>-->
-                        <!--<field name="place_delivery"/>-->
-                        <!--<field name="so_type_move"/>-->
-                        <!--<field name="so_mrk_contairner"/>-->
-                        <!--<field name="so_no_pkgs"/>-->
-                        <!--<field name="so_descripcion_paquetes"/>-->
-                        <!--<field name="so_gross"/>-->
-                        <!--<field name="so_measurement"/>-->
-                        <!--<field name="so_freight"/>-->
-                        <!--<field name="so_basis"/>-->
-                        <!--<field name="so_rate"/>-->
-                        <!--<field name="so_prepaid"/>-->
-                        <!--<field name="so_collect"/>-->
+                        <field name="so_subtitulos" string="" readonly="1"/>
+                        <field name="so_subtitulos" string="DATOS DEL CONSIGNATARIO" readonly="1"/>
+                        <field name="consignatario1" string="Empresa"/>
+                        <field name="consignatario2" string="Contacto"/>
+                        <field name="consignatario3" string="Dirección"/>
+                        <field name="consignatario4" string="Teléfono"/>
+                        <field name="consignatario5" string="No. de orden"/>
+                        <field name="consignatario6" string="Otros"/>
+                        <field name="consignatario7" string="Agente de carga/Forwarding agent"/>
+                        <field name="consignatario8" string="Punto y país de origen de la carga"/>
+                        <field name="consignatario_forwarding" string="Forwarding agent. F.M.C. No."/>
+                        <field name="consignatario_point" string="Point and country of origin of goods"/>
+                        <field name="consignatario_notify" string="Notify party"/>
+                        <field name="consignatario_delivery" string="For delivery please apply to"/>
 
-                        <!--<field name="total_prepaid"/>-->
-                        <!--<field name="total_collect"/>-->
-                        <!--<field name="date_by"/>-->
-                        <!--<field name="on"/>-->
-                        <!--<field name="so_by"/>-->
-                        <!--<field name="observaciones_oper"/>-->
+                        <field name="so_subtitulos" string="" readonly="1"/>
+                        <field name="so_pre_carriage"/>
+                        <field name="so_pleace_receipt"/>
+                        <field name="so_routing"/>
+                        <field name="so_export_carrier" string="Export carrier(VESSEL/VOY/FLAG)"/>
+                        <field name="port"/>
+                        <field name="so_loading"/>
+                        <field name="discharge"/>
+                        <field name="place_delivery"/>
+                        <field name="so_type_move"/>
+                        <field name="so_mrk_contairner"/>
+                        <field name="so_no_pkgs"/>
+                        <field name="so_descripcion_paquetes"/>
+                        <field name="so_gross"/>
+                        <field name="so_measurement"/>
+                        <field name="so_freight"/>
+                        <field name="so_basis"/>
+                        <field name="so_rate"/>
+                        <field name="so_prepaid"/>
+                        <field name="so_collect"/>
 
-                        <!--<field name="so_no_vessel" invisible="1"/>-->
-                    <!--</group>-->
-            <!--</page>-->
+                        <field name="total_prepaid"/>
+                        <field name="total_collect"/>
+                        <field name="date_by"/>
+                        <field name="on"/>
+                        <field name="so_by"/>
+                        <field name="observaciones_oper"/>
+
+                        <field name="so_no_vessel" invisible="1"/>
+                    </group>
+            </page>
+            -->
             <page string="Administracion">
             <group>
             <field name="so_pago_transporte" string="Tiempo de pago del transporte principal"/>
@@ -529,10 +553,11 @@
         </page>
     </field>
 </record>
-<!-- *************************************FIN Comercial**************************************-->
 
 
-<!--********************************** INICIO campos pagina OPERACIONES************** -->
+
+
+<!--********************************** INICIO VISTAS DE CAMPOS************** -->
 <!-- VISTA  -->
 <record model="ir.ui.view" id="view_so_frecuencia1_form1">
     <field name="name">so_frecuencia1.form1</field>
