@@ -9,8 +9,8 @@
         <field name="arch" type="xml">
           <xpath expr="//*[@name='vat']" position="replace"></xpath>
           <xpath expr="//*[@name='type']" position="after">
-            <field name = "legal_name"/>
-            <field name = "vat" string="NIT"/>
+            <field name = "legal_name" attrs="{'invisible':[('parent_id', '!=', 'True')]}"/>
+            <field name = "vat" string="NIT" help="C/F o NIT" attrs="{'invisible':[('parent_id', '!=', 'True')]}"/>
           </xpath>
           
         </field>
