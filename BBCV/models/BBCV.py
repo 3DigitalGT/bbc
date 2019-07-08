@@ -496,6 +496,13 @@ class res_test(models.Model):
         if self.estadia_bbc:
             self.bbc_estadia = self.estadia_bbc
 
+    @api.model
+    def create(self,vals):
+        if self.partner_id.user_id == self.env.user:
+            super(SalesOrder, self).create(vals)
+        else:
+            raise exceptions.ValidationError("No puede generar ordenes para clientes que no tiene asignados.")
+
 
 class puertos_de_zarpe(models.Model):
     _name = 'puertos_de_zarpe'
