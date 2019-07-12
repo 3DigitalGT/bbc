@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_res_country_aereo_user,res_country_aereo.user,model_res_country_aereo,sales_team.group_sale_manager,1,1,1,1
-access_res_country_frontera_user,res_country_frontera.user,model_res_country_frontera,sales_team.group_sale_manager,1,1,1,1
-access_res_country_puerto_user,res_country_puerto.user,model_res_country_puerto,sales_team.group_sale_manager,1,1,1,1
-access_res_country_aereo_user,res_country_aereo.user,model_res_country_aereo,base.group_user,1,0,0,0
-access_res_country_frontera_user,res_country_frontera.user,model_res_country_frontera,base.group_user,1,0,0,0
-access_res_country_puerto_user,res_country_puerto.user,model_res_country_puerto,base.group_user,1,0,0,0
-

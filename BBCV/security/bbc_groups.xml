@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+        <record id="group_contacts" model="res.groups">
+            <field name="name">Contacts</field>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+            <field name="comment">the user will have access the contacts menu.</field>
+        </record>
+
         <record id="group_sales_own" model="res.groups">
             <field name="name">Sales: Own Documents Only</field>
             <field name="category_id" ref="base.module_category_sales_management"/>
@@ -96,6 +102,11 @@
         <!--Cambio del menu Quotations para que solo el nuevo grupo de ventas lo pueda ver-->
         <record model='ir.ui.menu' id='sale.menu_sale_quotations'>
             <field name="groups_id" eval="[(5,ref('sales_team.group_sale_salesman')),(4,ref('group_sales_own')),(4,ref('sales_team.group_sale_salesman_all_leads'))]"/>
+        </record>
+
+        <!--Cambio de permisos del menu contactos-->
+        <record model='ir.ui.menu' id='contacts.menu_contacts'>
+            <field name="groups_id" eval="[(6,0,[ref('group_contacts')])]"/>
         </record>
 
 </odoo>
