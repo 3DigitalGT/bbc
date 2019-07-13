@@ -498,11 +498,14 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self,vals):
-        partner = self.env['res.partner'].search([('id','=',vals['partner_id'])])
-        if partner.user_id.id == self.env.uid:
+        if self.env.user.has_group('BBCV.group_operations_all') or self.env.user.has_group('BBCV.group_accounting') or self.env.user.has_group('sales_team.group_sale_salesman'):
             return super(SaleOrder, self).create(vals)
         else:
-            raise exceptions.ValidationError("No puede generar ordenes para clientes que no tiene asignados.")
+            partner = self.env['res.partner'].search([('id','=',vals['partner_id'])])
+            if partner.user_id.id == self.env.uid:
+                return super(SaleOrder, self).create(vals)
+            else:
+                raise exceptions.ValidationError("No puede generar ordenes para clientes que no tiene asignados.")
 
 
 class puertos_de_zarpe(models.Model):

@@ -90,6 +90,9 @@
     <field name="inherit_id" ref="view_order_form1"/>
     <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_operations_all'),ref('sales_team.group_sale_salesman_all_leads')])]"/>
     <field name="arch" type="xml">
+        <field name="partner_id" position="replace">
+            <field name = "partner_id"/>
+        </field>
         <field name="user_id" position="replace">
             <field name = "user_id" readonly="0"/>
         </field>
@@ -1733,8 +1736,8 @@
 <menuitem id="tiposeguridad" name="Tipo Seguridad" parent="campos_so"  sequence="1" action="action_so_tipo_seguridad"/>
 <menuitem id="porcentajeseguro" name="Porcentaje Seguro" parent="campos_so"  sequence="1" action="action_so_porcentaje_seguro"/>
 <menuitem id="tipoinspeccion" name="Tipo Inspeccion" parent="campos_so"  sequence="1" action="action_so_tipo_inspeccion"/>
-<menuitem id="all_customers" name="Todos los Clientes" parent="sale.sale_order_menu"  sequence="10" action="action_all_customers"/>
-<menuitem id="all_customers" name="Todos los Clientes" parent="crm.crm_menu_sales"  sequence="10" action="action_all_customers"/>
+<menuitem id="all_customers_sales" name="Todos los Clientes" parent="sale.sale_order_menu"  sequence="10" action="action_all_customers"/>
+<menuitem id="all_customers_crm" name="Todos los Clientes" parent="crm.crm_menu_sales"  sequence="10" action="action_all_customers"/>
 <!-- **********************************************FIN MENUS********************************************************* -->
 
     </data>
