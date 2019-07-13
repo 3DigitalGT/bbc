@@ -4,7 +4,7 @@ from odoo import api, exceptions, fields, models, _, SUPERUSER_ID
 from datetime import datetime
 
 
-class res_test(models.Model):
+class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     operator_id = fields.Many2one('res.users', string='Operator', index=True, track_visibility='onchange', track_sequence=2, default=lambda self: self.env.user)
@@ -498,8 +498,9 @@ class res_test(models.Model):
 
     @api.model
     def create(self,vals):
-        if self.partner_id.user_id == self.env.user:
-            super(SalesOrder, self).create(vals)
+        partner = self.env['res.partner'].search([('id','=',vals['partner_id'])])
+        if partner.user_id.id == self.env.uid:
+            return super(SaleOrder, self).create(vals)
         else:
             raise exceptions.ValidationError("No puede generar ordenes para clientes que no tiene asignados.")
 
