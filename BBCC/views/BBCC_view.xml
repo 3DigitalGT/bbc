@@ -29,7 +29,7 @@
                     <field name="otro_servicio" attrs="{'invisible': ['|',('is_company','=', False),('customer','=', False)]}" string="Otro tipo de servicio del cliente"/> 
                     <field name="p_tipo_base" string="Tipo de base" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
 
-                    <field name="proveedores_para"  string="Proveedor para"/>
+                    <field name="proveedores_para"  string="Proveedor para" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
                     <field name="pais_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
                     <field name="origen_servicio" string="País de origen del servicio" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}"/>
                     <field name="estatus_proveedores" attrs="{'invisible': ['|',('is_company','=', False),('supplier','=', False)]}" string="Estatus de proveedor"/>

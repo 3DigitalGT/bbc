@@ -11,6 +11,7 @@
             <field name="view_mode">tree</field>
             <field name="priority" eval="1"/>
             <field name="arch" type="xml">
+
                 <field name="name" position = "after">
                     <field name="date_order"/>
                     <field name="envio_cotizacion"/>
@@ -24,12 +25,12 @@
             </field>
         </record>
 
-                <!--   VISTA DE ARBOL PARA SALE ORDERS-->
+        <!--   VISTA DE ARBOL PARA SALE ORDERS-->
         <record id="bbcv_sale_order_tree_accounting" model="ir.ui.view">
             <field name="name">bbcv_sale_order_tree_accounting</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="bbcv_sale_order_tree"/>
-            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_accounting')])]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_sales_own')])]"/>
             <field name="view_mode">tree</field>
             <field name="priority" eval="1"/>
             <field name="arch" type="xml">
@@ -48,7 +49,7 @@
             <field name="name">sale.order.form.campos.inherit.1</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_accounting')])]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_sales_own')])]"/>
             <field name="arch" type="xml">
                 <field name="tipo_traficos1" position="after">
                     <field name="pais_origen" string="Pais de Origen" />
@@ -56,17 +57,30 @@
                 </field>
                 <field name="so_statusso" position="after">
                     <separator string = "Sistema"/>
-                    <field name="profit_pricingg"/>
-                    <field name="profit_finall" />
                     <field name="utilidad2"/>
-                    <field name="utilidad" />
-                    <field name="observaciones1"/>
                 </field>
             </field>
         </record>
 
         <record model="ir.ui.view" id="view_order_form_campos_2">
             <field name="name">sale.order.form.campos.inherit.2</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="view_order_form_campos_1"/>
+            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_pricing')])]"/>
+            <field name="arch" type="xml">
+                <field name="utilidad2" position="before">
+                    <field name="profit_pricingg"/>
+                    <field name="profit_finall" />
+                </field>
+                <field name="utilidad2" position="after">
+                    <field name="utilidad" />
+                    <field name="observaciones1"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_order_form_campos_3">
+            <field name="name">sale.order.form.campos.inherit.3</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="view_order_form_comercial"/>
             <field name="arch" type="xml">
@@ -82,18 +96,22 @@
                 <field name="so_tipo_equipos" position="after">
                     <field name="cant_contenedores"/>
                 </field>
-                <field name="so_prov_cuadrilla" position="after">
-                    <separator string = "Datos Origen"/>
-                    <field name="puerto_carga"/>
-                    <field name="aereo_origen" string="Aeropuerto de origen"/>
-                    <field name="frontera_origen"/>
-                    <field name="direccion_origen"/>
-                    <separator string = "Datos Destino"/>
-                    <field name="puerto_descarga"/>
-                    <field name="aereo_destino" string="Aeropuerto de destino"/>
-                    <field name="frontera_destino"/>
-                    <field name="direccion_destino"/>
-                </field>
+                <group name="pricing_proveedores" position="after">
+                    <group>
+                        <group string = "Datos Origen">
+                            <field name="puerto_carga"/>
+                            <field name="aereo_origen" string="Aeropuerto de origen"/>
+                            <field name="frontera_origen"/>
+                            <field name="direccion_origen"/>
+                        </group>
+                        <group string = "Datos Destino">
+                            <field name="puerto_descarga"/>
+                            <field name="aereo_destino" string="Aeropuerto de destino"/>
+                            <field name="frontera_destino"/>
+                            <field name="direccion_destino"/>
+                        </group>
+                    </group>
+                </group>
             </field>
         </record>
 
@@ -103,7 +121,7 @@
             <field name="name">sale.order.line.tree.new.campos.form</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_accounting')])]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_pricing')])]"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
                     <field name="profit_final" sum="Price" />

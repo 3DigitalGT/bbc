@@ -37,13 +37,13 @@
         <field name="validity_date" position="before">
             <separator string="COTIZACIÓN"/>
         </field>
-        <field name="validity_date" position="after">
+        <field name="payment_term_id" position="after">
             <field name="envio_cotizacion" string="Fecha de envío de cotización"/>
             <field name="so_fpresupuesto" invisible="1"/>
             <field name="so_fcierre" string="Fecha de cierre de venta"/>
             
             <separator string = "OPERACIONES"/>
-            <field name="operator_id"/>
+            <field name="operator_id" string = "Liquidador Operaciones"/>
             <field name="op_internacional"/>
             <field name="op_local"/>
             <field name="so_fetd"/>
@@ -254,7 +254,7 @@
                 </group>
             </page>
             <page string="Pricing" name = "page_pricing">
-                <group string = "Proveedores">
+                <group string = "Proveedores" name = "pricing_proveedores">
                     <group>
                         <field name="so_contacto_rate" string="Contract ID/Rate"/>
                         <field name="so_agente_trabajar"/>
