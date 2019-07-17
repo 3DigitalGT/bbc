@@ -49,14 +49,14 @@
             <field name="name">sale.order.form.campos.inherit.1</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_sales_own')])]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"/>
             <field name="arch" type="xml">
                 <field name="tipo_traficos1" position="after">
                     <field name="pais_origen" string="Pais de Origen" />
                     <field name="pais_destino" string="Pais de Destino" />
                 </field>
                 <field name="so_statusso" position="after">
-                    <separator string = "Sistema"/>
+                    <separator string = "Profit"/>
                     <field name="utilidad2"/>
                 </field>
             </field>

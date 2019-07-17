@@ -20,7 +20,6 @@
             <field name="so_incotermservicios" string="Tipo de incoterms del servicio"/>
             <field name="so_mercaderia"/>
             <field name="so_ofrecim" string="Ofrecimiento especial" placeholder="Ofrecimiento especial"/>
-            <field name="so_frecuencia" string="Frecuencia"/>
 
             <separator string="PRICING"/>
             <field name="responsable_pricing"/>
