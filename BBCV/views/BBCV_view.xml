@@ -83,6 +83,30 @@
     </field>
 </record>
 
+<record model="ir.ui.view" id="view_order_form_teamleader">
+    <field name="name">sale.order.form.teamleader</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="view_order_form1"/>
+    <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_sales_team_leader')])]"/>
+    <field name="arch" type="xml">
+        <field name="partner_id" position="replace">
+            <field name = "partner_id" domain="['|','|','|',('user_id', '=', uid),('parent_id.user_id', '=', uid),('user_id.team_id','=',user.team_id.id),('parent_id.user_id.team_id', '=', user.team_id.id)]"/>
+        </field>
+        <field name="user_id" position="replace">
+            <field name = "user_id" readonly="1"/>
+        </field>
+        <field name="responsable_pricing" position="replace">
+            <field name = "responsable_pricing" readonly="1"/>
+        </field>
+        <field name="liquidador_conta" position="replace">
+            <field name = "liquidador_conta" readonly="1"/>
+        </field>
+        <field name="operator_id" position="replace">
+            <field name = "operator_id" readonly="1"/>
+        </field>
+    </field>
+</record>
+
 <record model="ir.ui.view" id="view_order_form_comercial_all">
     <field name="name">sale.order.form.commercial</field>
     <field name="model">sale.order</field>
