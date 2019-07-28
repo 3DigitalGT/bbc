@@ -16,6 +16,7 @@
             <field name="so_comercios"/>
             <field name="servicio_ventas"/>
             <field name="tipo_traficos1"/>
+            <field name="estatus_comercial"/>
             <field name="so_incotermsclientes"/>
             <field name="so_incotermservicios" string="Tipo de incoterms del servicio"/>
             <field name="so_mercaderia"/>

@@ -167,8 +167,12 @@ class SaleOrder(models.Model):
     estado_operaciones = fields.Many2one('so_operaciones','Estado SO operaciones')
     no_mbl = fields.Char('MBL')
     no_hbl = fields.Char('HBL')
-    op_internacional = fields.Many2one('res.partner','Operador Internacional')
-    op_local = fields.Many2one('res.partner','Operador Local')
+    #op_internacional = fields.Many2one('res.partner','Operador Internacional')
+    #op_local = fields.Many2one('res.partner','Operador Local')
+    op_internacional = fields.Many2one('res.users', string='Operador Internacional', index=True, track_visibility='onchange', track_sequence=2,
+                    default=lambda self: self.env.user)
+    op_local = fields.Many2one('res.users', string='Operador Local', index=True, track_visibility='onchange', track_sequence=2,
+                    default=lambda self: self.env.user)
     envio_cotizacion = fields.Date('Fecha Envio')
     liquidador_conta = fields.Many2one('res.users', string='Responsable Contabilidad', index=True, track_visibility='onchange', track_sequence=2, default=lambda self: self.env.user)
     estado_conta = fields.Many2one('estado_contabilidad','Estado SO Contabilidad')
