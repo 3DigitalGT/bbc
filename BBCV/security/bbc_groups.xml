@@ -28,6 +28,13 @@
             <field name="comment">Permisos especiales de Pricing.</field>
         </record>
 
+        <record id="group_profit" model="res.groups">
+            <field name="name">Profit</field>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+            <field name="comment">Permiso para ver campos de Profit.</field>
+        </record>
+
+
         <record id="group_operations_own" model="res.groups">
             <field name="name">Operations: Own Documents Only</field>
             <field name="category_id" ref="base.module_category_sales_management"/>

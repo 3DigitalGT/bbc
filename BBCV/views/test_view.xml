@@ -19,6 +19,7 @@
                     <field name="so_fcierre"/>
                 </field>
                 <field name="amount_total" position="after">
+                    <field name="profit_pricingg"/>
                     <field name="utilidad2"/>
                 </field>
                 <field name="state" position="after">
@@ -34,12 +35,12 @@
             <field name="name">bbcv_sale_quotation_tree_pricing</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="bbcv_sale_quotation_tree_own"/>
-            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_pricing'),ref('base.module_category_sales_management'),ref('BBCV.group_operations_own'),ref('BBCV.group_accounting')])]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"/>
             <field name="view_mode">tree</field>
             <field name="priority" eval="1"/>
             <field name="arch" type="xml">
                 <field name="amount_total" position="after">
-                    <field name="profit_pricingg"/>
+                    <field name="profit_pricingg" invisible="1"/>
                 </field>
             </field>
         </record>
@@ -60,6 +61,7 @@
                     <field name="so_fcierre"/>
                 </field>
                 <field name="amount_total" position="after">
+                    <field name="profit_pricingg"/>
                     <field name="utilidad2"/>
                 </field>
                 <field name="invoice_status" position="after">
@@ -75,7 +77,7 @@
             <field name="name">bbcv_sale_order_tree_accounting</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="bbcv_sale_order_tree"/>
-            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_pricing'),ref('base.module_category_sales_management'),ref('BBCV.group_operations_own'),ref('BBCV.group_accounting')])]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_profit')])]"/>
             <field name="view_mode">tree</field>
             <field name="priority" eval="1"/>
             <field name="arch" type="xml">
@@ -101,6 +103,7 @@
                 </field>
                 <field name="so_statusso" position="after">
                     <separator string = "Profit"/>
+                    <field name="profit_pricingg"/>
                     <field name="utilidad2"/>
                 </field>
             </field>
@@ -110,13 +113,10 @@
             <field name="name">sale.order.form.campos.inherit.2</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="view_order_form_campos_1"/>
-            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_pricing'),ref('BBCV.group_operations_all')])]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_profit')])]"/>
             <field name="arch" type="xml">
-                <field name="utilidad2" position="before">
-                    <field name="profit_pricingg"/>
-                    <field name="profit_finall" />
-                </field>
                 <field name="utilidad2" position="after">
+                    <field name="profit_finall" />
                     <field name="utilidad" />
                     <field name="observaciones1"/>
                 </field>
@@ -163,7 +163,7 @@
             <field name="name">sale.order.line.tree.new.campos.form_own</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_sales_own')])]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
                     <field name="precio_venta" sum="Price"/>
@@ -175,7 +175,7 @@
             <field name="name">sale.order.line.tree.new.campos.form</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_pricing')])]"/>
+            <field name="groups_id" eval="[(6, 0, [ref('BBCV.group_profit')])]"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
                     <field name="profit_final" sum="Price" />

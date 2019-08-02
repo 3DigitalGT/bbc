@@ -17,8 +17,8 @@
             <field name="servicio_ventas"/>
             <field name="tipo_traficos1"/>
             <field name="estatus_comercial"/>
-            <field name="so_incotermsclientes"/>
-            <field name="so_incotermservicios" string="Tipo de incoterms del servicio"/>
+            <field name="so_incotermsclientes" string="Incoterms del Cliente"/>
+            <field name="so_incotermservicios" string="Incoterms del servicio"/>
             <field name="so_mercaderia"/>
             <field name="so_ofrecim" string="Ofrecimiento especial" placeholder="Ofrecimiento especial"/>
 
@@ -1760,6 +1760,8 @@
 <menuitem id="tiposeguridad" name="Tipo Seguridad" parent="campos_so"  sequence="1" action="action_so_tipo_seguridad"/>
 <menuitem id="porcentajeseguro" name="Porcentaje Seguro" parent="campos_so"  sequence="1" action="action_so_porcentaje_seguro"/>
 <menuitem id="tipoinspeccion" name="Tipo Inspeccion" parent="campos_so"  sequence="1" action="action_so_tipo_inspeccion"/>
+<menuitem id="incoterms_cliente" name="Incoterms Cliente" parent="campos_so"  sequence="10" action="action_so_incotermscliente"/>
+<menuitem id="incoterms_proveedor" name="Incoterms Servicio" parent="campos_so"  sequence="10" action="action_so_incotermservicio"/>
 <menuitem id="all_customers_sales" name="Todos los Clientes" parent="sale.sale_order_menu"  sequence="10" action="action_all_customers"/>
 <menuitem id="all_customers_crm" name="Todos los Clientes" parent="crm.crm_menu_sales"  sequence="10" action="action_all_customers"/>
 <!-- **********************************************FIN MENUS********************************************************* -->
