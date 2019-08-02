@@ -181,7 +181,7 @@
                     <field name="profit_final" sum="Price" />
                     <field name="proveedor" />
                     <field name="price_cost"  sum="Price"/>
-                    <field name="precio_venta" sum="Price"/>
+                    <field name="cost_operaciones" sum="Price"/>
                     <field name="profit_pricing"  sum="profit_pricing"/>
                     <field name="profit_final"  sum="Price" />
                 </xpath>

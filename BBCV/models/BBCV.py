@@ -185,7 +185,7 @@ class SaleOrder(models.Model):
     so_subtitulos = fields.Char('')
     so_comercios = fields.Many2one('so_comercio','Tipo de Venta',ondelete='cascade',select=True)
     so_incotermsclientes = fields.Many2one('so_incotermscliente','Tipo de Incoterms del Cliente',ondelete='cascade',select=True)
-    so_incotermservicios = fields.Many2one('so_incotermsservicio','Tipo de Incoterms del Cliente',ondelete='cascade',select=True)
+    so_incotermservicios = fields.Many2one('so_incotermservicio','Tipo de Incoterms del Cliente',ondelete='cascade',select=True)
     so_mercaderia = fields.Char('Descripción de Mercadería')
     so_ofrecimientos = fields.Many2one('so_ofrecimiento','Ofrecimiento Especial',ondelete='cascade',select=True)
     so_ofrecim = fields.Char('')
