@@ -16,7 +16,7 @@
             <field name="so_comercios"/>
             <field name="servicio_ventas"/>
             <field name="tipo_traficos1"/>
-            <field name="estatus_comercial"/>
+            <field name="status_socomercial"/>
             <field name="so_incotermsclientes" string="Incoterms del Cliente"/>
             <field name="so_incotermservicios" string="Incoterms del servicio"/>
             <field name="so_mercaderia"/>
@@ -291,6 +291,7 @@
                         <field name="so_prov_inspeccion" string="Proveedor inspección"/>
                         <field name="so_prov_seguro"/>
                         <field name="so_prov_cuadrilla" string="Proveedor cuadrilla"/>
+                        <field name="servicio_secundario"/>
                         <field name="so_naviera_aerolinea" string="Naviera o aerolínea" invisible="1"/>
                     </group>
                 </group>
@@ -302,7 +303,7 @@
                     <group string="Lugar de entrega (POD)/HBL/HAWB/Carta porte">
                         <field name="so_lugar_entrega" />
                         <field name="flete_hbl" string="Flete" />
-                        <field name="servicio_secundario"/>
+
                         <field name="so_tiempo_almacenaje" invisible="1"/>
                         <field name="so_tiempo_demoras" invisible="1"/>
                         <field name="so_cobro_demoras" invisible="1"/>

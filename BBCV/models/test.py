@@ -21,7 +21,7 @@ class sale_order_new(models.Model):
                 val1 += line.profit_pricing 
             data.profit_pricingg = cur.round(val1)
             data.profit_finall = cur.round(val2)
-            if data.profit_finall > 0.00:
+            if (data.profit_finall > 0.00) and (val3 > 0.00):
                 data.utilidad = (data.profit_pricingg / val3) * 100.00
                 data.utilidad2= (data.profit_finall / val3) * 100.00
             if data.profit_finall <= 0.00:
@@ -102,48 +102,61 @@ class sale_order_line_new(models.Model):
             self.price_cost = price
         return res
 
-    @api.one
-    @api.depends('product_id', 'discount', 'product_uom_qty', 'order_id.pricelist_id')
-    def _amount_line_venta(self):
-        for line in self:
-            price_sale = (line.price_unit * (1 - (line.discount or 0.0) / 100.0) * line.product_uom_qty)
-            cc = line.order_id.pricelist_id.currency_id.round(price_sale)
-            line.precio_venta = cc
-            abc = line.price_cost
-            state = line.profit_state
-            if state == False:
-                cs = line.product_id.standard_price or 0.0 
-                price = cs * line.product_uom_qty or 1.00
-                abc = price
-                line.profit_state = True
-                line.price_cost = abc
+    # @api.one
+    # @api.depends('product_id', 'discount', 'product_uom_qty', 'order_id.pricelist_id')
+    # def _amount_line_venta(self):
+    #     for line in self:
+    #         price_sale = (line.price_unit * (1 - (line.discount or 0.0) / 100.0) * line.product_uom_qty)
+    #         cc = line.order_id.pricelist_id.currency_id.round(price_sale)
+    #         line.precio_venta = cc
+    #         abc = line.price_cost
+    #         state = line.profit_state
+    #         if state == False:
+    #             cs = line.product_id.standard_price or 0.0
+    #             price = cs * line.product_uom_qty or 1.00
+    #             abc = price
+    #             line.profit_state = True
+    #             line.price_cost = abc
+    #
+    # @api.one
+    # @api.depends('product_id', 'price_cost', 'discount', 'product_uom_qty', 'order_id.pricelist_id')
+    # def _amount_line_pricing(self):
+    #     for line in self:
+    #         price_cost = line.price_cost  # cs * line.product_uom_qty
+    #         price_sale = (line.price_unit * (1 - (line.discount or 0.0) / 100.0) * line.product_uom_qty)
+    #         cc = line.order_id.pricelist_id.currency_id.round(price_sale)
+    #         line.profit_pricing = cc - price_cost
+    #
+    # @api.one
+    # @api.depends('price_unit', 'discount', 'product_uom_qty', 'order_id.pricelist_id')
+    # def _amount_line_final(self):
+    #     for line in self:
+    #         price_sale = (line.price_unit * (1 - (line.discount or 0.0) / 100.0) * line.product_uom_qty)
+    #         cc = line.order_id.pricelist_id.currency_id.round(price_sale)
+    #         line.profit_final = cc - line.cost_operaciones
 
     @api.one
-    @api.depends('product_id', 'price_cost', 'discount', 'product_uom_qty', 'order_id.pricelist_id')
+    @api.depends('price_unit', 'price_cost', 'discount', 'product_uom_qty', 'order_id.pricelist_id')
     def _amount_line_pricing(self):
         for line in self:
             price_cost = line.price_cost  # cs * line.product_uom_qty
             price_sale = (line.price_unit * (1 - (line.discount or 0.0) / 100.0) * line.product_uom_qty)
             cc = line.order_id.pricelist_id.currency_id.round(price_sale)
             line.profit_pricing = cc - price_cost
-
-    @api.one
-    @api.depends('price_unit', 'discount', 'product_uom_qty', 'order_id.pricelist_id')
-    def _amount_line_final(self):
-        for line in self:
-            price_sale = (line.price_unit * (1 - (line.discount or 0.0) / 100.0) * line.product_uom_qty)
-            cc = line.order_id.pricelist_id.currency_id.round(price_sale)
             line.profit_final = cc - line.cost_operaciones
+            line.precio_venta = price_sale
 
 
     proveedor = fields.Many2one('res.partner', 'Proveedor', states={'confirmed':[('readonly', True)], 'approved':[('readonly', True)], 'done':[('readonly', True)]}, change_default=True, track_visibility='always')
     price_cost = fields.Float('Costo Pricing', digits=(16, 2))
     cost_operaciones = fields.Float('Costo Operaciones', digits=(16, 2))
-    precio_venta = fields.Float(compute='_amount_line_venta', string='Precio de Venta', digits_compute=dp.get_precision('Account'))
+    #precio_venta = fields.Float(compute='_amount_line_venta', string='Precio de Venta', digits_compute=dp.get_precision('Account'))
+    precio_venta = fields.Float(compute='_amount_line_pricing', string='Precio de Venta',
+                                digits_compute=dp.get_precision('Account'))
     profit_pricing = fields.Float(compute='_amount_line_pricing', string='Profit Pricing', type='float', readonly=False, digits_compute=dp.get_precision('Account'))
     profit_state = fields.Boolean('profit state', default=False)
-    profit_final = fields.Float(compute='_amount_line_final', string='Profit Final', digits_compute=dp.get_precision('Account'))
-
+    #profit_final = fields.Float(compute='_amount_line_final', string='Profit Final', digits_compute=dp.get_precision('Account'))
+    profit_final = fields.Float(compute='_amount_line_pricing', string='Profit Final', digits_compute=dp.get_precision('Account'))
 
 class puerto(models.Model):
     _description = "Aereopuertos por Pais"

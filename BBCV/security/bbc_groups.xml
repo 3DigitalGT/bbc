@@ -17,7 +17,7 @@
         <record id="group_sales_team_leader" model="res.groups">
             <field name="name">Sales: Team Leader</field>
             <field name="category_id" ref="base.module_category_sales_management"/>
-            <field name="implied_ids" eval="[(4, ref('sales_team.group_sales_own'))]"/>
+            <field name="implied_ids" eval="[(4, ref('group_sales_own'))]"/>
             <field name="comment">the user will have access to all data from his team.</field>
         </record>
 
@@ -154,7 +154,7 @@
 
         <!--Cambio del menu Quotations para que solo el nuevo grupo de ventas lo pueda ver-->
         <record model='ir.ui.menu' id='sale.menu_sale_quotations'>
-            <field name="groups_id" eval="[(4,ref('group_sales_own')),(4,ref('group_operations_own'))]"/>
+            <field name="groups_id" eval="[(4,ref('group_sales_own')),(4,ref('group_pricing'))]"/>
         </record>
 
         <!--Cambio de permisos del menu contactos-->

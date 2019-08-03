@@ -179,7 +179,7 @@ class SaleOrder(models.Model):
     responsable_pricing = fields.Many2one('res.users', string='Responsable Pricing', index=True, track_visibility='onchange', track_sequence=2, default=lambda self: self.env.user)
     so_subtitulos1 = fields.Char('')
     informar_cliente = fields.Many2one('informar','Como Informar al Ciente')
-    estatus_comercial = fields.Char('Estatus SO Comercial')
+    estatus_comercial = fields.Many2one('so_status_comercial','Tipo de Incoterms del Cliente',ondelete='cascade',select=True)#fields.Char('Estatus SO Comercial')
     servicio_ventas = fields.Many2one('t_venta','Tipo de Servicio de Venta')
     tipo_traficos1 = fields.Many2one('t_trafico','Tipo de Trafico')
     so_subtitulos = fields.Char('')
