@@ -169,14 +169,12 @@ class SaleOrder(models.Model):
     no_hbl = fields.Char('HBL')
     #op_internacional = fields.Many2one('res.partner','Operador Internacional')
     #op_local = fields.Many2one('res.partner','Operador Local')
-    op_internacional = fields.Many2one('res.users', string='Operador Internacional', index=True, track_visibility='onchange', track_sequence=2,
-                    default=lambda self: self.env.user)
-    op_local = fields.Many2one('res.users', string='Operador Local', index=True, track_visibility='onchange', track_sequence=2,
-                    default=lambda self: self.env.user)
+    op_internacional = fields.Many2one('res.users', string='Operador Internacional', index=True, track_visibility='onchange', track_sequence=2)
+    op_local = fields.Many2one('res.users', string='Operador Local', index=True, track_visibility='onchange', track_sequence=2)
     envio_cotizacion = fields.Date('Fecha Envio')
-    liquidador_conta = fields.Many2one('res.users', string='Responsable Contabilidad', index=True, track_visibility='onchange', track_sequence=2, default=lambda self: self.env.user)
+    liquidador_conta = fields.Many2one('res.users', string='Responsable Contabilidad', index=True, track_visibility='onchange', track_sequence=2)
     estado_conta = fields.Many2one('estado_contabilidad','Estado SO Contabilidad')
-    responsable_pricing = fields.Many2one('res.users', string='Responsable Pricing', index=True, track_visibility='onchange', track_sequence=2, default=lambda self: self.env.user)
+    responsable_pricing = fields.Many2one('res.users', string='Responsable Pricing', index=True, track_visibility='onchange', track_sequence=2)
     so_subtitulos1 = fields.Char('')
     informar_cliente = fields.Many2one('informar','Como Informar al Ciente')
     estatus_comercial = fields.Many2one('so_status_comercial','Tipo de Incoterms del Cliente',ondelete='cascade',select=True)#fields.Char('Estatus SO Comercial')
