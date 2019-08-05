@@ -342,17 +342,16 @@
                         <field name="so_observaciones_pricing" nolabel="1"/>
                     </group>
                 </group>
-                    <!--<group>-->
-                        <!--<field name="so_subtitulos" string="CONSIGNEE MBL" readonly="1"/>-->
-                        <!--<field name="so_company_name" placeholder="Industrias de Centroamérica S.A."/>-->
-                        <!--<field name="so_direccion2" placeholder="2 Calle vista hermosa II edificio Domani oficina 904 24-00 zona 15 guatemala, guatemala"/>-->
-                        <!--<field name="so_nit3" placeholder="7929384-0"/>-->
-                        <!--<field name="so_telefono3" placeholder="22696966"/>-->
-                        <!--<field name="so_fax3"/>-->
-                        <!--<field name="so_contacto3" placeholder="Mischelle Cáceres"/>-->
-                        <!--<field name="so_email3" placeholder="mischelle.caceres@bbcfreight.com"/>-->
-                        <!--<field name="observaciones_pricing"/>-->
-                    <!--</group>-->
+                <group string="CONSIGNEE MBL">
+                    <field name="so_company_name" placeholder="Industrias de Centroamérica S.A."/>
+                    <field name="so_direccion2" placeholder="2 Calle vista hermosa II edificio Domani oficina 904 24-00 zona 15 guatemala, guatemala"/>
+                    <field name="so_nit3" placeholder="7929384-0"/>
+                    <field name="so_telefono3" placeholder="22696966"/>
+                    <field name="so_fax3"/>
+                    <field name="so_contacto3" placeholder="Mischelle Cáceres"/>
+                    <field name="so_email3" placeholder="mischelle.caceres@bbcfreight.com"/>
+                    <field name="observaciones_pricing"/>
+                </group>
             </page>
         </page>
     </field>
