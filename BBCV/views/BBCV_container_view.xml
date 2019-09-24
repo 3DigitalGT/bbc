@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--  VISTA DE FORMS  PARA SALE ORDERS   -->
+        <record model="ir.ui.view" id="view_order_container_form">
+            <field name="name">sale.order.form.container</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="view_order_form_admon"/>
+            <field name="arch" type="xml">
+                <page name="admin" position = "after">
+                    <page string = "Contenedores">
+                        <field name = "container_ids" mode="tree">
+                            <tree>
+                                <field name ="number"/>
+                                <field name ="seal"/>
+                                <field name ="marks"/>
+                                <field name ="pieces"/>
+                                <field name ="weight_total"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+
+
+        <!-- ACCION PARA ABRIR LA FORMA -->
+        <record model="ir.actions.act_window" id="action_sale_wrap_type">
+        <field name="name">Tipo de Empaques</field>
+        <field name="res_model">sale.container.wrap</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="tipocomercio" name="Tipo Empque" parent="campos_so"  sequence="1" action="action_sale_wrap_type"/>
+
+    </data>
+</odoo>

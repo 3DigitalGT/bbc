@@ -154,7 +154,7 @@ class SaleOrder(models.Model):
     observaciones_pricing = fields.Text('Observaciones')
     costo_detallado = fields.Text('Costo Detallado')
     f_entrega_cotizacion = fields.Datetime('Fecha Entrega Cotizacion')
-    profit_share =  fields.Float('Profit Shared', digits=(12,6))
+    profit_share =  fields.Monetary('Profit Shared')
     h_entrega_cotizacion = fields.Char('Hora Entrega Cotizacion')
     estadia_bbc = fields.Integer('Dias Estadia BBC')
     dia_estadia = fields.Integer('Dias Estadia')

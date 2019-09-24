@@ -33,6 +33,8 @@ access_fac_cliente_manager,fac_cliente.manager,model_fac_cliente,sales_team.grou
 access_fac_prov_manager,fac_prov.manager,model_fac_prov,sales_team.group_sale_manager,1,1,1,1
 access_comision_venta_manager,comision_venta.manager,model_comision_venta,sales_team.group_sale_manager,1,1,1,1
 access_comision_pag_manager,comision_pag.manager,model_comision_pag,sales_team.group_sale_manager,1,1,1,1
+access_sale_container_wrap_manager,sale_container_wrap.manager,model_sale_container_wrap,sales_team.group_sale_manager,1,1,1,1
+
 
 access_puertos_de_zarpe_user,puertos_de_zarpe.user,model_puertos_de_zarpe,base.group_user,1,0,0,0
 access_so_frecuencia1_user,so_frecuencia1.user,model_so_frecuencia1,base.group_user,1,0,0,0
@@ -68,5 +70,9 @@ access_fac_cliente_user,fac_cliente.user,model_fac_cliente,base.group_user,1,0,0
 access_fac_prov_user,fac_prov.user,model_fac_prov,base.group_user,1,0,0,0
 access_comision_venta_user,comision_venta.user,model_comision_venta,base.group_user,1,0,0,0
 access_comision_pag_user,comision_pag.user,model_comision_pag,base.group_user,1,0,0,0
+access_sale_container_user,sale_container.user,model_sale_container,base.group_user,1,1,1,1
+access_sale_container_pkg_user,sale_container_pkg.user,model_sale_container_pkg,base.group_user,1,1,1,1
+access_sale_container_wrap_user,sale_container_wrap.user,model_sale_container_wrap,base.group_user,1,0,0,0
+
 
 

@@ -322,19 +322,21 @@
                         <field name="so_fecha_tarifa_inter" string = "Tarifa Flete Intl."/>
                     </group>
                 </group>
-                <group colspan = "1" col="6" string="NAVIERA/AEROLINEA/TRANSPORTE TERRESTRE">
+                <group colspan = "1" col="8" string="NAVIERA/AEROLINEA/TRANSPORTE TERRESTRE">
                         <field name="so_dia_almacenaje" string="Días libres de almacenaje" />
                         <field name="so_dia_demora" string="Días libres de demoras" />
                         <field name="dia_estadia" string="Días libres de estadía" />
+                        <field name="electricity_nav"/>
                 </group>
                 <group  string="BBC">
-                    <group colspan="2" col="6">
+                    <group colspan="2" col="8">
                         <field name="so_dia2_almacenaje" string="Días libres de almacenaje" />
                         <field name="so_dia2_demoras" string="Días libres de demoras" />
                         <field name="estadia_bbc" string="Días libres de estadía" />
+                        <field name="electricity_bbc"/>
                     </group>
                     <group col="4" colspan="2">
-                        <field name="profit_share" string="Profit Share:  $"/>
+                        <field name="profit_share" string="Profit Share"/>
                         <field name="f_entrega_cotizacion" string="Fecha entrega cotización"/>
                     </group>
                     <group colspan="2" string = "Costo Detallado">
@@ -587,7 +589,7 @@
                     </group>
             </page>
             -->
-            <page string="Administracion">
+            <page string="Administracion" name="admin">
             <group>
             <field name="so_pago_transporte" string="Tiempo de pago del transporte principal"/>
             <field name="factura9" string="Tipo de factura del ciente para esta SO"/>
