@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="paperformat_bill_lading" model="report.paperformat">
+            <field name="name">Bill of Lading</field>
+            <field name="default" eval="False" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+                id="bill_lading"
+                string="Bill of Lading"
+                model="sale.order"
+                report_type="qweb-pdf"
+                name="BBCV.report_bill_lading"
+                file="BBCV.report_bill_lading"
+                attachment_use = "True"
+                paperformat="BBCV.paperformat_bill_lading"
+        />
+
+        <template id="report_bill_lading">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page" style = "font-size:12px;">
+                        <div id = "company" style = "position:absolute;top:20mm;left:20mm">
+                            <span t-field = "res_company.name"/>
+                        </div>
+
+                        <div id = "shipper" style = "position:absolute;top:50mm;left:20mm">
+                            <span t-field = "doc.so_datos_proveedor.name"/><br/>
+                            <span t-field = "doc.so_direccion3"/><br/>
+                        </div>
+                        <div id = "consignee" style = "position:absolute;top:80mm;left:20mm">
+                            <span t-field = "doc.so_datos_consignatario.name"/><br/>
+                            <span t-field = "doc.so_direccion4"/><br/>
+                            <span t-field = "doc.so_NIT_contacto2"/><br/>
+                        </div>
+                        <div id = "notify" style = "position:absolute;top:110mm;left:20mm">
+                            <span t-field = "doc.so_notify_id.name"/><br/>
+                            <span t-field = "doc.so_notify_direccion"/><br/>
+                            <span t-field = "doc.so_notify_nit"/><br/>
+                        </div>
+                        <div id = "initial_carriage" style = "position:absolute;top:140mm;left:20mm">
+                            <span t-field = "doc.precarriage_by"/>
+                        </div>
+                        <div id = "place_initial" style = "position:absolute;top:140mm;left:80mm">
+                            <span t-field = "doc.precarriage_location"/>
+                        </div>
+                        <div id = "vessel_name" style = "position:absolute;top:150mm;left:20mm">
+                            <span t-field = "doc.so_no_buque"/>
+                        </div>
+                        <div id = "pol" style = "position:absolute;top:150mm;left:80mm">
+                            <span t-field = "doc.so_pol1"/>
+                        </div>
+                        <div id = "pod" style = "position:absolute;top:160mm;left:20mm">
+                            <span t-field = "doc.so_pod1"/>
+                        </div>
+                        <div id = "place_delivery" style = "position:absolute;top:160mm;left:80mm">
+                            <span t-field = "doc.so_pod2"/>
+                        </div>
+                        <!-- encabezado derecho -->
+                        <div id = "booking" style = "position:absolute;top:40mm;left:150mm">
+                            <span t-field = "doc.booking"/>
+                        </div>
+                        <div id = "BL" style = "position:absolute;top:40mm;left:180mm">
+                            <span t-field = "doc.so_mbl5"/>
+                        </div>
+                        <div id = "export_ref" style = "position:absolute;top:50mm;left:150mm">
+                            <span t-field = "doc.export_references"/>
+                        </div>
+                        <div id = "forwarding_agent" style = "position:absolute;top:60mm;left:150mm">
+                            <span t-field = "doc.forwarding_agent.name"/>
+                        </div>
+                        <div id = "point_origin" style = "position:absolute;top:80mm;left:150mm">
+                            <!--<span t-field = "doc.so_mbl5"/>-->
+                        </div>
+                        <div id = "delivery_goods" style = "position:absolute;top:90mm;left:150mm">
+                            <!--<span t-field = "doc.so_mbl5"/>-->
+                        </div>
+                        <div id = "domestic_routing" style = "position:absolute;top:120mm;left:150mm">
+                            <span t-field = "doc.routing"/>
+                        </div>
+                        <div id = "freight_payable" style = "position:absolute;top:130mm;left:150mm">
+                            <!--<span t-field = "doc.so_mbl5"/>-->
+                        </div>
+                        <div id = "type_movement" style = "position:absolute;top:160mm;left:180mm">
+                            <span t-field = "doc.type_of_move"/>
+                        </div>
+                        <!-- detalle -->
+                        <div id = "detalles" style = "position:absolute;top:180mm;left:10mm;width:190mm;">
+                            <div class="container" >
+                                <t t-foreach="doc.container_ids" t-as="c">
+                                    <div class = "row mt32 mb32">
+                                        <div class="col-3">
+                                            <span t-field = "c.marks"/><br/>
+                                            <span t-field = "c.number"/><br/>
+                                            Seal # <span t-field = "c.seal"/><br/>
+                                            <span t-field = "c.type"/>
+                                        </div>
+                                        <div class="col-13">
+                                            <span>&#8220;SHIPPER'S LOAD &#38; COUNT&#8221; &#8220;SAID TO CONTAIN&#8221;"</span>
+                                            <t t-foreach="c.package_ids" t-as="p">
+                                                <div class = "row mt32 mb32" style="width:160mm">
+                                                    <div class="col-2">
+                                                        <span t-field = "p.qty"/><br/>
+                                                        <span t-field = "p.wrap_id.name"/><br/><br/>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <span t-field = "p.description"/><br/>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <span t-field = "p.weight"/><br/>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <span t-field = "p.volume"/><br/>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                        <div id = "servicios" style = "position:absolute;top:240mm;left:10mm;width:190mm;">
+                            <div class="container">
+                                <t t-foreach="doc.order_line" t-as="l">
+                                    <div class = "row mt32 mb32">
+                                        <div class="col-10">
+                                            <span t-field = "l.name"/><br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field = "l.price_unit"/><br/>
+                                        </div>
+                                        <div class="col-3">
+                                            <span t-field = "l.price_unit"/><br/>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                        <div id = "total" style = "position:absolute;top:270mm;left:220mm">
+                            <span t-field = "doc.amount_total"/>
+                        </div>
+                        <div id = "city" style = "position:absolute;top:280mm;left:180mm">
+                            <span>Guatemala City</span>
+                        </div>
+                        <div id = "date" style = "position:absolute;top:280mm;left:220mm">
+                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+
+    </data>
+</odoo>

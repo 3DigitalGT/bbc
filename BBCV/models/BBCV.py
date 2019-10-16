@@ -298,6 +298,16 @@ class SaleOrder(models.Model):
     so_otros2 = fields.Char('Otros')
     so_agente_carga = fields.Char('Profit sugerido')
     so_punto_origen_carga = fields.Char('')
+
+    so_notify_id = fields.Many2one('res.partner', 'Empresa')
+    so_notify_contacto = fields.Char('Contacto')
+    so_notify_nit = fields.Char('Nit')
+    so_notify_direccion = fields.Char('Direccion')
+    so_notify_telefono = fields.Char('Telefono')
+    so_notify_correo = fields.Char('Correo')
+    so_notify_no_orden = fields.Char('No. de Orden')
+    so_notify_otros = fields.Char('Otros')
+
     #Campos grupo mbl#
     so_company_name = fields.Char('Company Name')
     so_direccion2 = fields.Char('Address')

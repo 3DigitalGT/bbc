@@ -268,7 +268,6 @@
                 <field name="so_punto_origen_carga" string="Punto y pais de origen de la carga" help="Point and country of origen of goods" invisible="1"/>
                 </group>
                 <group string="DATOS DEL PROVEEDOR/SHIPPER">
-                <!-- field name="so_subtitulos" string="DATOS DEL PROVEEDOR/SHIPPER" readonly="1"/ -->
                 <field name="so_datos_proveedor" />
                 <field name="so_contacto1" string="Contacto"/>
                 <field name="so_direccion3" string="Dirección"/>
@@ -278,6 +277,17 @@
                 <field name="so_otros"/>
                 <field name="so_ref_proveedor"/>
                 </group>
+                </group>
+                <group>
+                    <group string="DATOS DEL NOTIFY">
+                        <field name="so_notify_id" />
+                        <field name="so_notify_contacto" string="Contacto"/>
+                        <field name="so_notify_direccion" string="Dirección"/>
+                        <field name="so_notify_telefono" string="Teléfono"/>
+                        <field name="so_notify_correo"/>
+                        <field name="so_notify_no_orden"/>
+                        <field name="so_notify_otros"/>
+                    </group>
                 </group>
             </page>
             <page string="Pricing" name = "page_pricing">

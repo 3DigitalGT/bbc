@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+                id="bbcv_routint"
+                string="Routing"
+                model="sale.order"
+                report_type="qweb-pdf"
+                name="BBCV.report_routing"
+                file="BBCV.report_routing"
+                attachment_use = "True"
+        />
+
+        <template id="report_routing">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page"  style = "font-size:12px;">
+                        <div width = "95%" style="border: black solid 1px;height:200mm;">
+                            <div id = "company" class = "mt12" style = "padding: 20px;margin: auto;text-align:center;border-bottom: black solid 1px;height:25mm;width:100%">
+                                <div class="row">
+                                    <t t-set="company" t-value="doc.company_id"/>
+                                    <div class="col-4">
+                                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                                    </div>
+                                    <div class="col-4" style="font-size:16px;">
+                                        <strong><span>ROUTING ORDER'S INFORMATION</span></strong>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>IN-OP-09 V.1</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style = "padding:50px;">
+                                <div id = "shipper" >
+                                    <p><strong>Datos del Proveedor/Shipper's Information</strong></p>
+                                    <span>Empresa/Company: </span><span t-field = "doc.so_datos_proveedor.name"/><br/>
+                                    <span>Contacto/Contact: </span><span t-field = "doc.so_contacto1"/><br/>
+                                    <span>Direccion/Address: </span><span t-field = "doc.so_direccion3"/><br/>
+                                    <span>Telefono/Telephone: </span><span t-field = "doc.so_telefono"/><br/>
+                                    <span>Correo/Email: </span><span t-field = "doc.so_correo"/><br/>
+                                    <span>Otros/Others: </span><span t-field = "doc.so_otros"/><br/><br/><br/>
+                                </div>
+                                <div id = "consignee" >
+                                    <p><strong>Datos del Consignatario/Consignee's Information</strong></p>
+                                    <span>Empresa/Company: </span><span t-field = "doc.so_datos_consignatario.name"/><br/>
+                                    <span>Contacto/Contact: </span><span t-field = "doc.so_direccion4"/><br/>
+                                    <span>No. Orden/Order Number: </span><span t-field = "doc.so_no2_orden"/><br/><br/><br/><br/>
+                                </div>
+
+                                <div id = "pol" >
+                                    <strong>PLACE OF LOADING: </strong><span t-field = "doc.so_pol1"/>
+                                </div>
+                                <div id = "pod" >
+                                    <strong>PORT OF DISCHARGE: </strong><span t-field = "doc.so_pod1"/>
+                                </div>
+                                <div id = "incoterms" >
+                                    <strong>INCOTERMS: </strong><span t-field = "doc.so_incotermsclientes"/>
+                                </div>
+                                <div id = "services" >
+                                    <strong>SERVICES: </strong><span t-field = "doc.servicio_ventas"/>
+                                </div>
+                                <div id = "equipment" >
+                                    <strong>EQUIPMENT: </strong><span t-field = "doc.so_tipo_equipos"/>
+                                </div>
+                                <div id = "carrier" >
+                                    <strong>CARRIER: </strong><span t-field = "doc.so_naviera_trabajar"/>
+                                </div>
+                                <div id = "comodity" >
+                                    <strong>COMMODITY: </strong><span t-field = "doc.so_mercaderia"/>
+                                </div>
+                                <div id = "profit share" >
+                                    <strong>PROFITSHARE: </strong><span t-field = "doc.profit_share"/>
+                                </div>
+                                <div id = "so_reference" >
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <strong>SO REFERENCE BBC: </strong>
+                                        </div>
+                                        <div class="col-2" style = "background-color:gray;">
+                                            <strong><span t-field = "doc.name"/></strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id = "observaciones" style="margin-top:10mm;">
+                                    <p><strong>OBSERVACIONES / OBSERVATIONS</strong></p>
+                                    <p>Toda Factura emitida a nombre de BBC FREIGHT deberá ser enviado por correo respetando la
+                                    <strong><span t-field = "doc.name"/></strong> de referencia indicada en este instructivo. / Any inovice
+                                    issued on behalf of BBC FREIGHT should be sent by mail in accordance with the
+                                    <strong><span t-field = "doc.name"/></strong> of reference indicated in this routing order.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+
+    </data>
+</odoo>

@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- TAMAÑO DEL PAPEL -->
+
+        <record id="paperformat_mbl_hcl_fcl" model="report.paperformat">
+            <field name="name">MBL/LCL/FCL</field>
+            <field name="default" eval="False" />
+            <field name="format">Letter</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">30</field>
+            <field name="margin_right">30</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <!-- MBL -->
+
+        <report
+                id="bbcv_mbl"
+                string="MBL"
+                model="sale.order"
+                report_type="qweb-pdf"
+                name="BBCV.report_bbcv_mbl"
+                file="BBCV.report_bbcv_mbl"
+                attachment_use = "True"
+                paperformat="paperformat_mbl_hcl_fcl"
+        />
+
+        <template id="report_bbcv_mbl">
+            <t t-call="web.basic_layout">
+                <style>
+                    td {
+                        border:1px solid black;
+                    }
+                </style>
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page" style = "font-size:14px;">
+                        <table width = "100%" style="padding: 5px;height:250mm;border:1px solid black;">
+                            <tr id = "company" style = "margin: auto;text-align:center;height:20mm;">
+                                <td colspan = "2" style="vertical-align:middle;">
+                                    <div class="mt12">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <t t-set="company" t-value="doc.company_id"/>
+                                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                                            </div>
+                                            <div class="col-8">
+                                                <strong><span id="title">MBL INSTRUCTIONS</span></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                           <tr style="height:40mm;" >
+                               <td width = "35%" style = "vertical-align:middle;">
+                                   <strong>SHIPPER</strong>
+                               </td>
+                               <td width = "65%" style = "vertical-align:middle;">
+                                   <strong>AS AGREEMENT</strong>
+                               </td>
+                           </tr>
+                           <tr  style="height:15mm;background-color:LightGray;font-weight:bold;font-size:16px;vertical-align:middle;">
+                               <td colspan = "2" style = "vertical-align:middle;">
+                                   <strong>CONSIGNEE</strong>
+                               </td>
+                           </tr>
+                            <tr >
+                               <td >
+                                   <strong>Company Name:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_company_name"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Address:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_direccion2"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>TAX ID//RUC//CNPJ//NIT//RIF NO:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_nit3"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Phone Number:</strong>
+                               </td>
+                               <td >
+                                   <span> t-field = "doc.so_company_name"</span>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Fax Number:</strong>
+                               </td>
+                               <td >
+                                  <span t-field = "doc.so_company_name"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Contact Person:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_company_name"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Email Address:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_company_name"/>
+                               </td>
+                            </tr>
+                            <tr style="height:15mm;background-color:LightGray;font-weight:bold;font-size:16px;">
+                               <td colspan="2" style="vertical-align:middle;">
+                                   <strong>NOTIFY</strong>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Company Name:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_id.name"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Address:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_direccion"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>TAX ID//RUC//CNPJ//NIT//RIF NO:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_direccion"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Phone Number:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_telefono"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Fax Number:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_telefono"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Contact Person:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_contacto"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Email Address:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_correo"/>
+                               </td>
+                            </tr>
+                            <tr  style="height:10mm;font-weight:bold;font-size:16px;">
+                               <td colspan="2">
+                                   <strong></strong>
+                               </td>
+                            </tr>
+                            <tr>
+                               <td  style="background-color:LightGray;">
+                                   <strong>PORT OF LOADING:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_pol1"/>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
+                                   <strong>PORT OF DISCHARGE:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_pod1"/>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
+                                   <strong>PLACE OF DELIVERY:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_lugar_entregas"/>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
+                                   <strong>BL INSTRUCTIONS:</strong>
+                               </td>
+                               <td >
+                                   <strong>AS AGREEMENT</strong>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
+                                   <strong>TERMS:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.flete_mbl"/>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
+                                   <strong>CARRIER:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_naviera_trabajar"/>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td style="background-color:LightGray;height:15mm;vertical-align:middle;">
+                                   <strong>CONTRACT ID / RATE:</strong>
+                               </td>
+                               <td style="background-color:LightGray;height:15mm;vertical-align:middle;">
+                                   <strong>AS AGREEMENT</strong>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td colspan="2" style="vertical-align:middle;margin: auto;text-align:right;height:35mm;">
+                                   <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                               </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <!-- HBL -->
+
+        <report
+                id="bbcv_hbl"
+                string="HBL"
+                model="sale.order"
+                report_type="qweb-pdf"
+                name="BBCV.report_hbl"
+                file="BBCV.report_hbl"
+                attachment_use = "True"
+                paperformat="paperformat_mbl_hcl_fcl"
+        />
+
+        <template id="report_hbl">
+             <t t-call="web.basic_layout">
+                <style>
+                    td {
+                        border:1px solid black;
+                    }
+                </style>
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page" style = "font-size:14px;">
+                        <table width = "100%" style="padding: 5px;height:250mm;border:1px solid black;">
+                            <tr id = "company" style = "margin: auto;text-align:center;height:20mm;">
+                                <td colspan = "2" style="vertical-align:middle;">
+                                    <div class="mt12">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <t t-set="company" t-value="doc.company_id"/>
+                                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                                            </div>
+                                            <div class="col-8">
+                                                <strong><span id="title">HBL INSTRUCTIONS</span></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                           <tr style="height:40mm;" >
+                               <td width = "35%" style = "vertical-align:middle;">
+                                   <strong>SHIPPER</strong>
+                               </td>
+                               <td width = "65%" style = "vertical-align:middle;">
+                                   <strong>AS AGREEMENT</strong>
+                               </td>
+                           </tr>
+                           <tr  style="height:15mm;background-color:LightGray;font-weight:bold;font-size:16px;vertical-align:middle;">
+                               <td colspan = "2" style = "vertical-align:middle;">
+                                   <strong>CONSIGNEE</strong>
+                               </td>
+                           </tr>
+                            <tr >
+                               <td >
+                                   <strong>Company Name:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_datos_consignatario.name"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Address:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_direccion4"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>TAX ID//RUC//CNPJ//NIT//RIF NO:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_NIT_contacto2"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Phone Number:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_telefono2"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Fax Number:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_FAX_contacto2"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Contact Person:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_contacto2"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Email Address:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_correo4"/>
+                               </td>
+                            </tr>
+                            <tr style="height:15mm;background-color:LightGray;font-weight:bold;font-size:16px;">
+                               <td colspan="2" style="vertical-align:middle;">
+                                   <strong>NOTIFY</strong>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Company Name:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_id.name"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Address:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_direccion"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>TAX ID//RUC//CNPJ//NIT//RIF NO:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_direccion"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Phone Number:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_telefono"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Fax Number:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_telefono"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Contact Person:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_contacto"/>
+                               </td>
+                           </tr>
+                            <tr  >
+                               <td >
+                                   <strong>Email Address:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_notify_correo"/>
+                               </td>
+                            </tr>
+                            <tr  style="height:10mm;font-weight:bold;font-size:16px;">
+                               <td colspan="2">
+                                   <strong></strong>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
+                                   <strong>PORT OF DISCHARGE:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_pod1"/>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
+                                   <strong>PLACE OF DELIVERY:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_lugar_entregas"/>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
+                                   <strong>PLACE OF DELIVERY:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_lugar_entrega"/>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
+                                   <strong>BL INSTRUCTIONS:</strong>
+                               </td>
+                               <td >
+                                   <strong></strong>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
+                                   <strong>TERMS:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.flete_hbl"/>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
+                                   <strong>CARRIER:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_naviera_trabajar"/>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td style="background-color:LightGray;height:15mm;vertical-align:middle;">
+                                   <strong>CONTRACT ID / RATE:</strong>
+                               </td>
+                               <td style="background-color:LightGray;height:15mm;vertical-align:middle;">
+                                   <strong>AS AGREEMENT</strong>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td colspan="2" style="vertical-align:middle;margin: auto;text-align:right;height:35mm;">
+                                   <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                               </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+        <!-- FCL -->
+
+        <report
+                id="bbcv_fbl"
+                string="FBL"
+                model="sale.order"
+                report_type="qweb-pdf"
+                name="BBCV.report_fbl"
+                file="BBCV.report_fbl"
+                attachment_use = "True"
+                paperformat="paperformat_mbl_hcl_fcl"
+        />
+
+        <template id="report_fbl">
+            <t t-call="web.basic_layout">
+                <style>
+                    td {
+                        border:1px solid black;
+                        padding: 4px;
+                    }
+                </style>
+                <h2>
+                    FCL
+                </h2>
+                <table width="100%">
+                   <tr>
+                       <td style="width:35%">
+                           <strong>EMPRESA</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_datos_consignatario.name"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>PARA</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_contacto2"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>ETD</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_fetd"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>PROVEEDOR</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_datos_proveedor.name"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>CONTENEDOR</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_no_contenedor"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>NAVIERA</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_naviera_trabajar"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>COMERCIO</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_comercios"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>ORIGEN</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.pais_origen"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>DESTINO</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.pais_destino"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>B/L</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_no_hbl"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>VAPOR</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_no_buque"/><span t-field = "doc.so_no_contenedor_final"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>PROCEDENTE</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.pais_origen"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>ETA</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_feta"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>PUERTO DE ATRAQUE</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.puerto_descarga"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>DESTINO FINAL</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_lugar_entrega"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>PESO</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.Peso_bruto_Kg"/>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td style="width:35%">
+                           <strong>EQUIPO</strong>
+                       </td>
+                       <td style="widht:65%">
+                           <span t-field = "doc.so_tipo_equipos"/>
+                       </td>
+                   </tr>
+                </table>
+            </t>
+        </template>
+
+    </data>
+</odoo>

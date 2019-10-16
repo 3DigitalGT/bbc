@@ -33,7 +33,12 @@
         'views/bbcv_account_invoice_view.xml',
         'views/BBCV_view.xml',
         'views/test_view.xml',
-        'views/BBCV_container_view.xml'
+        'views/BBCV_container_view.xml',
+        'report/bbc_reports.xml',
+        'report/bbc_report_routing.xml',
+        'report/bbc_reports_mbl_hcl_fcl.xml',
+        'report/bbc_reports_notifications.xml',
+
     ],
     'installable': True,
     'auto_install': False,

@@ -11,6 +11,34 @@
                 <page name="admin" position = "after">
                     <page string = "Contenedores">
                         <field name = "container_ids" mode="tree">
+                            <form>
+                                <group>
+                                    <field name ="number"/>
+                                    <field name ="seal"/>
+                                    <field name ="marks"/>
+                                    <field name ="weight_exp"/>
+                                    <field name ="exp_volume"/>
+                                    <field name = "package_ids" mode = "tree" editable="bottom">
+                                        <tree>
+                                            <field name ="description"/>
+                                            <field name ="qty"/>
+                                            <field name ="wrap_id"/>
+                                            <field name ="weight"/>
+                                            <field name ="volume"/>
+                                        </tree>
+                                        <form>
+                                            <group>
+                                                <field name ="description"/>
+                                                <field name ="qty"/>
+                                                <field name ="wrap_id"/>
+                                                <field name ="weight"/>
+                                                <field name ="volume"/>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+
+                            </form>
                             <tree>
                                 <field name ="number"/>
                                 <field name ="seal"/>
