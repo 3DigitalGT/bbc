@@ -447,7 +447,7 @@ class SaleOrder(models.Model):
     @api.onchange('so_datos_consignatario')
     def onchange_so_datos_consignatario(self):
         if self.so_datos_consignatario:
-            self.so_contacto2 = self.so_datos_consignatario.c_encargado_operaciones
+            self.so_contacto2 = self.so_datos_consignatario.name
             self.so_NIT_contacto2 = self.so_datos_consignatario.vat
             self.so_direccion4 =  self.so_datos_consignatario.street
             self.so_telefono2 = self.so_datos_consignatario.phone

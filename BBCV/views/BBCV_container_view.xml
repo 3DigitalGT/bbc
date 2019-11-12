@@ -6,9 +6,9 @@
         <record model="ir.ui.view" id="view_order_container_form">
             <field name="name">sale.order.form.container</field>
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="view_order_form_admon"/>
+            <field name="inherit_id" ref="view_order_form_operations"/>
             <field name="arch" type="xml">
-                <page name="admin" position = "after">
+                <page name="page_operaciones" position = "after">
                     <page string = "Contenedores">
                         <field name = "container_ids" mode="tree">
                             <form>

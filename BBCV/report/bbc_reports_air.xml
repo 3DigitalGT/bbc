@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="paperformat_bill_lading" model="report.paperformat">
+            <field name="name">Bill of Lading</field>
+            <field name="default" eval="False" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+                id="carta_porte"
+                string="Carta Porte"
+                model="sale.order"
+                report_type="qweb-pdf"
+                name="BBCV.report_carta_porte"
+                file="BBCV.report_carta_porte"
+                attachment_use = "True"
+                paperformat="BBCV.paperformat_bill_lading"
+        />
+
+        <template id="report_carta_porte">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page" style = "font-size:12px;">
+                        <div id = "company" style = "position:absolute;top:20mm;left:20mm">
+                            <span t-field = "res_company.name"/>
+                        </div>
+                        <div id = "company" style = "position:absolute;top:20mm;left:120mm;font-size:18px;">
+                            <span>CARTA PORTE</span>
+                        </div>
+                        <div id = "shipper" style = "position:absolute;top:50mm;left:20mm">
+                            <span>Remitente / Embarcador Nombre y Direción</span><br/>
+                            <span>Nombre: </span><span t-field = "doc.so_datos_proveedor.name"/><br/>
+                            <span>Dirección: </span><span t-field = "doc.so_direccion3"/><br/>
+                            <span>Teléfono: </span><span t-field = "doc.so_telefono"/><br/>
+                            <span>E-Mail: </span><span t-field = "doc.so_correo"/>
+                        </div>
+                        <div id = "consignee" style = "position:absolute;top:80mm;left:20mm">
+                            <span>Destinatario / Consignatario Nombre y Direcci'n</span><br/>
+                            <span>Nombre: </span><span t-field = "doc.so_datos_consignatario.name"/><br/>
+                            <span>Dirección: </span><span t-field = "doc.so_direccion4"/><br/>
+                            <span>Teléfono: </span><span t-field = "doc.so_telefono2"/><br/>
+                            <span>E-Mail: </span><span t-field = "doc.so_correo4"/><br/>
+                        </div>
+                        <div id = "notify" style = "position:absolute;top:110mm;left:20mm">
+                            <span>Dirigir Notificación de llegada a:</span>
+                            <span>Nombre: </span><span t-field = "doc.so_notify_id.name"/><br/>
+                            <span>Dirección: </span><span t-field = "doc.so_notify_direccion"/><br/>
+                            <span>Telefono: </span><span t-field = "doc.so_notify_telefono"/><br/>
+                            <span>E-Mail: </span><span t-field = "doc.so_notify_correo"/><br/>
+                        </div>
+                        <div id = "pol" style = "position:absolute;top:130mm;left:20mm">
+                            <div><span>Aduana de Salida</span></div>
+                            <div><span t-field = "doc.so_pol1"/></div>
+                        </div>
+                        <div id = "final_destiny" style = "position:absolute;top:130mm;left:55mm">
+                            <div><span>Destino Final</span></div>
+                            <div><span t-field = "doc.so_pod1"/></div>
+                        </div>
+                        <!-- encabezado derecho -->
+                        <div id = "no_carta" style = "position:absolute;top:50mm;left:150mm">
+                            <span>No. Carta Porte</span><br/>
+                            <span t-field = "doc.booking"/>
+                        </div>
+                        <div id = "fecha" style = "position:absolute;top:50mm;left:180mm">
+                            <span>Fecha</span><br/>
+                            <span t-field = "doc.so_mbl5"/>
+                        </div>
+                        <div id = "facturas" style = "position:absolute;top:60mm;left:150mm">
+                            <span>Factura(s) de Remitente / Embarcador No.(s)</span><br/>
+                            <span t-field = "doc.export_references"/>
+                        </div>
+                        <div id = "origen" style = "position:absolute;top:75mm;left:150mm">
+                            <span>Lugar y Pais de Origen</span><br/>
+                            <span t-field = "doc.forwarding_agent.name"/>
+                        </div>
+                        <div id = "trasnportista" style = "position:absolute;top:85mm;left:150mm">
+                            <span>Codigo del Transportista</span><br/>
+                            <span t-field = "doc.forwarding_agent.name"/>
+                        </div>
+                        <div id = "instrucciones" style = "position:absolute;top:95mm;left:150mm">
+                            <span>Instrucciones Adicionales</span><br/>
+                            <span t-field = "doc.forwarding_agent.name"/>
+                        </div>
+                        <div id = "riesgo" style = "position:absolute;top:115mm;left:150mm">
+                            <span>LA MERCADERIA VIAJA POR RIESGO Y CUENTA DEL EMBARCADOR Y/O<br/>
+                                CONSIGNATARIO</span><br/>
+                        </div>
+                        <div id = "operador" style = "position:absolute;top:125mm;left:150mm">
+                            <span>Operador: </span><span t-field = "doc.forwarding_agent.name"/>
+                        </div>
+                        <div id = "no_licencia" style = "position:absolute;top:130mm;left:150mm">
+                            <div><span>No. Licencia</span></div>
+                            <div><span t-field = "doc.so_pod1"/></div>
+                        </div>
+                        <div id = "cabezal" style = "position:absolute;top:130mm;left:175mm">
+                            <div><span>Cabezal</span></div>
+                            <div><span t-field = "doc.so_pod1"/></div>
+                        </div>
+                        <div id = "furgon" style = "position:absolute;top:130mm;left:200mm">
+                            <div><span>Furgón</span></div>
+                            <div><span t-field = "doc.so_pod1"/></div>
+                        </div>
+                        <!-- encabezado detalle -->
+                        <div id = "encabezado_detalle" style = "position:absolute;top:150mm;left:20mm;width:190mm;">
+                            <div style = "position:absolute;width:30mm;">
+                                <span>Marcas y Numeros</span>
+                            </div>
+                            <div style = "position:absolute;left:40mm;width:110mm;">
+                                <div style = "position:absolute;width:110mm;">
+                                    <span>Contenido Según el Embarcador</span>
+                                </div>
+                                <div style = "position:absolute;top:5mm;width:110mm;">
+                                    <div style = "position:absolute;width:30mm;">
+                                        <span>Numero de Bultos</span>
+                                    </div>
+                                    <div style = "position:absolute;left:40mm;width:50mm;">
+                                        <span>Descripción de la Mercadería</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style = "position:absolute;left:160mm;width:20mm;">
+                                <span>Peso Bruto</span>
+                            </div>
+                            <div style = "position:absolute;left:180mm;width:20mm;">
+                                <span>Volumen</span>
+                            </div>
+                        </div>
+                        <!-- detalle -->
+                        <div id = "detalles" style = "position:absolute;top:180mm;left:10mm;width:190mm;">
+                            <div class="container" >
+                                <span style="margin-left:5cm;">&#8220;SHIPPER'S LOAD &#38; COUNT&#8221; &#8220;SAID TO CONTAIN&#8221;"</span>
+                                <t t-foreach="doc.container_ids" t-as="c">
+                                    <div class = "row mt32 mb32">
+                                        <div class="col-3">
+                                            <span t-field = "c.marks"/><br/>
+                                            <span t-field = "c.number"/><br/>
+                                            Seal # <span t-field = "c.seal"/><br/>
+                                            <span t-field = "c.type"/>
+                                        </div>
+                                        <div class="col-13">
+
+                                            <t t-foreach="c.package_ids" t-as="p">
+                                                <div class = "row mt32 mb32" style="width:160mm">
+                                                    <div class="col-2">
+                                                        <span t-field = "p.qty"/><br/>
+                                                        <span t-field = "p.wrap_id.name"/><br/><br/>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <span t-field = "p.description"/><br/>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <span t-field = "p.weight"/><br/>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <span t-field = "p.volume"/><br/>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                        <!-- pie detalle -->
+                        <div id = "encabezado_detalle" style = "position:absolute;top:150mm;left:20mm;width:190mm;">
+                            <div style = "position:absolute;width:30mm;">
+                                <span>TOTAL</span>
+                            </div>
+                            <div style = "position:absolute;left:40mm;width:110mm;">
+                                <div style = "position:absolute;width:110mm;">
+                                    <span>Contenido Según el Embarcador</span>
+                                </div>
+                                <div style = "position:absolute;top:5mm;width:110mm;">
+                                    <div style = "position:absolute;width:30mm;">
+                                        <span>Total Paquetes</span>
+                                    </div>
+                                    <div style = "position:absolute;left:40mm;width:50mm;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div style = "position:absolute;left:160mm;width:20mm;">
+                                <span>Suma del Peso</span>
+                            </div>
+                            <div style = "position:absolute;left:180mm;width:20mm;">
+                                <span>Suma del Volumen</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div id = "footer_col_1">
+                                <div>
+                                    <span>Aduana Entrada:<br/></span>
+                                </div>
+                                <div>
+                                    <span><br/></span>
+                                </div>
+                                <div>
+                                    <span>Elaboro<br/></span>
+                                </div>
+                                <div>
+                                    <span>Debo y Pagaré:<br/></span>
+                                </div>
+                            </div>
+                            <div id = "footer_col_2">
+                                <table>
+                                    <tr>
+                                        <th>Detalle</th>
+                                        <th>PPD</th>
+                                        <th>COLL</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Flete USD</td>
+                                        <td>PPD</td>
+                                        <td>COLL</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id = "footer_col_3">
+                                <div>
+                                    <span>Agente Emarcador</span>
+                                </div>
+                                <div>
+                                    <span>Embarcador / Remitente</span><br/>
+                                    <span>BBC Logistica,S.A.</span><br/>
+                                </div>
+                                <div>
+                                    <span>Embarcador / Remitentes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+
+    </data>
+</odoo>

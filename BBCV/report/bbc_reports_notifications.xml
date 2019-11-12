@@ -60,9 +60,9 @@
                                     <div id = "saludo" style="padding:5mm;" >
                                         <p>Estimado Cliente:</p>
                                         <p>Por este medio anunciamos el arribo de su mercadería a puerto
-                                            <span t-field="doc.name"/> a bordo del buque <span t-field="doc.name"/>
-                                            con el número de BL <span t-field="doc.name"/> con fecha estimada <span t-field="doc.name"/>,
-                                            <span t-field="doc.name"/> de <span t-field="doc.name"/> de <span t-field="doc.name"/>.
+                                            <span t-field="doc.puerto_descarga"/> a bordo del buque <span t-field="doc.so_no_buque"/>
+                                            con el número de BL <span t-field="doc.no_mbl"/> con fecha estimada <span t-field="doc.so_fentrega"/>.
+                                            <!--<span t-field="doc.name"/> de <span t-field="doc.name"/> de <span t-field="doc.name"/>.-->
                                         </p>
                                     </div>
                                 </td>
@@ -72,7 +72,7 @@
                                     Comercio:
                                 </td>
                                 <td style="width:65%" colspan = "4">
-                                    <span t-field="doc.name"/>
+                                    <span t-field="doc.so_comercios"/>
                                 </td>
                             </tr>
                             <tr>
@@ -80,7 +80,7 @@
                                     Origen:
                                 </td>
                                 <td style="width:65%" colspan = "4">
-                                    <span t-field="doc.name"/>
+                                    <span t-field="doc.pue"/>
                                 </td>
                             </tr>
                             <tr>
@@ -96,7 +96,7 @@
                                     No. de BL:
                                 </td>
                                 <td style="width:25%">
-                                    <span t-field="doc.name"/>
+                                    <span t-field="doc.no_mbl"/>
                                 </td>
                                 <td style="width:25%">
                                     Naviera:
@@ -110,7 +110,7 @@
                                     Embarcador:
                                 </td>
                                 <td style="width:65%;vertical-align:middle;" colspan = "4">
-                                    <span t-field="doc.name"/>
+                                    <span t-field="doc.so_datos_proveedor"/>
                                 </td>
                             </tr>
                             <tr style="height:15mm;">
@@ -118,7 +118,7 @@
                                     Consignatario:
                                 </td>
                                 <td style="width:65%;vertical-align:middle;" colspan = "4">
-                                    <span t-field="doc.name"/>
+                                    <span t-field="doc.so_datos_consignatario"/>
                                 </td>
                             </tr>
                             <tr>
@@ -126,7 +126,7 @@
                                     No. Contenedor:
                                 </td>
                                 <td style="width:65%" colspan = "4">
-                                    <span t-field="doc.name"/>
+                                    <span t-field="doc.no_contenedor"/><span>SI SON VARIOS??</span>
                                 </td>
                             </tr>
                             <tr>
@@ -137,7 +137,7 @@
                                     Arribo:
                                 </td>
                                 <td style="width:35%" colspan = "4">
-                                    <span t-field="doc.name"/>
+                                    <span t-field="doc.so_fentrega"/>
                                 </td>
                             </tr>
                             <tr>
@@ -145,7 +145,7 @@
                                     Inicio de Cobro Almacenaje:
                                 </td>
                                 <td style="width:35%" colspan = "4">
-                                    <span t-field="doc.name"/>
+                                    <span t-field="doc.so_fecha_almacenaje"/>
                                 </td>
                             </tr>
                             <tr>
@@ -153,7 +153,7 @@
                                     Inicio de Cobro Demora:
                                 </td>
                                 <td style="width:35%" colspan = "4">
-                                    <span t-field="doc.name"/>
+                                    <span t-field="doc.so_fecha2_almacenaje"/>
                                 </td>
                             </tr>
 
@@ -187,18 +187,18 @@
                                     <p><strong>ALMACENAJE</strong><br/>Puerto proporciona 5 días libres a partir del
                                         arribo del vapor a Puerto, concluído el período el cliente tendrá que cancelar
                                     el monto que genere con la porturaria, BBC FREIGHT no se hace responsable de dicho cobro.
-                                    <br/><strong>El período vence el<span t-field="doc.name"/></strong></p>
-                                    <p><strong>DEMORA CARGA SECA A PARTIR DEL: <span t-field="doc.name"/></strong><br/>
+                                    <br/><strong>El período vence el<span t-field="doc.so_fecha_almacenaje"/></strong></p>
+                                    <p><strong>DEMORA CARGA SECA</strong><br/>
                                         Puerto proporciona 10 días libres a partir del arribo del vapor a Puerto, concluído
                                         el período el cliente  tendrá que cancelar el monto que genere con la portuaria,
                                         BBC FREIGHT no se hace responsable de dicho cobro.<br/>$75.00 POR DÍA/CONTENEDOR
-                                        <br/><strong>El período vence el<span t-field="doc.name"/></strong></p>
+                                        <br/><strong>El período vence el<span t-field="doc.so_fecha2_almacenaje"/></strong></p>
                                     <div t-if="arrival">
                                     <p><strong>ENERGÍA ELECTRICA 1X40REEF A PARTIR DEL: <span t-field="doc.name"/></strong>
                                         <br/>Puerto proporciona 10 días libres a partir del arribo del vapor a Puerto, concluído
                                         el período el cliente  tendrá que cancelar el monto que genere con la portuaria,
                                         BBC FREIGHT no se hace responsable de dicho cobro.<br/>TARIFA A CONFIRMAR
-                                        POR DÍA/CONTENEDOR<br/><strong>El período vence el<span t-field="doc.name"/></strong></p>
+                                        POR DÍA/CONTENEDOR<br/><strong>El período vence el<span t-field="doc.so_fecha_almacenaje"/></strong></p>
                                     </div>
                                 </td>
                             </tr>

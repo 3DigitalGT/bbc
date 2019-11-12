@@ -38,7 +38,7 @@
         'report/bbc_report_routing.xml',
         'report/bbc_reports_mbl_hcl_fcl.xml',
         'report/bbc_reports_notifications.xml',
-
+        'report/bbc_reports_air.xml',
     ],
     'installable': True,
     'auto_install': False,
