@@ -80,7 +80,7 @@
                                     Origen:
                                 </td>
                                 <td style="width:65%" colspan = "4">
-                                    <span t-field="doc.pue"/>
+                                    <span t-field="doc.puerto_carga"/>
                                 </td>
                             </tr>
                             <tr>
@@ -88,7 +88,7 @@
                                     Destino:
                                 </td>
                                 <td style="width:65%" colspan = "4">
-                                    <span t-field="doc.name"/>
+                                    <span t-field="doc.puerto_descarga"/>
                                 </td>
                             </tr>
                             <tr>

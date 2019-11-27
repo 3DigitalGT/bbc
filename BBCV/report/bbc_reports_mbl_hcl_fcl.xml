@@ -435,10 +435,18 @@
                             </tr>
                             <tr  >
                                <td  style="background-color:LightGray;">
+                                   <strong>PORT OF LOADING:</strong>
+                               </td>
+                               <td >
+                                   <span t-field = "doc.so_puerto_carga"/>
+                               </td>
+                            </tr>
+                            <tr  >
+                               <td  style="background-color:LightGray;">
                                    <strong>PORT OF DISCHARGE:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_pod1"/>
+                                   <span t-field = "doc.so_puerto_descarga"/>
                                </td>
                             </tr>
                             <tr  >
@@ -447,14 +455,6 @@
                                </td>
                                <td >
                                    <span t-field = "doc.so_lugar_entregas"/>
-                               </td>
-                            </tr>
-                            <tr  >
-                               <td  style="background-color:LightGray;">
-                                   <strong>PLACE OF DELIVERY:</strong>
-                               </td>
-                               <td >
-                                   <span t-field = "doc.so_lugar_entrega"/>
                                </td>
                             </tr>
                             <tr  >

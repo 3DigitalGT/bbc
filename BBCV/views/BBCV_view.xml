@@ -442,7 +442,7 @@
                     </group>
                 </group>
                 <group>
-                    <group string="HBL/MAWB/Carta de porte">
+                    <group string="HBL/HAWB/Carta de porte">
                         <!-- field name="so_subtitulos" string="HBL/MAWB/Carta de porte" readonly="1"/ -->
                         <field name="so_original2" string="Original"/>
                         <field name="so_express2"/>
