@@ -6,12 +6,93 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="account.invoice_supplier_form"/>
         <field name="arch" type="xml">
-          <xpath expr="//*[@name='reference']" position="replace">
+            <field name="reference" position="replace"/>
+            <xpath expr="/form/sheet/div/span[2]" position="replace"/>
+            <xpath expr="/form/sheet/div/h1[@class='mt0']" position = "replace">
+                <field name="number" invisible = "1"/>
+                <field name="sequence_number_next_prefix" class="oe_inline" invisible = "1"/>
+                <field name="sequence_number_next" class="oe_inline" invisible = "1"/>
+                <h1 class="mt0">
+                    <field name="doc_type" readonly="1" class="oe_inline" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                    <span><![CDATA[&nbsp;]]></span>
+                    <field name="reference"  class="oe_inline" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                </h1>
+            </xpath>
+
+          <xpath expr="//*[@name='partner_id']" position="after">
               <field name = "doc_type"/>
               <field name = "doc_serie"/>
               <field name = "doc_number"/>
           </xpath>
+          <field name = "price_subtotal" position="replace">
+              <field name ="line_total" string ="Importe"/>
+          </field>
+          <field name = "amount_untaxed" position = "replace">
+              <field name = "amount_grand_total"  />
+          </field>
+          <field name = "amount_tax" position="replace">
+              <field name = "amount_retained_tax_total"  attrs="{'invisible': [('amount_retained_tax_total', '==', 0)]}"/>
+
+          </field>
+
+          <button name="action_invoice_draft" position="attributes">
+                <attribute name="invisible">1</attribute>
+          </button>
         </field>
       </record>
+
+
+      <record id="td_generico_gt_journal_view" model="ir.ui.view">
+        <field name="name">account.invoice_gt_journal_view</field>
+        <field name="model">account.journal</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <field name = "code" position="before">
+                <field name = "doc_type" attrs="{'invisible': [('type', '!=', 'sale')]}"/>
+            </field>
+        </field>
+      </record>
+
+        <record id="account_invoice_supplier_tree_reference" model="ir.ui.view">
+        <field name="name">account.invoice_gt_generico_sup_ref_tree</field>
+        <field name="model">account.invoice</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+        <field name="arch" type="xml">
+             <field name = "reference" position="replace"/>
+            <field name = "number" position="replace">
+                <field name = "number" invisible="1"/>
+                <field name = "doc_type" />
+                <field name = "reference" string = "Ref. Proveedor"/>
+            </field>
+        </field>
+        </record>
+
+      <record id="account_invoice_customer_tree_reference" model="ir.ui.view">
+        <field name="name">account.invoice_gt_generico_cus_ref_tree</field>
+        <field name="model">account.invoice</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name = "number" position="before">
+                <field name = "doc_type" string = "Tipo Documento"/>
+            </field>
+        </field>
+        </record>
+
+      <record id="td_generico_gt_customer_invoice_hide_reset_draft" model="ir.ui.view">
+        <field name="name">account.invoice_hide_reset_draft</field>
+        <field name="model">account.invoice</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+          <button name="action_invoice_draft" position="attributes">
+                <attribute name="invisible">1</attribute>
+          </button>
+        </field>
+      </record>
+
+
   </data>
 </odoo>

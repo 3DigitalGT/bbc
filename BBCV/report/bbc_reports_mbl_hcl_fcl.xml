@@ -438,7 +438,7 @@
                                    <strong>PORT OF LOADING:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_puerto_carga"/>
+                                   <span t-field = "doc.puerto_carga"/>
                                </td>
                             </tr>
                             <tr  >
