@@ -446,7 +446,7 @@
                                    <strong>PORT OF DISCHARGE:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_puerto_descarga"/>
+                                   <span t-field = "doc.puerto_descarga"/>
                                </td>
                             </tr>
                             <tr  >
