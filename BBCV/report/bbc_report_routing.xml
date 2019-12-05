@@ -21,7 +21,7 @@
                                 <div class="row">
                                     <t t-set="company" t-value="doc.company_id"/>
                                     <div class="col-4">
-                                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                                        <img style="width:100%;height:100%;" t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
                                     </div>
                                     <div class="col-4" style="font-size:16px;">
                                         <strong><span>ROUTING ORDER'S INFORMATION</span></strong>
@@ -84,9 +84,9 @@
                                 </div>
                                 <div id = "observaciones" style="margin-top:10mm;">
                                     <p><strong>OBSERVACIONES / OBSERVATIONS</strong></p>
-                                    <p>Toda Factura emitida a nombre de BBC FREIGHT deberá ser enviado por correo respetando la
+                                    <p>Toda Factura emitida a nombre de BBC LOGISTICA, S.A. deberá ser enviado por correo respetando la
                                     <strong><span t-field = "doc.name"/></strong> de referencia indicada en este instructivo. / Any inovice
-                                    issued on behalf of BBC FREIGHT should be sent by mail in accordance with the
+                                    issued on behalf of BBC LOGISTICA, S.A. should be sent by mail in accordance with the
                                     <strong><span t-field = "doc.name"/></strong> of reference indicated in this routing order.</p>
                                 </div>
                             </div>

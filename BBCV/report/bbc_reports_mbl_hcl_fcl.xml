@@ -49,7 +49,7 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <t t-set="company" t-value="doc.company_id"/>
-                                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                                                <img t-if="company.logo" style="width:100%;height:100%;" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
                                             </div>
                                             <div class="col-8">
                                                 <strong><span id="title">MBL INSTRUCTIONS</span></strong>
@@ -100,7 +100,7 @@
                                    <strong>Phone Number:</strong>
                                </td>
                                <td >
-                                   <span> t-field = "doc.so_company_name"</span>
+                                   <span t-field = "doc.so_telefono3"/>
                                </td>
                            </tr>
                             <tr  >
@@ -108,7 +108,7 @@
                                    <strong>Fax Number:</strong>
                                </td>
                                <td >
-                                  <span t-field = "doc.so_company_name"/>
+                                  <span t-field = "doc.so_fax3"/>
                                </td>
                            </tr>
                             <tr  >
@@ -116,7 +116,7 @@
                                    <strong>Contact Person:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_company_name"/>
+                                   <span t-field = "doc.so_contacto3"/>
                                </td>
                            </tr>
                             <tr  >
@@ -124,7 +124,7 @@
                                    <strong>Email Address:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_company_name"/>
+                                   <span t-field = "doc.so_email3"/>
                                </td>
                             </tr>
                             <tr style="height:15mm;background-color:LightGray;font-weight:bold;font-size:16px;">
@@ -153,7 +153,7 @@
                                    <strong>TAX ID//RUC//CNPJ//NIT//RIF NO:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_notify_direccion"/>
+                                   <span t-field = "doc.so_notify_nit"/>
                                </td>
                            </tr>
                             <tr  >
@@ -222,7 +222,15 @@
                                    <strong>BL INSTRUCTIONS:</strong>
                                </td>
                                <td >
-                                   <strong>AS AGREEMENT</strong>
+                                   <t t-if="doc.so_original1">
+                                       <span>Original</span>
+                                   </t>
+                                   <t t-if="doc.so_express1">
+                                       <span>Express Realease</span>
+                                   </t>
+                                   <t t-if="doc.so_telex1">
+                                       <span>Telex</span>
+                                   </t>
                                </td>
                             </tr>
                             <tr  >
@@ -251,7 +259,7 @@
                             </tr>
                             <tr  >
                                <td colspan="2" style="vertical-align:middle;margin: auto;text-align:right;height:35mm;">
-                                   <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                                   <img t-if="company.logo" style="width:100%;height:100%;" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
                                </td>
                             </tr>
                         </table>
@@ -289,7 +297,7 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <t t-set="company" t-value="doc.company_id"/>
-                                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                                                <img t-if="company.logo" style="width:100%;height:100%;" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
                                             </div>
                                             <div class="col-8">
                                                 <strong><span id="title">HBL INSTRUCTIONS</span></strong>
@@ -393,7 +401,7 @@
                                    <strong>TAX ID//RUC//CNPJ//NIT//RIF NO:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_notify_direccion"/>
+                                   <span t-field = "doc.so_notify_nit"/>
                                </td>
                            </tr>
                             <tr  >
@@ -462,7 +470,15 @@
                                    <strong>BL INSTRUCTIONS:</strong>
                                </td>
                                <td >
-                                   <strong></strong>
+                                   <t t-if="doc.so_original2">
+                                       <span>Original</span>
+                                   </t>
+                                   <t t-if="doc.so_express2">
+                                       <span>Express Realease</span>
+                                   </t>
+                                   <t t-if="doc.so_telex2">
+                                       <span>Telex</span>
+                                   </t>
                                </td>
                             </tr>
                             <tr  >

@@ -283,6 +283,7 @@
                         <field name="so_notify_id" />
                         <field name="so_notify_contacto" string="Contacto"/>
                         <field name="so_notify_direccion" string="Dirección"/>
+                        <field name="so_notify_nit" string="NIT"/>
                         <field name="so_notify_telefono" string="Teléfono"/>
                         <field name="so_notify_correo"/>
                         <field name="so_notify_no_orden"/>
@@ -467,6 +468,9 @@
                         <field name="bbc_estadia" string="Días libres de estadía"/>
                         <field name="bbc_inicio3" string="Fecha inicio"/>
                         <field name="bbc_fin3" string="Fecha fin"/>
+                        <field name="bbc_energia" string="Días libres de estadía"/>
+                        <field name="bbc_inicio4" string="Fecha inicio"/>
+                        <field name="bbc_fin4" string="Fecha fin"/>
                     </group>
                 </group>
                 <group>
