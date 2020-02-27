@@ -150,7 +150,7 @@
                                     Inicio de Cobro Almacenaje:
                                 </td>
                                 <td style="width:35%" colspan = "4">
-                                    <span t-field="doc.bbc_inicio"/>
+                                    <span t-field="doc.so_fecha_demora"/>
                                 </td>
                             </tr>
                             <tr>
@@ -158,7 +158,7 @@
                                     Inicio de Cobro Demora:
                                 </td>
                                 <td style="width:35%" colspan = "4">
-                                    <span t-field="doc.bbc_inicio2"/>
+                                    <span t-field="doc.so_fecha2_demora"/>
                                 </td>
                             </tr>
                             <tr>
@@ -166,10 +166,10 @@
                                     Inicio de Cobro Estadía:
                                 </td>
                                 <td style="width:35%" colspan = "4">
-                                    <span t-field="doc.bbc_inicio3"/>
+                                    <span t-field="doc.fecha_estadia2"/>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr t-if="doc.so_tipo_equipos == 'ref'">
                                 <td style="width:30%">
                                     Inicio de Cobro Energía Eléctrica:
                                 </td>
@@ -205,29 +205,41 @@
                                         establecidas.</li>
                                     </ul>
                                     <div >
-                                        <p><strong>ALMACENAJE</strong><br/>Puerto proporciona <span t-field="doc.dias_almacenaje"/> días libres a partir del
-                                            arribo del vapor a Puerto, concluído el período el cliente tendrá que cancelar
-                                        el monto que genere con la porturaria, BBC FREIGHT no se hace responsable de dicho cobro.
-                                        <br/><strong>El período vence el<span t-field="doc.so_fecha_almacenaje"/></strong></p>
+                                        <div t-if="doc.dias_almacenaje">
+                                            <p><strong>ALMACENAJE</strong><br/>Puerto proporciona <span t-field="doc.dias_almacenaje"/> días libres a partir del
+                                                arribo del vapor a Puerto, concluído el período el cliente tendrá que cancelar
+                                            el monto que genere con la porturaria, BBC FREIGHT no se hace responsable de dicho cobro.
+                                            <br/><strong>El período vence el<span t-field="doc.so_fecha_almacenaje"/></strong></p>
+                                        </div>
+                                        <div t-if="doc.dias_demoras">
                                         <p><strong>DEMORA CARGA SECA</strong><br/>
                                             Puerto proporciona <span t-field="doc.dias_demoras"/> días libres a partir del arribo del vapor a Puerto, concluído
                                             el período el cliente  tendrá que cancelar el monto que genere con la portuaria,
                                             BBC FREIGHT no se hace responsable de dicho cobro.<br/>$75.00 POR DÍA/CONTENEDOR
                                             <br/><strong>El período vence el<span t-field="doc.so_fecha2_almacenaje"/></strong></p>
-                                        <div t-if="arrival">
-                                        <p><strong>ENERGÍA ELECTRICA 1X40REEF A PARTIR DEL: <span t-field="doc.name"/></strong>
+                                        </div>
+                                        <div t-if="doc.dias_estadia">
+                                            <p><strong>ESTADÍA</strong><br/>Puerto proporciona <span t-field="doc.dias_almacenaje"/> días libres a partir del
+                                                arribo del vapor a Puerto, concluído el período el cliente tendrá que cancelar
+                                            el monto que genere con la porturaria, BBC FREIGHT no se hace responsable de dicho cobro.
+                                            <br/><strong>El período vence el<span t-field="doc.fecha_estadia"/></strong></p>
+                                        </div>
+                                        <div t-if="bbc_energia">
+                                        <p><strong>ENERGÍA ELECTRICA 1X40REEF A PARTIR DEL: <span t-field="doc.bbc_inicio4"/></strong>
                                             <br/>Puerto proporciona 10 días libres a partir del arribo del vapor a Puerto, concluído
                                             el período el cliente  tendrá que cancelar el monto que genere con la portuaria,
                                             BBC FREIGHT no se hace responsable de dicho cobro.<br/>TARIFA A CONFIRMAR
-                                            POR DÍA/CONTENEDOR<br/><strong>El período vence el<span t-field="doc.so_fecha_almacenaje"/></strong></p>
+                                            POR DÍA/CONTENEDOR<br/><strong>El período vence el<span t-field="doc.bbc_fin4"/></strong></p>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            <tr  style="height:20mm;text-align:right">
-                                <td colspan = "5">
-                                    <img t-if="company.logo" style = "width:3cm;" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
-                                </td>
+                            <tr>
+                               <td colspan="5" >
+                                   <div style = "padding:5px;margin:auto;text-align:right;height:15mm;width:100%;">
+                                        <img src="https://s3.amazonaws.com/inteligos.assets/BBC/bbc_peq.png" alt="Logo" style="height:100%;"/>
+                                   </div>
+                               </td>
                             </tr>
 
                         </table>

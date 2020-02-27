@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, exceptions, fields, models, _, SUPERUSER_ID
-from datetime import datetime
+from datetime import datetime,timedelta
 
 
 class SaleOrder(models.Model):
@@ -388,7 +388,12 @@ class SaleOrder(models.Model):
     so_nivel_prioridades = fields.Many2one('so_nivel_prioridad','Nivel de prioridad',ondelete='cascade',select=True)
     currencys = fields.Many2one('res.currency', string='Tipo de moneda')
     so_valor_mercaderia =  fields.Char('Valor de la mercancia')
-    so_tipo_equipos = fields.Many2one('so_tipo_equipo','Tipo de Equipo',ondelete='cascade',select=True)
+    so_tipo_equipos = fields.Selection(
+        [
+            ('ref','Refrigerado'),
+            ('nor','Normal'),
+        ]
+    )
     so_volumen =  fields.Char('Volumen')
     so_peso =  fields.Char('Peso')
     so_medidas = fields.Char('Medidas')
@@ -442,7 +447,7 @@ class SaleOrder(models.Model):
     @api.onchange('so_datos_proveedor')
     def onchange_so_datos_proveedor(self):
         if self.so_datos_proveedor:
-            self.so_contacto1 = self.so_datos_proveedor.c_encargado_operaciones
+            self.so_contacto1 = self.so_datos_proveedor.name
             self.so_direccion3 = self.so_datos_proveedor.street
             self.so_correo = self.so_datos_proveedor.email
             self.so_telefono = self.so_datos_proveedor.phone
@@ -510,6 +515,17 @@ class SaleOrder(models.Model):
     def onchange_estadia_bbc(self):
         if self.estadia_bbc:
             self.bbc_estadia = self.estadia_bbc
+
+    @api.onchange('so_fecha_demora')
+    def onchange_so_fecha_demora(self):
+        self.so_fecha_almacenaje = self.so_fecha_demora + timedelta(days=self.dias_almacenaje)
+        self.so_fecha2_demora = self.so_fecha_almacenaje + timedelta(days=1)
+        self.so_fecha2_almacenaje = self.so_fecha2_demora + timedelta(days=self.dias_demoras)
+        self.fecha_estadia2 = self.so_fecha2_almacenaje + timedelta(days=1)
+        self.fecha_estadia = self.fecha_estadia2 + timedelta(days=self.dias_estadia)
+        self.bbc_inicio4 = self.so_fecha_demora + timedelta(days=self.dias_almacenaje)
+        self.bbc_fin4 = self.so_fecha_demora + timedelta(days=self.dias_almacenaje)
+
 
     @api.model
     def create(self,vals):

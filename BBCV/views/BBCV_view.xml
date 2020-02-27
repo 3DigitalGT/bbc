@@ -468,7 +468,7 @@
                         <field name="bbc_estadia" string="Días libres de estadía"/>
                         <field name="bbc_inicio3" string="Fecha inicio"/>
                         <field name="bbc_fin3" string="Fecha fin"/>
-                        <field name="bbc_energia" string="Días libres de estadía"/>
+                        <field name="bbc_energia" string="Días libres de Energia"/>
                         <field name="bbc_inicio4" string="Fecha inicio"/>
                         <field name="bbc_fin4" string="Fecha fin"/>
                     </group>

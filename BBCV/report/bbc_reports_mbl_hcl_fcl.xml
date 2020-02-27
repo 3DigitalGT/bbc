@@ -45,13 +45,13 @@
                         <table width = "100%" style="padding: 5px;height:250mm;border:1px solid black;">
                             <tr id = "company" style = "margin: auto;text-align:center;height:20mm;">
                                 <td colspan = "2" style="vertical-align:middle;">
-                                    <div class="mt12">
+                                    <div class="mt12" style = "padding:20px;margin: auto;text-align:center;height:25mm;width:100%;">
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-4" >
                                                 <t t-set="company" t-value="doc.company_id"/>
                                                 <img t-if="company.logo" style="width:100%;height:100%;" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-8" style="vertical-align:middle;">
                                                 <strong><span id="title">MBL INSTRUCTIONS</span></strong>
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@
                                    <strong>Company Name:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_company_name"/>
+                                   <span t-field = "doc.so_datos_consignatario.name"/>
                                </td>
                            </tr>
                             <tr  >
@@ -84,7 +84,7 @@
                                    <strong>Address:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_direccion2"/>
+                                   <span t-field = "doc.so_direccion4"/>
                                </td>
                            </tr>
                             <tr  >
@@ -92,7 +92,7 @@
                                    <strong>TAX ID//RUC//CNPJ//NIT//RIF NO:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_nit3"/>
+                                   <span t-field = "doc.so_NIT_contacto2"/>
                                </td>
                            </tr>
                             <tr  >
@@ -100,7 +100,7 @@
                                    <strong>Phone Number:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_telefono3"/>
+                                   <span t-field = "doc.so_telefono2"/>
                                </td>
                            </tr>
                             <tr  >
@@ -108,7 +108,7 @@
                                    <strong>Fax Number:</strong>
                                </td>
                                <td >
-                                  <span t-field = "doc.so_fax3"/>
+                                   <span t-field = "doc.so_FAX_contacto2"/>
                                </td>
                            </tr>
                             <tr  >
@@ -116,7 +116,7 @@
                                    <strong>Contact Person:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_contacto3"/>
+                                   <span t-field = "doc.so_contacto2"/>
                                </td>
                            </tr>
                             <tr  >
@@ -124,7 +124,7 @@
                                    <strong>Email Address:</strong>
                                </td>
                                <td >
-                                   <span t-field = "doc.so_email3"/>
+                                   <span t-field = "doc.so_correo4"/>
                                </td>
                             </tr>
                             <tr style="height:15mm;background-color:LightGray;font-weight:bold;font-size:16px;">
@@ -257,9 +257,11 @@
                                    <strong>AS AGREEMENT</strong>
                                </td>
                             </tr>
-                            <tr  >
-                               <td colspan="2" style="vertical-align:middle;margin: auto;text-align:right;height:35mm;">
-                                   <img t-if="company.logo" style="width:100%;height:100%;" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                            <tr>
+                               <td colspan="2" >
+                                   <div style = "padding:5px;margin:auto;text-align:right;height:15mm;width:100%;">
+                                        <img src="https://s3.amazonaws.com/inteligos.assets/BBC/bbc_peq.png" alt="Logo" style="height:100%;"/>
+                                   </div>
                                </td>
                             </tr>
                         </table>
@@ -293,13 +295,13 @@
                         <table width = "100%" style="padding: 5px;height:250mm;border:1px solid black;">
                             <tr id = "company" style = "margin: auto;text-align:center;height:20mm;">
                                 <td colspan = "2" style="vertical-align:middle;">
-                                    <div class="mt12">
+                                    <div class="mt12" style = "padding:20px;margin: auto;text-align:center;height:25mm;width:100%;">
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-4" >
                                                 <t t-set="company" t-value="doc.company_id"/>
                                                 <img t-if="company.logo" style="width:100%;height:100%;" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-8" style="vertical-align:middle;">
                                                 <strong><span id="title">HBL INSTRUCTIONS</span></strong>
                                             </div>
                                         </div>
@@ -505,9 +507,11 @@
                                    <strong>AS AGREEMENT</strong>
                                </td>
                             </tr>
-                            <tr  >
-                               <td colspan="2" style="vertical-align:middle;margin: auto;text-align:right;height:35mm;">
-                                   <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                            <tr>
+                               <td colspan="2" >
+                                   <div style = "padding:5px;margin:auto;text-align:right;height:15mm;width:100%;">
+                                        <img src="https://s3.amazonaws.com/inteligos.assets/BBC/bbc_peq.png" alt="Logo" style="height:100%;"/>
+                                   </div>
                                </td>
                             </tr>
                         </table>
