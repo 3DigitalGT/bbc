@@ -64,9 +64,14 @@
                                 <td colspan = "5">
                                 <div id = "saludo" style="padding:5mm;" >
                                         <p>Estimado Cliente:</p>
-                                        <p>Por este medio anunciamos el arribo de su mercadería a puerto
+                                        <p t-if="arrival">Por este medio anunciamos el arribo de su mercadería a puerto
                                             <span t-field="doc.puerto_descarga"/> a bordo del buque <span t-field="doc.so_no_buque"/>
-                                            con el número de BL <span t-field="doc.no_mbl"/> con fecha estimada <span t-field="doc.so_fentrega"/>.
+                                            con el número de BL <span t-field="doc.no_hbl"/> con fecha estimada <span t-field="doc.so_fentrega"/>.
+                                            <!--<span t-field="doc.name"/> de <span t-field="doc.name"/> de <span t-field="doc.name"/>.-->
+                                        </p>
+                                        <p t-if="not arrival">Por este medio anunciamos el zarpe de su mercadería a puerto
+                                            <span t-field="doc.puerto_carga"/> a bordo del buque <span t-field="doc.so_no_buque"/>
+                                            con el número de BL <span t-field="doc.no_hbl"/> con fecha estimada <span t-field="doc.so_fetd"/>.
                                             <!--<span t-field="doc.name"/> de <span t-field="doc.name"/> de <span t-field="doc.name"/>.-->
                                         </p>
                                     </div>
@@ -101,7 +106,7 @@
                                     No. de BL:
                                 </td>
                                 <td style="width:25%">
-                                    <span t-field="doc.no_mbl"/><span t-field="doc.no_hbl"/>
+                                    <span t-field="doc.no_hbl"/>
                                 </td>
                                 <td style="width:25%">
                                     Naviera:
@@ -115,7 +120,7 @@
                                     Embarcador:
                                 </td>
                                 <td style="width:65%;vertical-align:middle;" colspan = "4">
-                                    <span t-field="doc.so_datos_proveedor"/>
+                                    <span t-field="doc.so_datos_proveedor.name"/>
                                 </td>
                             </tr>
                             <tr style="height:15mm;">
@@ -135,11 +140,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width:35%;vertical-align:middle;" rowspan="5">
+                                <td style="width:35%;vertical-align:middle;" rowspan="4">
                                     Fechas Importantes:
                                 </td>
                                 <td style="width:30%">
-                                    Arribo:
+                                    Arribo Estimado:
                                 </td>
                                 <td style="width:35%" colspan = "4">
                                     <span t-field="doc.so_feta"/>
