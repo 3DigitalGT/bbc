@@ -2,7 +2,6 @@
 <odoo>
     <data>
 
-
         <record id="paperformat_bill_lading" model="report.paperformat">
             <field name="name">Bill of Lading</field>
             <field name="default" eval="False" />
