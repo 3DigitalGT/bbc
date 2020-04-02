@@ -75,8 +75,10 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="account.invoice_tree"/>
         <field name="arch" type="xml">
-            <field name = "number" position="before">
+            <field name = "number" position="replace">
+                <field name = "number" invisible="1"/>
                 <field name = "doc_type" string = "Tipo Documento"/>
+                <field name = "reference" string = "Referencia"/>
             </field>
         </field>
         </record>
@@ -92,7 +94,6 @@
           </button>
         </field>
       </record>
-
 
   </data>
 </odoo>

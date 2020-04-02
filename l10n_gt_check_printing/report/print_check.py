@@ -97,7 +97,6 @@ class print_check(models.AbstractModel):
         #
         # return [first_line, second_line]
 
-    @api.multi
     def _get_report_values(self, docids, data=None):
         docs = self.env['account.payment'].browse(docids)
         return {
@@ -212,7 +211,6 @@ class print_cheque_wizard(models.AbstractModel):
         # second_line = second_line.replace(",", "")
         # return [first_line, second_line]
 
-    @api.multi
     def get_report_values(self, docids, data=None):
         docs = self.env['cheque.wizard'].browse(data['form'])
         return {

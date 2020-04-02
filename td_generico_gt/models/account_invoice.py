@@ -118,7 +118,16 @@ class Invoice(models.Model):
     @api.multi
     def _get_computed_reference(self):
         self.ensure_one()
+        self.doc_type = self.journal_id.doc_type
+        self.doc_serie = self.journal_id.sequence_id.prefix or ''
         if self.type in ('out_invoice', 'out_refund'):
+            if self.type == 'out_refund' and self.journal_id.refund_sequence_id:
+                self.doc_type = 'NCRE'
+                self.doc_serie = self.journal_id.refund_sequence_id.prefix
+                number = self.number.replace(self.journal_id.refund_sequence_id.prefix or '', '')
+            else:
+                number = self.number.replace(self.journal_id.sequence_id.prefix or '','')
+            identification_number = int(number)
             if self.company_id.invoice_reference_type == 'invoice_number':
                 seq_suffix = self.journal_id.sequence_id.suffix or ''
                 regex_number = '.*?([0-9]+)%s$' % seq_suffix
@@ -128,16 +137,19 @@ class Invoice(models.Model):
                 else:
                     ran_num = str(uuid.uuid4().int)
                     identification_number = int(ran_num[:5] + ran_num[-5:])
-            self.doc_type = self.journal_id.doc_type
-            self.doc_serie = self.journal_id.sequence_id.prefix or ''
-            self.doc_number = str(identification_number % 97).rjust(self.journal_id.sequence_id.padding, '0')
-            return '%s%s' % (self.doc_serie,self.doc_number)
-        else:
-            return '%s-%s' % (self.doc_serie, self.doc_number)
+                self.doc_number = str(identification_number % 97).rjust(self.journal_id.sequence_id.padding, '0')
+            else:
+                self.doc_number = str(identification_number).rjust(self.journal_id.sequence_id.padding, '0')
+        return '%s%s' % (self.doc_serie,self.doc_number)
+        # else:
+        #     return '%s-%s' % (self.doc_serie, self.doc_number)
 
     @api.multi
     def action_invoice_draft(self):
-        pass
+        if not self.env.user.has_group('account.group_account_user'):
+            pass
+        else:
+            super(Invoice, self).action_invoice_draft()
 
     @api.one
     @api.depends('invoice_line_ids.price_subtotal', 'tax_line_ids.amount', 'tax_line_ids.amount_rounding',
@@ -167,6 +179,31 @@ class Invoice(models.Model):
         self.amount_total_company_signed = amount_total_company_signed * sign
         self.amount_total_signed = self.amount_total * sign
         self.amount_untaxed_signed = amount_untaxed_signed * sign
+
+        @api.model
+        def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
+            args = args or []
+            invoice_ids = []
+            if name:
+                invoice_ids = self._search(['|',('number', '=', name),('reference', '=', name)] + args, limit=limit, access_rights_uid=name_get_uid)
+            if not invoice_ids:
+                invoice_ids = self._search(['|',('name', operator, name),('reference', operator, name)] + args, limit=limit,
+                                           access_rights_uid=name_get_uid)
+            return self.browse(invoice_ids).name_get()
+
+        @api.multi
+        def name_get(self):
+            TYPES = {
+                'out_invoice': _('Invoice'),
+                'in_invoice': _('Vendor Bill'),
+                'out_refund': _('Credit Note'),
+                'in_refund': _('Vendor Credit note'),
+            }
+            result = []
+            for inv in self:
+                result.append((inv.id, "%s %s-%s" % (doc_type,doc_serie,doc_number)))
+            return result
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"

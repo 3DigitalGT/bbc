@@ -8,7 +8,7 @@
       <field name="arch" type="xml">
         <field name = "check_manual_sequencing" position="after">
               <field name="account_check_printing_layout"/>
-              <field name="cheque_formate_id"/>
+              <field name="cheque_formate_id" attrs="{'invisible':[('account_check_printing_layout', '!=', 'action_print_check_voucher')]}"/>
           </field>
       </field>
     </record>

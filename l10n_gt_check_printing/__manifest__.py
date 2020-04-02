@@ -13,7 +13,6 @@ Este modulo permite la impresión de cheques voucher para Guatemala.
         'data/gt_check_printing.xml',
         'report/print_check.xml',
         'report/print_check_formato.xml',
-        'report/print_check_voucher.xml',
         'report/report_print_cheque.xml',
         'views/views.xml',
         'views/cheque_setting_view.xml',

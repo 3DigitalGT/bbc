@@ -29,6 +29,7 @@ class cheque_setting(models.Model):
     is_date = fields.Boolean('Print Date', default=True)
     date_formate = fields.Selection([('dd_mm', 'DD MM'), ('mm_dd', 'MM DD')], string='Date Formate', default='dd_mm')
     year_formate = fields.Selection([('yy', 'YY'), ('yyyy', 'YYYY')], string='Year Format', default='yy')
+    date_m_left = fields.Float('From Left', default=90)
     date_m_top = fields.Float('From Top', default=90)
     f_d_m_left = fields.Float('First Digit', default=550)
     s_d_m_left = fields.Float('Second Digit', default=560)

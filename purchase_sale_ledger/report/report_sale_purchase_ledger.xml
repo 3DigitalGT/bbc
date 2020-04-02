@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_so_po_ledger">
+    <t t-set="dummy_page_1" t-value="5" />
+        <t t-if="dummy_page_1 == 5">
+            <t t-set="dummy_page" t-value="5" />
+        </t>
+     <t t-call="web.html_container">
+        <!-- <span>1111111111111111111</span> -->
+        <t t-set="count" t-value="0"/>
+        <t t-set="page" t-value="1"/>
+        <t t-esc="count" />
+        <t t-esc="page" />
+        <!-- couter><t t-esc="counter" /> -->
+            <t t-if="counter==0">
+              <tr class="text-right" style="border:0;border-top:0">
+                 <td colspan="6">
+                   <strong>Ara Toplam:</strong>
+                     <!-- <span>
+                       55555555555555555
+                     </span> -->
+                 </td>
+              </tr>
+              <t t-set="counter" t-value="0" />
+              <t t-set="count" t-value="count+1" />
+              <t t-if="count==page">
+                <p style="page-break-after:auto;"></p>
+                <t t-set="page" t-value="page+1" />
+              </t>
+            </t> 
+            <t t-esc="page" />
+            <div class="footer" align="center">
+                FIN DEL PERIODO : <span t-esc="data['form']['month']"/> / <span t-esc="data['yyyy']"/>
+            </div>
+            <div class="header">
+                <div class="row">
+                    <div class="col-6">
+                        <strong>EMPRESA: </strong> <span t-esc="company_id.name"/><br/>
+                        NIT: <span t-esc="company_id.vat"/>
+                    </div>
+                    <div class="col-6 text-right">
+                        <ul class="list-inline">
+                            <t t-if="data['first_page_number'] == 1">
+                                <li class="list-inline-item"><span class="page"/></li>
+                            </t>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                   <div class="col-6">
+                        <strong>REPORTE: </strong><span t-esc="data['report_title']"/><br/>
+                        PERIODO : <span t-esc="data['mm']"/> / <span t-esc="data['yyyy']"/>
+                    </div>
+
+                    <div class="col-6 text-right">
+                        <strong>MONEDA: </strong><span t-esc="company_id.currency_id.name"/>
+                    </div>
+                </div>
+               
+               <!-- <t t-esc="dummy_page" /> -->
+            </div>
+            <t t-set="dummy_page" t-value="dummy_page+1" />
+            <t t-esc="dummy_page" />
+        <div class="page">
+            <div class="oe_structure"/>
+            <t t-set="total_main" t-value='0.0' />
+            <table  class="table table-sm" style="width:100%;font-size:12px;">
+
+                <thead >
+                    <tr>
+                        <t t-set="row_total_main" t-value='0.0' />
+                        <th width="10%" align="left">
+                            TIPO DOC.
+                        </th>
+                        <th width="10%" align="left">
+                            SERIE
+                        </th>
+                        <th width="10%" align="left">
+                            NO.
+                        </th>
+                        <th width="10%" align="left">
+                           FECHA
+                        </th>
+                        <th width="10%" align="left">
+                            NIT
+                        </th>
+                        <th width="10%" align="left">
+                            NOMBRE
+                        </th>
+                        <th width="5%" align="right">
+                            BIENES
+                        </th>
+                        <th width="5%" align="right">
+                            <t t-esc="import_export_title"/>
+                        </th >
+                        <th width="5%" align="right">
+                           SERVICIOS
+                        </th>
+                        <th width="5%" align="right">
+                            EXENTO
+                        </th>
+                        <th width="5%" align="right">
+                            OTROS
+                        </th>
+                        <th width="5%" align="right">
+                            IDP
+                        </th>
+                        <th width="5%" align="right">
+                            OTROS IMP. VENTA
+                        </th>
+                        <th width="5%" align="right">
+                            IVA
+                        </th>
+                        <th width="5%" align="right">
+                            TOTAL
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="docs" t-as="inv">
+                        <tr>
+                            <td width="10%">
+                                <!--&lt;!&ndash; if sale &ndash;&gt;-->
+                                <!--<t t-if="inv.journal_id.doc_type" >-->
+                                    <!--<t t-esc="dict(inv.journal_id.fields_get(allfields=['doc_type'])['doc_type']['selection'])[inv.journal_id.doc_type]"/>              -->
+                                <!--</t>-->
+                                <!--&lt;!&ndash; if purchase &ndash;&gt;-->
+                                <!--<t t-if="inv.doc_type" >-->
+                                    <!--<t t-esc="dict(inv.fields_get(allfields=['doc_type'])['doc_type']['selection'])[inv.doc_type]"/>-->
+                                <!--</t>-->
+                                <t t-esc="inv.doc_type"/>
+                            </td>
+                            <td width="10%">
+                                <!--<t t-esc="inv.journal_id.code"/>&lt;!&ndash; if sale &ndash;&gt;-->
+                                <t t-esc="inv.doc_serie"/><!-- if purchase -->
+                            </td>
+                            <td width="10%">
+                                <t t-esc="inv.doc_number"/><!-- if purchase -->
+                                <!--<t t-esc="inv.number"/>&lt;!&ndash; if sale &ndash;&gt;-->
+                            </td>
+                            <td width="10%">
+                                <span t-field="inv.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
+                                <!--<t t-esc="inv.date_invoice"/>-->
+                            </td>
+                            <td width="10%">
+                                <t t-esc="inv.partner_id.vat"/>
+                            </td>
+                            <td width="10%">
+                                <t t-esc="inv.partner_id.legal_name"/>
+                            </td>
+                            <td align="right" width="5%">
+                                <t t-esc="'%.2f'% tax_value.get(inv).get('goods',0)"/>
+                            </td>
+                            <td align="right" width="5%">
+                                <t t-esc="'%.2f'% tax_value.get(inv).get('import_export',0)"/>
+                            </td>
+                            <td align="right" width="5%">
+                                <t t-esc="'%.2f'% tax_value.get(inv).get('service_tax',0)"/>
+                            </td>
+                            <td align="right" width="5%">
+                                <t t-esc="'%.2f'% tax_value.get(inv).get('exempt_tax',0)"/>
+                            </td>
+                            <td align="right" width="5%">
+                                <t t-esc="'%.2f'% tax_value.get(inv).get('other_tax',0)"/>
+                            </td>
+                            <!-- <td align="right" width="5%">
+                                <t t-esc="tax_value.get(inv).get('nvat_tax',0)"/>
+                            </td> -->
+                            <td align="right" width="5%">
+                                <t t-esc="'%.2f'% tax_value.get(inv).get('idp_tax_val',0)"/>
+                            </td>
+                            
+                            <td align="right" width="5%">
+                                <t t-esc="'%.2f'% tax_value.get(inv).get('nvat_tax_amount',0)"/>
+                            </td>
+                            <!-- <td align="right" width="5%">
+                                <t t-esc="tax_value.get(inv).get('tax_amount_nvat',0)"/>
+                            </td> -->
+                            <td align="right" width="5%">
+                                <t t-esc="'%.2f'% tax_value.get(inv).get('vat_tax',0)"/>
+                            </td>
+                            <td align="right" width="5%">
+                                <t t-set="row_total_main" t-value="tax_value.get(inv).get('goods',0)+tax_value.get(inv).get('import_export',0)+tax_value.get(inv).get('service_tax')+tax_value.get(inv).get('exempt_tax',0)+tax_value.get(inv).get('other_tax',0)+tax_value.get(inv).get('vat_tax',0)+tax_value.get(inv).get('nvat_tax',0)+tax_value.get(inv).get('nvat_tax_amount',0)+tax_value.get(inv).get('idp_tax_val',0)" />
+                                <t t-esc="'%.2f'% row_total_main"/>
+                                <t t-set="total_main" t-value="row_total_main+total_main"/>
+                            </td>
+                        </tr>
+                    </t>
+                     <tr >
+                        <td style="border-top: 1px solid black;" align="right" width="5%"></td>
+                        <td style="border-top: 1px solid black;" align="right" width="5%">Total General:</td>
+                        <td style="border-top: 1px solid black;" align="left" width="5%"><t t-esc="tax_value.get('total_inv',0)" align="left"/></td>
+                        <td style="border-top: 1px solid black;" align="right" width="5%"></td>
+                        <td style="border-top: 1px solid black;" align="right" width="5%"></td>
+                        <td style="border-top: 1px solid black;" align="right" width="5%"></td>
+                        <td class="text-right" style="border-top: 1px solid black;" align="right" width="5%">
+                            <t t-if = "tax_value.get('sub_total_goods')" >
+                                <t t-esc="'%.2f'% round(tax_value.get('sub_total_goods'),2)"/>
+                            </t>
+                        </td>
+                        <td class="text-right" style="border-top: 1px solid black;" align="right" width="5%">
+                            <t t-esc="'%.2f'% round(tax_value.get('sub_total_import_export',0),2)"/>
+                        </td>
+                        <td class="text-right" style="border-top: 1px solid black;" align="right" width="5%">
+                            <t t-esc="'%.2f'% round(tax_value.get('sub_total_service',0),2)"/>
+                        </td>
+                        
+                        
+                        <td class="text-right" style="border-top: 1px solid black;" align="right" width="5%">
+                            <t t-esc="'%.2f'% round(tax_value.get('sub_total_exempt',0),2)"/>
+                        </td>
+                        <td class="text-right" style="border-top: 1px solid black;" align="right" width="5%">
+                            <t t-esc="'%.2f'% round(tax_value.get('sub_total_other',0),2)"/>
+                        </td>
+                        <td class="text-right" style="border-top: 1px solid black;text-align:right;">
+                            <!--<t t-esc="'%.2f'% round(tax_value.get('sub_total_idp'), 2)"/>-->
+                            <t t-esc="'%.2f'% round(tax_value.get('tax_amount_idp',0), 2)"/>
+                        </td>
+                       <!--  <td class="text-right" style="border-top: 1px solid black;" align="right" width="5%">
+                            <t t-esc="round(tax_value.get('sub_total_nvat',0),2)"/>
+                        </td> -->
+                        <td class="text-right" style="border-top: 1px solid black;" align="right" width="5%">
+                            <t t-esc="'%.2f'% round(tax_value.get('sub_total_nvat_tax_amount',0),2)"/>
+                        </td>
+                        <td class="text-right" style="border-top: 1px solid black;" align="right" width="5%">
+                            <t t-esc="'%.2f'% round(tax_value.get('sub_total_vat',0),2)"/>
+                        </td>
+                        <td class="text-right" style="border-top: 1px solid black;" align="right" width="5%">
+                            <t t-esc="'%.2f'% round(total_main,2)"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table  class="table table-sm" style="width:50%;padding-top:30px;font-size:12px;" align="right">
+                <t t-set="total_tax_based" t-value='0.0' />
+                <t t-set="total_untax_based" t-value='0.0' />
+                <t t-set="total_tax_goods" t-value='0.0' />
+                <t t-set="total_tax_amount" t-value='0.0' />
+                <t t-set="total_tax_service" t-value='0.0' />
+                <t t-set="total_tax_imp_exp" t-value='0.0' />
+                <t t-set="total_tax_nvat" t-value='0.0' />
+                <t t-set="final_total" t-value='0.0' />
+                <t t-set="total_tax_nvat_idp" t-value='0.0' />
+                <t t-set="total_tax_idp" t-value='0.0' />
+
+                
+                <tbody>
+                    <tr>
+                        <th class="text-center" colspan="5" style="border: 1px solid black;">
+                            RESUMEN
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="text-center" style="border: 1px solid black;">
+                            IMPUESTO
+                        </th>
+                        <th class="text-center" style="border: 1px solid black;">
+                            BASE GRAVADA
+                        </th>
+                        <th class="text-center" style="border: 1px solid black;">
+                            BASE EXENTA
+                        </th>
+                        <th class="text-center" style="border: 1px solid black;">
+                            IMPUESTO
+                        </th>
+                        <th class="text-center" style="border: 1px solid black;">
+                            TOTAL
+                        </th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">
+                            BIENES
+                        </td>
+                        <td align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('sub_total_goods',0),2)" align="right"/>
+                        </td>
+                        <td align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('goods_untax_total',0),2)" align="right"/>
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('tax_amount_goods',0),2)" align="right"/>
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-set="total_tax_goods" t-value="total_tax_goods+tax_value.get('sub_total_goods',0)+tax_value.get('goods_untax_total',0)+tax_value.get('tax_amount_goods',0)"/>
+                            <t t-esc="'%.2f'% round(total_tax_goods,2)" align="right"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">
+                            SERVICIOS
+                        </td>
+                        <td align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('sub_total_service',0),2)" align="right"/>
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('service_untax_total',0),2)" align="right"/>
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('tax_amount_service',0),2)" align="right"/>
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-set="total_tax_service" t-value="total_tax_service+tax_value.get('sub_total_service',0)+tax_value.get('service_untax_total',0)+tax_value.get('tax_amount_service',0)"/>
+                            <t t-esc="'%.2f'% round(total_tax_service,2)" align="right"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--for export import tax-->
+                        <td style="border: 1px solid black;">
+                            <t t-esc="import_export_title"/>
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('sub_total_import_export',0),2)" />
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('untax_import_export',0),2)" />
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('tax_amount_imp_exp',0),2)" />
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-set="total_tax_imp_exp" t-value="total_tax_imp_exp+tax_value.get('sub_total_import_export',0)+tax_value.get('untax_import_export',0)+tax_value.get('tax_amount_imp_exp',0)"/>
+                            <t t-esc="'%.2f'% round(total_tax_imp_exp,2)" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">
+                            COMBUSTIBLES
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('tax_amount_idp',0),2)"/>
+                        </td>
+                        <td style="border: 1px solid black;">
+                        </td>
+                        <td style="border: 1px solid black;">
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-set="total_tax_idp" t-value="total_tax_idp+tax_value.get('tax_amount_idp',0)"/>
+                            <t t-esc="'%.2f'% round(total_tax_idp,2)"/>
+                        </td>
+                            <!-- <t t-esc="tax_value.get(inv).get('idp_tax_val',0)"/> -->
+                        <!-- </td> -->
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">
+                            OTROS IMP. VENTA
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('sub_total_nvat',0),2)" />
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-esc="'%.2f'% round(tax_value.get('untax_nvat',0),2)"/>
+                        </td>
+                        <td class="text-right" align="right" style="border: 1px solid black;">
+                            <t t-set="total_tax_nvat_idp" t-value="total_tax_nvat_idp+round(tax_value.get('tax_amount_idp',0),2)+round(tax_value.get('tax_amount_nvat',0),2)"/>
+                            <t t-esc="'%.2f'% round(total_tax_nvat_idp,2)"/>
+                        </td>
+                        <td align="right" style="border: 1px solid black;">
+                        <t t-set="total_tax_nvat" t-value="total_tax_nvat+tax_value.get('sub_total_nvat',0)+tax_value.get('untax_nvat',0)+total_tax_nvat_idp"/>
+                            <t t-esc="'%.2f'% round(total_tax_nvat,2)"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">
+                            TOTAL
+                        </td>
+                        <td align="right" style="border: 1px solid black;">
+                            <t t-set="total_tax_based" t-value="total_tax_based+tax_value.get('sub_total_goods',0)+tax_value.get('sub_total_service',0)+tax_value.get('sub_total_import_export',0)+tax_value.get('sub_total_nvat',0)+tax_value.get('tax_amount_idp', 0)"/>
+                            <t t-esc="'%.2f'% round(total_tax_based,2)" />
+                        </td>
+                        <td align="right" style="border: 1px solid black;">
+                            <t t-set="total_untax_based" t-value="total_untax_based + tax_value.get('service_untax_total',0) + tax_value.get('goods_untax_total',0)+
+                               tax_value.get('untax_import_export',0)+tax_value.get('untax_nvat',0) "/>
+                            <t t-esc="'%.2f'% round(total_untax_based,2)" />
+                        </td>
+                         <td align="right" style="border: 1px solid black;">
+                            <t t-set="total_tax_amount" t-value="total_tax_amount + tax_value.get('tax_amount_goods',0) + tax_value.get('tax_amount_service',0)+tax_value.get('tax_amount_imp_exp',0)+
+                                tax_value.get('tax_amount_nvat',0)"/>
+                            <t t-esc="'%.2f'% round(total_tax_amount,2)" />
+                        </td>
+                        <td align="right" style="border: 1px solid black;">
+                            <t t-set="final_total" t-value="final_total+total_tax_goods+total_tax_service+total_tax_imp_exp+total_tax_nvat+total_tax_idp"/>
+                            <t t-esc="'%.2f'% round(final_total,2)" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <div class="oe_structure"/>
+        </div>
+    </t>
+    
+</template>
+</odoo>

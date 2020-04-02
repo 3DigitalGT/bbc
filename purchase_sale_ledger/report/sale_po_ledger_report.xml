@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+		<report
+            id="action_report_so_po_inv_ledger"
+            model="account.invoice"
+            string="Sale and Purchase Ledger"
+            report_type="qweb-pdf"
+            name="purchase_sale_ledger.report_so_po_ledger"
+            file="purchase_sale_ledger.report_so_po_ledger"
+            menu="False"
+            />
+    </data>
+</odoo>

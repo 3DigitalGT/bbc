@@ -42,19 +42,18 @@
             report_type="qweb-pdf"
             name="l10n_gt_check_printing.report_print_cheque"
             file="l10n_gt_check_printing.report_print_cheque"
-            header="False"
         />
 
         <report id="action_print_check_voucher"
             string="Cheque Voucher"
             model="account.payment"
-            name="l10n_gt_check_printing.print_check_voucher"
-            file="l10n_gt_check_printing.print_check_voucher"
+            name="l10n_gt_check_printing.report_print_cheque"
+            file="l10n_gt_check_printing.report_print_cheque"
             report_type="qweb-pdf"
             attachment_use="True"
             attachment="'cheque_'+(object.partner_id and object.partner_id.name or 'Internal')+'_'+(object.name)+'_voucher.pdf'"
             paperformat="l10n_gt_check_printing.paperformat_check_voucher"
-            print_report_name="'Cheque Voucher - %s' % (object.partner_id.name or '',)"
+            print_report_name="'Cheque No.%s - %s' % (object.check_number or '',object.partner_id.name or '')"
             menu="False"
         />
 
@@ -67,7 +66,7 @@
             attachment_use="True"
             attachment="'cheque_'+(object.partner_id and object.partner_id.name or 'Internal')+'_'+(object.name)+'_formato.pdf'"
             paperformat="l10n_gt_check_printing.paperformat_check_formato"
-            print_report_name="'Cheque Formato - %s' % (object.partner_id.name or '',)"
+            print_report_name="'Cheque No.%s - %s' % (object.check_number or '',object.partner_id.name or '')"
             menu="False"
         />
 
@@ -90,6 +89,12 @@
         <record id="l10n_gt_check_printing.action_report_print_cheque" model="ir.actions.report">
 			<field name="paperformat_id" ref="l10n_gt_check_printing.paperformat_cheque" />
 		</record>
+
+        <!--<record id="account_check_printing.account_payment_method_transfer" model="account.payment.method">-->
+            <!--<field name="name">Transfer</field>-->
+            <!--<field name="code">transfer</field>-->
+            <!--<field name="payment_type">outbound</field>-->
+        <!--</record>-->
 
     </data>
 </odoo>
