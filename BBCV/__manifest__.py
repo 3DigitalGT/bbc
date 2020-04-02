@@ -24,7 +24,7 @@
     'version': '1.0',
     'category': 'Sales Management',
     'description': """ Este es el modulo de PRESUPUESTOS y PEDIDOS DE VENTA MODIFICADOS """,
-    'author': 'Josepablo',
+    'author': 'Diego Gonzalez Campo',
     'website': 'www.corpindustriasca.com',
     'depends': ['base', 'product', 'crm', 'sale_crm'],
     'data': [
