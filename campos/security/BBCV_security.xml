@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="group_BBCV_Pricing" model="res.groups">
+            <field name="name">BBCV_Pricing</field>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+            <!--field name="implied_ids" eval="[(4, ref('base.group_user'))]"/-->
+        </record>
+        <record id="group_BBCV_Asesor" model="res.groups">
+            <field name="name">BBCV_Asesor</field>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+            <!--field name="implied_ids" eval="[(4, ref('base.group_user'))]"/-->
+        </record>
+        <record id="group_BBCV_Comercial_jefe" model="res.groups">
+            <field name="name">BBCV_Comercial_jefe</field>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+            <!--field name="implied_ids" eval="[(4, ref('base.group_user'))]"/-->
+        </record>
+        <record id="group_BBCV_Operaciones" model="res.groups">
+            <field name="name">BBCV_Operaciones</field>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+            <!--field name="implied_ids" eval="[(4, ref('base.group_user'))]"/-->
+        </record>
+        <record id="group_BBCV_Comercial_operador" model="res.groups">
+            <field name="name">BBCV_Comercial_operador</field>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+            <!--field name="implied_ids" eval="[(4, ref('base.group_user'))]"/-->
+        </record>
+        <record id="group_BBCV_Contabilidad_Gerencia" model="res.groups">
+            <field name="name">BBCV_Contabilidad_Geren</field>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+            <!--field name="implied_ids" eval="[(4, ref('base.group_user'))]"/-->
+        </record>
+        <record id="group_BBCV_Contabilidad_Operador" model="res.groups">
+            <field name="name">BBCV_Contabilidad_Operador</field>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+            <!--field name="implied_ids" eval="[(4, ref('base.group_user'))]"/-->
+        </record>
+        <record id="group_BBCV_Manager_Admin" model="res.groups">
+            <field name="name">Manager_BBCV_Manager_Admin</field>
+            <field name="implied_ids" eval="[(4, ref('group_BBCV_Comercial_operador'))]"/>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+ </data>
+
+</odoo>
+
