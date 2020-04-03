@@ -70,9 +70,6 @@ access_fac_cliente_user,fac_cliente.user,model_fac_cliente,base.group_user,1,0,0
 access_fac_prov_user,fac_prov.user,model_fac_prov,base.group_user,1,0,0,0
 access_comision_venta_user,comision_venta.user,model_comision_venta,base.group_user,1,0,0,0
 access_comision_pag_user,comision_pag.user,model_comision_pag,base.group_user,1,0,0,0
-access_sale_container_user,sale_container.user,model_sale_container,base.group_user,1,1,1,1
-access_sale_container_pkg_user,sale_container_pkg.user,model_sale_container_pkg,base.group_user,1,1,1,1
-access_sale_container_wrap_user,sale_container_wrap.user,model_sale_container_wrap,base.group_user,1,0,0,0
 
 
 
