@@ -3,55 +3,55 @@
     <data>
 
         <!--  VISTA DE FORMS  PARA SALE ORDERS   -->
-        <record model="ir.ui.view" id="view_order_container_form">
-            <field name="name">sale.order.form.container</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="view_order_form_operations"/>
-            <field name="arch" type="xml">
-                <page name="page_operaciones" position = "after">
-                    <page string = "Contenedores">
-                        <field name = "container_ids" mode="tree">
-                            <form>
-                                <group>
-                                    <field name ="number"/>
-                                    <field name ="type"/>
-                                    <field name ="seal"/>
-                                    <field name ="marks"/>
-                                    <field name ="weight_exp"/>
-                                    <field name ="exp_volume"/>
-                                    <field name = "package_ids" mode = "tree" editable="bottom">
-                                        <tree>
-                                            <field name ="description"/>
-                                            <field name ="qty"/>
-                                            <field name ="wrap_id"/>
-                                            <field name ="weight"/>
-                                            <field name ="volume"/>
-                                        </tree>
-                                        <form>
-                                            <group>
-                                                <field name ="description"/>
-                                                <field name ="qty"/>
-                                                <field name ="wrap_id"/>
-                                                <field name ="weight"/>
-                                                <field name ="volume"/>
-                                            </group>
-                                        </form>
-                                    </field>
-                                </group>
+        <!--<record model="ir.ui.view" id="view_order_container_form">-->
+            <!--<field name="name">sale.order.form.container</field>-->
+            <!--<field name="model">sale.order</field>-->
+            <!--<field name="inherit_id" ref="view_order_form_operations"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<page name="page_operaciones" position = "after">-->
+                    <!--<page string = "Contenedores">-->
+                        <!--<field name = "container_ids" mode="tree">-->
+                            <!--<form>-->
+                                <!--<group>-->
+                                    <!--<field name ="number"/>-->
+                                    <!--<field name ="type"/>-->
+                                    <!--<field name ="seal"/>-->
+                                    <!--<field name ="marks"/>-->
+                                    <!--<field name ="weight_exp"/>-->
+                                    <!--<field name ="exp_volume"/>-->
+                                    <!--<field name = "package_ids" mode = "tree" editable="bottom">-->
+                                        <!--<tree>-->
+                                            <!--<field name ="description"/>-->
+                                            <!--<field name ="qty"/>-->
+                                            <!--<field name ="wrap_id"/>-->
+                                            <!--<field name ="weight"/>-->
+                                            <!--<field name ="volume"/>-->
+                                        <!--</tree>-->
+                                        <!--<form>-->
+                                            <!--<group>-->
+                                                <!--<field name ="description"/>-->
+                                                <!--<field name ="qty"/>-->
+                                                <!--<field name ="wrap_id"/>-->
+                                                <!--<field name ="weight"/>-->
+                                                <!--<field name ="volume"/>-->
+                                            <!--</group>-->
+                                        <!--</form>-->
+                                    <!--</field>-->
+                                <!--</group>-->
 
-                            </form>
-                            <tree>
-                                <field name ="number"/>
-                                <field name ="seal"/>
-                                <field name ="marks"/>
-                                <field name ="pieces"/>
-                                <field name ="weight_total"/>
-                            </tree>
-                        </field>
-                    </page>
-                </page>
-            </field>
-        </record>
+                            <!--</form>-->
+                            <!--<tree>-->
+                                <!--<field name ="number"/>-->
+                                <!--<field name ="seal"/>-->
+                                <!--<field name ="marks"/>-->
+                                <!--<field name ="pieces"/>-->
+                                <!--<field name ="weight_total"/>-->
+                            <!--</tree>-->
+                        <!--</field>-->
+                    <!--</page>-->
+                <!--</page>-->
+            <!--</field>-->
+        <!--</record>-->
 
 
 

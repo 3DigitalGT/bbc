@@ -1,22 +1,22 @@
-# -*- coding: utf-8 -*-
+-*- coding: utf-8 -*-
 
-# from odoo import api, exceptions, fields, models, _, SUPERUSER_ID
-#
-# class sale_order(models.Model):
-#     _inherit = "sale.order"
-#
-#     container_ids = fields.One2many("sale.container","saleorder_id","Contenedores")
-#     electricity_bbc = fields.Boolean("Energía Electrica")
-#     electricity_nav = fields.Boolean("Energía Electrica")
-#     forwarding_agent = fields.Many2one("res.partner","Forwarding Agent")
-#     documents_to = fields.Many2one("res.partner", "Present Documents to")
-#     precarriage_by =  fields.Many2one("res.partner", "Precarriage By")
-#     precarriage_location = fields.Char("Place Receipt be Precarriage")
-#     routing = fields.Char("Routing")
-#     booking = fields.Char("Booking")
-#     export_references = fields.Char("Export References")
-#     type_of_move = fields.Char("Tipo de Movimiento")
-#
+from odoo import api, exceptions, fields, models, _, SUPERUSER_ID
+
+class sale_order(models.Model):
+    _inherit = "sale.order"
+
+    #container_ids = fields.One2many("sale.container","saleorder_id","Contenedores")
+    electricity_bbc = fields.Boolean("Energía Electrica")
+    electricity_nav = fields.Boolean("Energía Electrica")
+    forwarding_agent = fields.Many2one("res.partner","Forwarding Agent")
+    documents_to = fields.Many2one("res.partner", "Present Documents to")
+    precarriage_by =  fields.Many2one("res.partner", "Precarriage By")
+    precarriage_location = fields.Char("Place Receipt be Precarriage")
+    routing = fields.Char("Routing")
+    booking = fields.Char("Booking")
+    export_references = fields.Char("Export References")
+    type_of_move = fields.Char("Tipo de Movimiento")
+
 # class res_partner_container(models.Model):
 #     _inherit = "res.partner"
 #

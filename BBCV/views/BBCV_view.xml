@@ -337,7 +337,7 @@
                         <field name="so_dia_almacenaje" string="Días libres de almacenaje" />
                         <field name="so_dia_demora" string="Días libres de demoras" />
                         <field name="dia_estadia" string="Días libres de estadía" />
-                        <field name="electricity_nav"/>
+                        <!--<field name="electricity_nav"/>-->
                 </group>
                 <group  string="BBC">
                     <group colspan="2" col="8">
