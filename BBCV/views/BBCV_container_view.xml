@@ -56,13 +56,13 @@
 
 
         <!-- ACCION PARA ABRIR LA FORMA -->
-        <record model="ir.actions.act_window" id="action_sale_wrap_type">
-        <field name="name">Tipo de Empaques</field>
-        <field name="res_model">sale.container.wrap</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        </record>
-        <menuitem id="tipocomercio" name="Tipo Empque" parent="campos_so"  sequence="1" action="action_sale_wrap_type"/>
+        <!--<record model="ir.actions.act_window" id="action_sale_wrap_type">-->
+        <!--<field name="name">Tipo de Empaques</field>-->
+        <!--<field name="res_model">sale.container.wrap</field>-->
+        <!--<field name="view_type">form</field>-->
+        <!--<field name="view_mode">tree,form</field>-->
+        <!--</record>-->
+        <!--<menuitem id="tipocomercio" name="Tipo Empque" parent="campos_so"  sequence="1" action="action_sale_wrap_type"/>-->
 
     </data>
 </odoo>
