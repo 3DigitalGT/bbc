@@ -518,13 +518,17 @@ class SaleOrder(models.Model):
 
     @api.onchange('so_fecha_demora')
     def onchange_so_fecha_demora(self):
-        self.so_fecha_almacenaje = self.so_feta + timedelta(days=self.dias_almacenaje)
-        self.so_fecha2_demora = self.so_fecha_almacenaje + timedelta(days=1)
-        self.so_fecha2_almacenaje = self.sp_feta + timedelta(days=self.dias_demoras)
-        self.fecha_estadia2 = self.so_fecha2_almacenaje + timedelta(days=1)
-        self.fecha_estadia = self.fecha_estadia2 + timedelta(days=self.dias_estadia)
-        self.bbc_inicio4 = self.so_feta + timedelta(days=self.dias_almacenaje)
-        self.bbc_fin4 = self.so_fecha_demora + timedelta(days=self.dias_almacenaje)
+        self.dias_almacenaje = self.dias_almacenaje if self.dias_almacenaje else 0
+        self.dias_demoras = self.dias_demoras if self.dias_demoras else 0
+        self.dias_estadia = self.dias_estadia if self.dias_estadia else 0
+        if self.so_feta:
+            self.so_fecha_almacenaje = self.so_feta + timedelta(days=self.dias_almacenaje)
+            self.so_fecha2_demora = self.so_fecha_almacenaje + timedelta(days=1)
+            self.so_fecha2_almacenaje = self.sp_feta + timedelta(days=self.dias_demoras)
+            self.fecha_estadia2 = self.so_fecha2_almacenaje + timedelta(days=1)
+            self.fecha_estadia = self.fecha_estadia2 + timedelta(days=self.dias_estadia)
+            self.bbc_inicio4 = self.so_feta + timedelta(days=self.dias_almacenaje)
+            self.bbc_fin4 = self.so_fecha_demora + timedelta(days=self.dias_almacenaje)
 
     @api.model
     def create(self,vals):
