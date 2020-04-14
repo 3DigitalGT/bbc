@@ -388,12 +388,7 @@ class SaleOrder(models.Model):
     so_nivel_prioridades = fields.Many2one('so_nivel_prioridad','Nivel de prioridad',ondelete='cascade',select=True)
     currencys = fields.Many2one('res.currency', string='Tipo de moneda')
     so_valor_mercaderia =  fields.Char('Valor de la mercancia')
-    so_tipo_equipos = fields.Selection(
-        [
-            ('ref','Refrigerado'),
-            ('nor','Normal'),
-        ]
-    )
+    so_tipo_equipos = fields.Many2one('so_tipo_equipo', string='Tipo Equipo')
     so_volumen =  fields.Char('Volumen')
     so_peso =  fields.Char('Peso')
     so_medidas = fields.Char('Medidas')
